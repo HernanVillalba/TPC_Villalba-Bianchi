@@ -47,12 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dominio\Dominio.csproj">
-      <Project>{b22c5b64-ca98-4f9e-bdc6-803be48b7848}</Project>
+      <Project>{B22C5B64-CA98-4F9E-BDC6-803BE48B7848}</Project>
       <Name>Dominio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Web\Web.csproj">
-      <Project>{8969cb0c-af84-4e86-8a2c-9ee131a66711}</Project>
-      <Name>Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

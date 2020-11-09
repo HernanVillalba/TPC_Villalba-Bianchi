@@ -11,15 +11,15 @@ namespace Dominio
     {
         public int ID { get; set; }
         public string Nombre { get; set; }
-        public Plataforma PlataformaJuego { get; set; }
         public string Descripcion { get; set; }
-        public Desarrollador DesarrolladorJuego { get; set; }
-        public SqlMoney Precio{ get; set; }
-        public int Stock { get; set; }
         public string ImagenURL { get; set; }
+        public Desarrollador DesarrolladorJuego { get; set; }
+        public Plataforma PlataformaJuego { get; set; }
 
         public Juego()
         {
+            DesarrolladorJuego = new Desarrollador();
+            PlataformaJuego = new Plataforma();
 
         }
 
