@@ -56,6 +56,7 @@
                         <Li><a runat="server" href="CatalogoJuegos.aspx">Juegos</a></Li>
                     </ul>
                     <nav class="navbar navbar-light bg-light" style="float: right;">
+
                         <a class="navbar-brand" href="Login.aspx">
                             <img title="Iniciar sesión/Registrarse" src="https://image.flaticon.com/icons/png/512/1484/1484867.png" width="50" height="50" alt="imagen de usuario">
                         </a>
