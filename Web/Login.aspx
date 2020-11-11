@@ -3,7 +3,7 @@
 <asp:Content ID="ContentLogin" ContentPlaceHolderID="MainContent" runat="server">
 
     <div style="display:flex; align-items:center; justify-content:center;">
-        <h1 style="font-style:italic;">Iniciar sesión / Registrarse</h1>
+        <h1 style="font-style:italic; color:#1a1c20; text-shadow: 0.1em 0.1em #333;">Iniciar sesión / Registrarse</h1>
     </div>
 
 

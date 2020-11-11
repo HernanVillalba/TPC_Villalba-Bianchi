@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CatalogoJuegos.aspx.cs" Inherits="Web.CatalogoJuegos" %>
+﻿<%@ Page Title="Juegos :)" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CatalogoJuegos.aspx.cs" Inherits="Web.CatalogoJuegos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-white"><%= item.Nombre %></li>
-                        <li class="list-group-item list-group-item-white"><%= item.PlataformaJuego.Nombre %></li>
+                        <li class="list-group-item list-group-item-white" style="color:cornflowerblue;"><%= item.PlataformaJuego.Nombre %></li>
                     </ul>
                     <a href="#<%= item.ID %>" class="btn btn-primary btn-block" style="background-color: deepskyblue;" type="button">Detalles</a>
                     <a href="#" class="btn btn-primary btn-block" type="button">Agregar al Carrito</a>

@@ -15,9 +15,21 @@
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style>
+        body{
+            background-image:url(https://tinyurl.com/y5nlb8os); 
+            
+            background-position:center center; 
+            background-size:cover;
+            background-attachment:fixed;
+            background-color:#eeeded;
+            
+        }
+    </style>
 
 </head>
 <body>
+
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
