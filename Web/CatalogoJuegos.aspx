@@ -6,7 +6,7 @@
     <br />
     <div class="row">
         <%
-            foreach (Dominio.Juego item in Lista)
+            foreach (Dominio.Juego item in (List<Dominio.Juego>)Session["Productos"])
             {%>
         <div class="col-md-4">
             <div class="card" style="width: 18rem; background-color: transparent;">
@@ -15,12 +15,13 @@
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-white"><%= item.Nombre %></li>
                         <li class="list-group-item list-group-item-white" style="color:cornflowerblue;"><%= item.PlataformaJuego.Nombre %></li>
-                    </ul>
-                    <a href="#<%= item.ID %>" class="btn btn-primary btn-block" style="background-color: deepskyblue;" type="button">Detalles</a>
+               
+                    <a href="Detalles.aspx?IDJ=<%= item.ID %>&IDP=<%=item.PlataformaJuego.ID%>" class="btn btn-primary btn-block" style="background-color: deepskyblue;" type="button">Detalles</a>
                     <a href="#" class="btn btn-primary btn-block" type="button">Agregar al Carrito</a>
+                        </ul>
                 </div>
             </div>
-        </div>
+    </div>
         <%}%>
     </div>
 </asp:Content>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Negocio;
+using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +11,11 @@ namespace Web
 {
     public partial class SiteMaster : MasterPage
     {
+        private JuegoNegocio negocio;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            negocio = new JuegoNegocio();
+            Session["Productos"] = negocio.ListarTodosLosCampos();
         }
     }
 }
