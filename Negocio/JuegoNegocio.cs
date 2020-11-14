@@ -14,7 +14,7 @@ namespace Negocio
         public List<Juego> ListarTodosLosCampos()
         {
             //Vista creada en la base de datos
-            string query = "select * from ListarTodosLosCampos";
+            string query = "select * from VW_ListarTodosLosCampos";
             string UsuarioDS = "data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;";
 
             SqlConnection Conexion = new SqlConnection(UsuarioDS);

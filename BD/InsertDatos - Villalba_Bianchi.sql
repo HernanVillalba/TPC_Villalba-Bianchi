@@ -46,3 +46,16 @@ VALUES (1,1),
 	   (3,3),
 	   (4,4),
 	   (5,5)
+
+GO
+INSERT INTO Usuarios(NombreUsuario,Contraseña)
+VALUES ('admin', 'admin'),
+	   ('link', 'zelda'),
+	   ('oscar20', 'oski'),
+	   ('hernanvi_', 'herni')
+
+GO
+INSERT INTO Datos_Personales (IDUsuario, Nombre, Apellido, Mail, CP)
+VALUES (2, 'Link', 'Zelda', 'legendofzelda@link.com',  1010),
+	   (3, 'Oscar', 'Bianchi', 'oski@gmail.com', 2020),
+	   (4, 'Hernán', 'Villalaba', 'hernan@gmail.com', 2021)

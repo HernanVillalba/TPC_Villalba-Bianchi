@@ -10,9 +10,7 @@
             var valido = true;
 
             if (Usuario === "") {
-                //alert("Completa el campo de usuario!");
-                $("#<%= tbUsuario.ClientID%>").removeClass("is-valid");
-                $("#<%= tbUsuario.ClientID %>").addClass("is-invalid");
+                alert("Completa el campo de usuario!");
                 valido = false;
             }
             else
@@ -23,9 +21,7 @@
 
 
             if (Password === "") {
-                //alert("Completa el campo de password!");
-                $("#tbPassword").removeClass("is-valid");
-                document.getElementById("<% = tbPassword.ClientID%>").addClass("is-invalid");
+                alert("Completa el campo de password!");
                 valido = false;
             }
             else {
@@ -46,11 +42,11 @@
         <div class="form" style="width: 20rem; margin: 0 auto;">
             <div class="card-group">
                 <label class="form-control-label">Usuario</label>
-                <asp:TextBox CssClass="form-control is-valid" ID="tbUsuario" ClientIDMode="Static" runat="server"  />
+                <asp:TextBox CssClass="form-control" ID="tbUsuario" ClientIDMode="Static" runat="server"  />
                 <br />
 
                 <label class="form-control-label" for="inputPassword">Contraseña</label>
-                <asp:TextBox CssClass="is-valid" ID="tbPassword" ClientIDMode="Static" runat="server" TextMode="Password" />
+                <asp:TextBox CssClass="form-control" ID="tbPassword" ClientIDMode="Static" runat="server" TextMode="Password" />
                 <br />
 
                 <asp:Button ID="btnAceptar" CssClass="btn btn-primary btn-block" Text="Acceder" OnClientClick="return validar()" OnClick="btnAceptar_click" runat="server"  />

@@ -71,32 +71,34 @@ primary key(ID),
 constraint FK_Distribuidor foreign key (IDdistribuidor) references Distribuidor (ID)
 )
 
-
-go 
-create table Datos_Personales(
-IDUsuario int not null,
-Nombre varchar(100)not null,
-Apellido varchar(100) not null,
-CP int not null,
-primary key (IDUsuario)
-)
-
 go
 create table Usuarios(
 ID int identity(1,1) not null,
 NombreUsuario varchar(200) not null,
-MailUsuario varchar(200) not null,
 Contraseña varchar(200) not null,
-
-primary key (ID),
-constraint FK_DP foreign key (ID) references Datos_Personales(IDUsuario)
+primary key (ID)
 )
+go
+alter table Usuarios add unique(NombreUsuario) --unico usuario e inrrepetible
+
+go 
+create table Datos_Personales(
+IDUsuario int not null,
+Apellido varchar(100) not null,
+Nombre varchar(100)not null,
+Mail varchar(200) not null,
+CP int not null,
+primary key (IDUsuario),
+constraint FK_IDUsu_Usu foreign key(IDUsuario) references Usuarios(ID)
+)
+go 
+alter table Datos_Personales add unique (IDUsuario, Mail)
 
 go 
 create table Pedidos(
 ID int identity(1,1) not null,
 IDUsuario int not null foreign key references Usuarios(ID),
-IDenvio int not null,
+IDEnvio int not null,
 ImporteJuego money not null,
 FechaCompra datetime not null,
 TipoEntrega bit not null,
@@ -106,6 +108,8 @@ Estado varchar(50) not null,
 primary key (ID),
 constraint FK_Envio foreign key (IDenvio) references Envio(ID)
 )
+go 
+alter table Pedidos add unique(IDenvio)
 
 go
 create table Producto_x_pedido(
