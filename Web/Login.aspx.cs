@@ -13,5 +13,10 @@ namespace Web
         {
 
         }
+
+        protected void btnAceptar_click(object sender, EventArgs e)
+        {
+            Response.Redirect("CatalogoJuegos.aspx");
+        }
     }
 }

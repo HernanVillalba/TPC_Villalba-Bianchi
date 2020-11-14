@@ -1,17 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Detalles.aspx.cs" Inherits="Web.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-
-
     <br />
     <br />
     <div class="row">
         <div class="card" style="background-color: midnightblue;">
             <div class="card">
                 <h2 class="card-header" style="color: white; font-size: 27px;"><%=juegoDetalles.Nombre %></h2>
-                <h3 ><% =juegoDetalles.PlataformaJuego.Nombre %> </h3>
-                <img class="card-img-top" src="<%= juegoDetalles.ImagenURL %>" alt="imagen-juego" style="height: inherit; width: inherit">
+                <h4 ><% =juegoDetalles.PlataformaJuego.Nombre %> </h4>
+                <img class="img-fluid" src="<%= juegoDetalles.ImagenURL %>" alt="imagen-juego" style="height: inherit; width: inherit; max-height: 100px;">
             </div>
         </div>
         <ul class="list-group list-group-flush" style="background-color: white; font-size: 20px;">

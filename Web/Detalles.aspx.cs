@@ -23,6 +23,7 @@ namespace Web
             {
                 if (Request.QueryString["IDJ"] == "" || Request.QueryString["IDP"] == "")
                 {
+                    //falta redireccionar, no lo hace!!!!!!!........................................
                     Response.Redirect("CatalogoJuegos.aspx");
                 }
 

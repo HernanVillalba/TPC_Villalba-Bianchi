@@ -2,23 +2,58 @@
 
 <asp:Content ID="ContentLogin" ContentPlaceHolderID="MainContent" runat="server">
 
+    <script>
+        function validar()
+        {
+            var Usuario = document.getElementById("tbUsuario").value;
+            var Password = document.getElementById("<% = tbPassword.ClientID%>").value;
+            var valido = true;
+
+            if (Usuario === "") {
+                //alert("Completa el campo de usuario!");
+                $("#<%= tbUsuario.ClientID%>").removeClass("is-valid");
+                $("#<%= tbUsuario.ClientID %>").addClass("is-invalid");
+                valido = false;
+            }
+            else
+            {
+                $("#tbUsuario").removeClass("is-invalid");
+                $("#tbUsuario").addClass("is-valid");
+            }
+
+
+            if (Password === "") {
+                //alert("Completa el campo de password!");
+                $("#tbPassword").removeClass("is-valid");
+                document.getElementById("<% = tbPassword.ClientID%>").addClass("is-invalid");
+                valido = false;
+            }
+            else {
+                $("#tbPassword").removeClass("is-invalid");
+                $("#tbPassword").addClass("is-valid");
+            }
+
+            if (!valido) { return false; }
+            else { return true;}
+        }
+    </script>
+
     <div style="display:flex; align-items:center; justify-content:center;">
         <h1 style="font-style:italic; color:#1a1c20; text-shadow: 0.1em 0.1em #333;">Iniciar sesión / Registrarse</h1>
     </div>
 
-
     <div style="border-radius: 10px; background-color: rgb(242,242,242); padding: 40px;">
         <div class="form" style="width: 20rem; margin: 0 auto;">
             <div class="card-group">
-                <label class="form-control-label" for="inputUser">Usuario</label>
-                <input class="form-control" type="text" id="inputUser" placeholder="Ingresa su mail o usuario" required="required"/>
+                <label class="form-control-label">Usuario</label>
+                <asp:TextBox CssClass="form-control is-valid" ID="tbUsuario" ClientIDMode="Static" runat="server"  />
                 <br />
 
                 <label class="form-control-label" for="inputPassword">Contraseña</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="Ingrese su contrseña" required="required" />
+                <asp:TextBox CssClass="is-valid" ID="tbPassword" ClientIDMode="Static" runat="server" TextMode="Password" />
                 <br />
 
-                <button type="button" class="btn btn-primary btn-block"> Acceder </button>
+                <asp:Button ID="btnAceptar" CssClass="btn btn-primary btn-block" Text="Acceder" OnClientClick="return validar()" OnClick="btnAceptar_click" runat="server"  />
                 <hr />
 
                 <div style="display:flex; align-items:center; justify-content:center;">
