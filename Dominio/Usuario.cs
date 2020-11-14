@@ -8,8 +8,14 @@ namespace Dominio
 {
     public class Usuario
     {
-        private string User { get; set; }
-        private string pass { get; set; }
+        public int ID { get; set; }
+        public string user { get; set; }
+        public string pass { get; set; }
+
+        public Usuario()
+        {
+            this.ID = 0;
+        }
 
     }
 }
