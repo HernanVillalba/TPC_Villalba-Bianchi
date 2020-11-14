@@ -7,19 +7,20 @@
     <br />
     <br />
     <div class="row">
-
-
         <div class="card" style="background-color: midnightblue;">
             <div class="card">
-                <h2 class="card-header" style="color: white; font-size: 27px;"> <%=juegoDetalles.Nombre %>   <a href="CatalogoJuegos.aspx" style="color: white; float: right"><%=juegoDetalles.PlataformaJuego.Nombre %></a></h2>
-            
-                    <img class="card-img-top" src="<%= juegoDetalles.ImagenURL %>" alt="imagen-juego" style="height:inherit; width:inherit">
-                    <a href="#" class="btn btn-primary btn" type="button">Agregar al Carrito</a>
-           
+                <h2 class="card-header" style="color: white; font-size: 27px;"><%=juegoDetalles.Nombre %></h2>
+                <h3 ><% =juegoDetalles.PlataformaJuego.Nombre %> </h3>
+                <img class="card-img-top" src="<%= juegoDetalles.ImagenURL %>" alt="imagen-juego" style="height: inherit; width: inherit">
+            </div>
         </div>
-    </div>
-          <ul class="list-group list-group-flush" style="background-color: white; font-size: 20px;">            
-              <li>  Desarrollado por: <%=juegoDetalles.DesarrolladorJuego.Nombre %>  </li>
-             <li> Sinopsis: <%=juegoDetalles.Descripcion %></li>
+        <ul class="list-group list-group-flush" style="background-color: white; font-size: 20px;">
+            <li>Desarrollado por: <%=juegoDetalles.DesarrolladorJuego.Nombre %>  </li>
+            <li>Sinopsis: <%=juegoDetalles.Descripcion %></li>
+        </ul>
+        <div>
+            <a href="#" class="btn btn-primary btn-block" type="button">Agregar al Carrito</a>
+            <a href="CatalogoJuegos.aspx" class="btn btn-primary btn-block" type="button">Volver</a>
+        </div>
     </div>
 </asp:Content>
