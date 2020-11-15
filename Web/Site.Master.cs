@@ -16,6 +16,7 @@ namespace Web
         {
             negocio = new JuegoNegocio();
             Session["Productos"] = negocio.ListarTodosLosCampos();
+            Session["busqueda"] = new List<Juego>();
         }
     }
 }

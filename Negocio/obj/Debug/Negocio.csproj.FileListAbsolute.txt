@@ -7,3 +7,12 @@ C:\Users\Hernan\Documents\Programación III\TPC_Villalba-Bianchi\Negocio\obj\Deb
 C:\Users\Hernan\Documents\Programación III\TPC_Villalba-Bianchi\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\Hernan\Documents\Programación III\TPC_Villalba-Bianchi\Negocio\obj\Debug\Negocio.dll
 C:\Users\Hernan\Documents\Programación III\TPC_Villalba-Bianchi\Negocio\obj\Debug\Negocio.pdb
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Negocio\bin\Debug\Negocio.dll
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Negocio\bin\Debug\Negocio.pdb
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Negocio\bin\Debug\Dominio.dll
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Negocio\bin\Debug\Dominio.pdb
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Negocio\obj\Debug\Negocio.csprojAssemblyReference.cache
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Negocio\obj\Debug\Negocio.dll
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Negocio\obj\Debug\Negocio.pdb

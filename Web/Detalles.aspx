@@ -4,12 +4,12 @@
     <br />
     <br />
     <div class="row">
-        <div class="card" style="background-color: midnightblue;">
-            <div class="card">
+        <div class="card" style="background-color: midnightblue; width: 300px; height: 500px;">
+            <div class="card"  >
                 <h2 class="card-header" style="color: white; font-size: 27px;"><%=juegoDetalles.Nombre %></h2>
-                <h4 ><% =juegoDetalles.PlataformaJuego.Nombre %> </h4>
-                <img class="img-fluid" src="<%= juegoDetalles.ImagenURL %>" alt="imagen-juego" style="height: inherit; width: inherit; max-height: 100px;">
-            </div>
+                <h4 style="color:white;"><% =juegoDetalles.PlataformaJuego.Nombre %> </h4>
+                <img class="img-fluid" src="<%= juegoDetalles.ImagenURL %>" alt="imagen-juego" style="height: 500px; width:300px; max-height: 100px;">
+                </div>
         </div>
         <ul class="list-group list-group-flush" style="background-color: white; font-size: 20px;">
             <li>Desarrollado por: <%=juegoDetalles.DesarrolladorJuego.Nombre %>  </li>

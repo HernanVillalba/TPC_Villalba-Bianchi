@@ -1,9 +1,20 @@
-﻿<%@ Page Title="Juegos :)" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CatalogoJuegos.aspx.cs" Inherits="Web.CatalogoJuegos" %>
+﻿ <%@ Page Title="Juegos :)" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CatalogoJuegos.aspx.cs" Inherits="Web.CatalogoJuegos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <br />
     <br />
+      <div class="jumbotron" >
+        <h2 class="display-5">Los juegos queres al Precio que podes!</h2>
+        <hr class="my-5">
+        <p class="lead">Buscas algo particular?</p>
+        <p class="lead">
+            <asp:DropDownList ID="dropCat" runat="server"></asp:DropDownList>
+            <asp:TextBox ID="txtBuscar" runat="server"></asp:TextBox>
+            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
+                </p>
+    </div>
+
     <div class="row">
         <%
             foreach (Dominio.Juego item in (List<Dominio.Juego>)Session["Productos"])

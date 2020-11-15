@@ -7,7 +7,12 @@
     <%}%>
 
     <%else
-        {%>
+        {%> 
+    <div class ="card" style="background-color:aquamarine">
+    <h1> Total de Items: <%=listaCarrito.Count() %></h1>
+    <h1> Sus Items en el Carrito son :</h1>
+
+    </div>
     <div class="row">
         <%
             foreach (Dominio.Juego item in listaCarrito)
