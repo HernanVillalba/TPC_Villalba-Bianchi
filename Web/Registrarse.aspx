@@ -27,6 +27,7 @@
             var NombreUsuario = document.getElementById("<%= txtUser.ClientID%>").value;
             var contraseña = document.getElementById("<%= txtContra.ClientID%>").value;
             var contraseñaC = document.getElementById("<%= txtContraC.ClientID%>").value;
+            var CP = document.getElementById("<%= txtCP.ClientID%>").value;
 
             if (Mail != MailC) {
                 alert("Los Correos son diferentes, Reintente!");
@@ -38,36 +39,52 @@
                 return false;
             }
 
-            if (Nombre === "" || Apellido === "" || Mail === "" || MailC === "" || NombreUsuario === "" || contraseña === "" || contraseñaC === "") {
+            if (Nombre === "" || Apellido === "" || Mail === "" || MailC === "" || NombreUsuario === "" || contraseña === "" || contraseñaC === "" || CP === "") {
                 alert("Complete todos los campos para registrarse!!!");
                 return false;
-            }  
+            }
+
             return true;
         }
     </script>
 </head>
 <body>
     <div style="display: flex; align-items: center; justify-content: center;">
-        <h1 style="font-style: italic; color: #1a1c20; text-shadow: 0.1em 0.1em #333;">Registrarse</h1>
+        <h1 style="font-style: italic; color: #1a1c20; text-shadow: 0.1em 0.1em #333;"><strong>Registrarse</strong></h1>
     </div>
 
     <form runat="server" class="form-inline">
         <div style="border-radius: 10px; background-color: rgb(242,242,242); padding: 40px; width: 1000px; margin: 0 auto;">
-
-            <div class="form-group">
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <h4 style="font-style: italic; color: #1a1c20; text-shadow: 0.1em 0.1em #333;"><strong>Datos personales</strong></h4>
+            </div>
+            <div class="form-group" style="display: flex; align-items: center; justify-content: center;">
                 <label>Nombre:</label>
                 <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
-                <div class="form-group">
-                    <label>Apellido:</label>
-                    <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" />
-                </div>
+                <label>Apellido:</label>
+                <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" />
+                <label>Código postal:</label>
+                <asp:TextBox runat="server" cssClass="form-control" ID="txtCP"/>
             </div>
+
             <hr />
-            <div class="form-group" style="width: 1000px; margin: 10px auto;">
+
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <h4 style="font-style: italic; color: #1a1c20; text-shadow: 0.1em 0.1em #333;"><strong>Datos de contacto</strong></h4>
+            </div>
+            <div class="form-group" style="display: flex; align-items: center; justify-content: center;">
                 <label>Mail:</label>
                 <asp:TextBox runat="server" ID="txtMail" CssClass="form-control" TextMode="Email" />
-                 <label>Mail:</label>
+                <label>Mail:</label>
                 <asp:TextBox runat="server" ID="txtMailC" CssClass="form-control" TextMode="Email" />
+            </div>
+
+            <hr />
+
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <h4 style="font-style: italic; color: #1a1c20; text-shadow: 0.1em 0.1em #333;"><strong>Datos de inicio de sesión</strong></h4>
+            </div>
+            <div class="from-group" style="display: flex; align-items: center; justify-content: center;">
                 <label>Nombre de usuario:</label>
                 <asp:TextBox runat="server" ID="txtUser" CssClass="form-control" />
                 <label>Contraseña:</label>

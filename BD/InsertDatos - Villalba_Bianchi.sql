@@ -59,3 +59,12 @@ INSERT INTO Datos_Personales (IDUsuario, Nombre, Apellido, Mail, CP)
 VALUES (2, 'Link', 'Zelda', 'legendofzelda@link.com',  1010),
 	   (3, 'Oscar', 'Bianchi', 'oski@gmail.com', 2020),
 	   (4, 'Hernán', 'Villalaba', 'hernan@gmail.com', 2021)
+
+/*
+GO
+insert into Pedidos(IDUsuario, ImporteJuego, FechaCompra, EnvioPorCorreo, DireccionEnvio, Pagado, Estado)
+values (3,2000,GETDATE(),1,'calle falsa 123',1,'Pedido aceptado'),
+	   (2,1500,GETDATE(),0,'calle 2020',1,'Enviado'),
+	   (4,150,GETDATE(),1,'la esquina del nene deah', 0,'No pagado'),
+	   (2,1200,GETDATE(),2,'chancho 20', 0, 'No pagado')
+*/

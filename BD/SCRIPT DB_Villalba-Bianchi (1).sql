@@ -60,17 +60,6 @@ ID int not null,
 Nombre varchar(100) not null,
 primary key(ID)
 )
-
-go
-create table Envio(
-ID int not null,
-Estado tinyint not null,
-Direccion varchar(100) not null,
-IDdistribuidor int not null,
-primary key(ID),
-constraint FK_Distribuidor foreign key (IDdistribuidor) references Distribuidor (ID)
-)
-
 go
 create table Usuarios(
 ID int identity(1,1) not null,
@@ -98,18 +87,27 @@ go
 create table Pedidos(
 ID int identity(1,1) not null,
 IDUsuario int not null foreign key references Usuarios(ID),
-IDEnvio int not null,
 ImporteJuego money not null,
 FechaCompra datetime not null,
-TipoEntrega bit not null,
+EnvioPorCorreo bit not null,
 DireccionEnvio varchar(200) not null,
 Pagado bit not null,
 Estado varchar(50) not null,
-primary key (ID),
-constraint FK_Envio foreign key (IDenvio) references Envio(ID)
+primary key (ID)
 )
-go 
-alter table Pedidos add unique(IDenvio)
+
+go
+create table Envio(
+ID int not null,
+IDPedido int not null,
+Estado tinyint not null,
+Direccion varchar(100) not null,
+IDdistribuidor int not null,
+primary key(ID),
+constraint FK_Distribuidor foreign key (IDdistribuidor) references Distribuidor (ID),
+constraint FK_IDPED_PED foreign key(IDPedido) references Pedidos(ID)
+)
+
 
 go
 create table Producto_x_pedido(
