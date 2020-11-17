@@ -16,7 +16,7 @@
             <li>Sinopsis: <%=juegoDetalles.Descripcion %></li>
         </ul>
         <div>
-            <a href="#" class="btn btn-primary btn-block" type="button">Agregar al Carrito</a>
+           <a href="Carrito.aspx?ID=<%=juegoDetalles.ID.ToString()%>&add=1" class="btn btn-primary btn-block" type="button">Agregar al Carrito</a>
             <a href="CatalogoJuegos.aspx" class="btn btn-primary btn-block" type="button">Volver</a>
         </div>
     </div>

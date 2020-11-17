@@ -19,14 +19,16 @@ namespace Web
         int IDAux;
         int agregar;
         int eliminar;
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             ExisteListaCarrito();
+            CargarDgv();
 
-            
+
             IDAux = Convert.ToInt32(Request.QueryString["ID"]);
             agregar = Convert.ToInt32(Request.QueryString["add"]);
+            eliminar = Convert.ToInt32(Request.QueryString["delete"]);
 
             try
             {
@@ -35,6 +37,11 @@ namespace Web
                 if(IDAux != 0 && agregar == 1 ) 
                 {
                     AgregarItemLista();
+                    Response.Redirect("Carrito.aspx");
+                }
+                if(IDAux != 0 &&  eliminar == 1)
+                {
+                    EliminarItemLista();
                     Response.Redirect("Carrito.aspx");
                 }
                 
@@ -60,6 +67,14 @@ namespace Web
             }
         }
 
+        private void EliminarItemLista()
+            {
+                ((List<Juego>)Session["ListaCarrito"]).Remove(articuloBuscado);
+                listaCarrito = ((List<Juego>)Session["ListaCarrito"]);
+
+            }
+        
+
         private void ExisteListaCarrito()
         {
             if(Session["ListaCarrito"] == null)
@@ -70,6 +85,12 @@ namespace Web
             {
                 listaCarrito = (List<Juego>)Session["ListaCarrito"];
             }
+        }
+        
+        private void CargarDgv()
+        {
+            dgvCarrito.DataSource = listaCarrito;
+            dgvCarrito.DataBind();
         }
     }
 }

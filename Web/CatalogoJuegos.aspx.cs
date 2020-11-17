@@ -41,7 +41,7 @@ namespace Web
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         { List<Juego>  aux = new List<Juego>();
-            aux = ((List<Dominio.Juego>)Session["Productos"]).FindAll(i => i.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()) && i.PlataformaJuego.ID == int.Parse(dropCat.SelectedValue));
+            aux = ((List<Dominio.Juego>)Session["Productos"]).FindAll(i => i.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
             Session.Add("Productos",aux);
         }
     }
