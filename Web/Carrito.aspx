@@ -13,31 +13,34 @@
         <h1>Sus Items en el Carrito son :</h1>
 
     </div>
-   <table class="table"border="1" style="border-style: outset; border-width: thin; background-color: #FFCCFF; vertical-align: top;">
-       <tr> 
-           <td>Imagen</td>
-           <td>Nombre</td>
-           <td>Plataforma</td>
-           <td>Cantidad</td>
+    <table class="table" border="1" style="border: thin outset #000000; margin: auto; background-color: #FFCCFF;">
+        <tr style="border: 1px groove #000000;">
+            <td>Imagen</td>
+            <td>Nombre</td>
+            <td>Plataforma</td>
+            <td>Desarrollador</td>
+            <td>Cantidad</td>
 
-       </tr>
+
+        </tr>
         <%
             foreach (Dominio.Juego item in listaCarrito)
             {%>
 
-            <tr>
-                <td>
-                    <img src="<%= item.ImagenURL %>" class="card-img-top" width="180" height="120" ></td>
-                <td><%= item.Nombre %></td>
-                <td><%= item.PlataformaJuego.Nombre %></td>
-                
-                <td>asda</td>
-            </tr>
-     
+        <tr style="border: 1px groove #000000;">
+            <td>
+                <img src="<%= item.ImagenURL %>" class="card-img-top" width="180" height="120" alt="Imagen del <%=item.Nombre %>"></td>
+            <td><%= item.Nombre %></td>
+            <td><%= item.PlataformaJuego.Nombre %></td>
+
+            <td><%=item.DesarrolladorJuego.Nombre %></td>
+            <td><%= listaCarrito.Count(I => I.ID == item.ID && I.PlataformaJuego.ID == item.PlataformaJuego.ID)%></td>
+        </tr>
+
         <%}%>
-          </table>
- <div class="row">
-           <%
+    </table>
+    <div class="row">
+        <%
             foreach (Dominio.Juego item in listaCarrito)
             {%>
         <div class="col-md-4">
@@ -57,12 +60,12 @@
         </div>
         <%}%>
     </div>
-  
-    <%}%> 
+
+    <%}%>
     <asp:GridView CssClass="table" ID="dgvCarrito" runat="server" AutoGenerateColumns="False" BackColor="#669999">
         <Columns>
-            <asp:BoundField headertext="ID" DataField="ID" ItemStyle-CssClass="oculto" HeaderStyle-CssClass="oculto" />
-            <asp:Imagefield headertext="Imagen" dataimageurlfield="ImagenUrl" ControlStyle-Height="120" ControlStyle-Width="180" />
+            <asp:BoundField HeaderText="ID" DataField="ID" ItemStyle-CssClass="oculto" HeaderStyle-CssClass="oculto" />
+            <asp:ImageField HeaderText="Imagen" DataImageUrlField="ImagenUrl" ControlStyle-Height="120" ControlStyle-Width="180" />
             <asp:BoundField HeaderText="Juego" DataField="Nombre" />
             <asp:BoundField HeaderText="Plataforma" DataField="PlataformaJuego.Nombre" />
             <asp:BoundField HeaderText="Cantidad" />

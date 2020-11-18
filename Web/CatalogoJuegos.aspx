@@ -27,8 +27,8 @@
                         <li class="list-group-item list-group-item-white"><%= item.Nombre %></li>
                         <li class="list-group-item list-group-item-white" style="color: cornflowerblue;"><%= item.PlataformaJuego.Nombre %></li>
                         <li class="list-group-item list-group-item-white">
-                            <a href="Detalles.aspx?IDJ=<%= item.ID %>&IDP=<%=item.PlataformaJuego.ID%>" class="btn btn-primary btn-block" style="background-color: deepskyblue;" type="button">Detalles</a>
-                            <a href="Carrito.aspx?ID=<%=item.ID.ToString()%>&add=1" class="btn btn-primary btn-block" type="button">Agregar al Carrito</a>
+                            <a href="Detalles.aspx?IDJ=<%=item.ID%>&IDP=<%=item.PlataformaJuego.ID%>" class="btn btn-primary btn-block" style="background-color: deepskyblue;" type="button">Detalles</a>
+                            <a href="Carrito.aspx?ID=<%=item.ID.ToString()%>&add=1&IDP=<%=item.PlataformaJuego.ID %>" class="btn btn-primary btn-block" type="button">Agregar al Carrito</a>
                         </li>
                     </ul>
                 </div>

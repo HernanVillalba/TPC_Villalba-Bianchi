@@ -19,7 +19,7 @@ namespace Web
         int IDAux;
         int agregar;
         int eliminar;
-        
+        int IDPlat;
         protected void Page_Load(object sender, EventArgs e)
         {
             ExisteListaCarrito();
@@ -29,10 +29,12 @@ namespace Web
             IDAux = Convert.ToInt32(Request.QueryString["ID"]);
             agregar = Convert.ToInt32(Request.QueryString["add"]);
             eliminar = Convert.ToInt32(Request.QueryString["delete"]);
+            IDPlat = Convert.ToInt32(Request.QueryString["IDP"]);
+
 
             try
             {
-                articuloBuscado = (listaAux = negocio.ListarTodosLosCampos()).Find(i => i.ID == IDAux);
+                articuloBuscado = (listaAux = negocio.ListarTodosLosCampos()).Find(i => i.ID == IDAux && i.PlataformaJuego.ID == IDPlat);
 
                 if(IDAux != 0 && agregar == 1 ) 
                 {

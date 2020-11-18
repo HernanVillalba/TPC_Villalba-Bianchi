@@ -35,13 +35,13 @@ namespace Web
             JuegoNegocio aux = new JuegoNegocio();
             dropCat.DataSource = aux.GetPlataformas();
             dropCat.DataTextField = "Nombre";
-            dropCat.DataValueField = "id";
+            dropCat.DataValueField = "Id";
             dropCat.DataBind();
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         { List<Juego>  aux = new List<Juego>();
-            aux = ((List<Dominio.Juego>)Session["Productos"]).FindAll(i => i.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+            aux = ((List<Dominio.Juego>)Session["Productos"]).FindAll(i => i.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()) && i.PlataformaJuego.ID == int.Parse(dropCat.SelectedValue));
             Session.Add("Productos",aux);
         }
     }
