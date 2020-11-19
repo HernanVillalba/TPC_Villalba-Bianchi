@@ -12,7 +12,6 @@ namespace Web
     public partial class Carrito : System.Web.UI.Page
     {
         private JuegoNegocio negocio = new JuegoNegocio();
-        public List<Juego> listaCarrito = new List<Juego>();
         public Juego articuloBuscado = new Juego();
         public List<Juego> listaAux = new List<Juego>();
 
@@ -59,20 +58,17 @@ namespace Web
         {
             if(Session["ListaCarrito"] == null)
             {
-                listaCarrito.Add(articuloBuscado);
-                Session["ListaCarrito"] = listaCarrito;
+                Session["ListaCarrito"] = new List<Juego>();
             }
             else
             {
                 ((List<Juego>)Session["ListaCarrito"]).Add(articuloBuscado);
-                listaCarrito = ((List<Juego>)Session["ListaCarrito"]);
             }
         }
 
         private void EliminarItemLista()
             {
                 ((List<Juego>)Session["ListaCarrito"]).Remove(articuloBuscado);
-                listaCarrito = ((List<Juego>)Session["ListaCarrito"]);
 
             }
         
@@ -83,15 +79,12 @@ namespace Web
             {
                 Session["ListaCarrito"] = new List<Juego>();
             }
-            else
-            {
-                listaCarrito = (List<Juego>)Session["ListaCarrito"];
-            }
+         
         }
         
         private void CargarDgv()
         {
-            dgvCarrito.DataSource = listaCarrito;
+            dgvCarrito.DataSource = ((List<Juego>)Session["ListaCarrito"]);
             dgvCarrito.DataBind();
         }
     }

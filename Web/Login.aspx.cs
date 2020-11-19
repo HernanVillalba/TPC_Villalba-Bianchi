@@ -16,7 +16,7 @@ namespace Web
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+         //Mostrar Logueo   
         }
 
         protected void btnAcceder_Click(object sender, EventArgs e)
@@ -26,14 +26,10 @@ namespace Web
 
             usuario = negocio.login(usuario);
 
-            //logeo si el user y pass son correctos
             if (usuario.ID != 0)
             {
-                /*
-                 ---------------------FALTA QUE SOLO PUEDA VER LOS JUEGOS AL LOGEARSE--------------------
-                Session["InicioSesion"] = new Usuario();
-                Session["InicioSesion"] = usuario;
-                */
+                
+                Session["Login"] = usuario.ID;
                 Response.Redirect("CatalogoJuegos.aspx"); 
             }
             else{ Response.Redirect("Error.aspx"); }

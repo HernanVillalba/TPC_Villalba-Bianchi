@@ -5,6 +5,7 @@
     <br />
     <br />
       <div class="jumbotron" >
+          <h1>ID USUARIO = <%=(Session["Login"]).ToString() %> </h1>
         <h2 class="display-5">Los juegos queres al Precio que podes!</h2>
         <hr class="my-5">
         <p class="lead">Buscas algo particular?</p>
@@ -14,7 +15,7 @@
             <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                 </p>
     </div>
-
+  
     <div class="row">
         <%
             foreach (Dominio.Juego item in (List<Dominio.Juego>)Session["Productos"])
@@ -36,4 +37,5 @@
         </div>
         <%}%>
     </div>
+
 </asp:Content>
