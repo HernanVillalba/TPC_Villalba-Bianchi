@@ -16,14 +16,12 @@
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <style>
-        body{
-            background-image:url(https://tinyurl.com/y5nlb8os); 
-            
-            background-position:center center; 
-            background-size:cover;
-            background-attachment:fixed;
-            background-color:#eeeded;
-            
+        body {
+            background-image: url(https://tinyurl.com/y5nlb8os);
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #eeeded;
         }
     </style>
 
@@ -62,8 +60,13 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <Li><a runat="server" href="CatalogoJuegos.aspx">Juegos</a></Li>
+                        <li><a runat="server" href="CatalogoJuegos.aspx">Juegos</a></li>
                         <li><a runat="server" href="Carrito.aspx">Carrito</a></li>
+                        <%if ((int)Session["Login"] == 1)
+                            { %>
+                        <li><a runat="server" href="Administrador.aspx">Administrar Productos</a></li>
+
+                        <%} %>
                     </ul>
                     <nav class="navbar navbar-light bg-light" style="float: right;">
 

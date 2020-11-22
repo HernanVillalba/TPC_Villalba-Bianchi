@@ -4,3 +4,9 @@ C:\Users\Hernan\Documents\Programación III\TPC_Villalba-Bianchi\Dominio\obj\Deb
 C:\Users\Hernan\Documents\Programación III\TPC_Villalba-Bianchi\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\Hernan\Documents\Programación III\TPC_Villalba-Bianchi\Dominio\obj\Debug\Dominio.dll
 C:\Users\Hernan\Documents\Programación III\TPC_Villalba-Bianchi\Dominio\obj\Debug\Dominio.pdb
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Dominio\bin\Debug\Dominio.dll
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Dominio\bin\Debug\Dominio.pdb
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Dominio\obj\Debug\Dominio.csprojAssemblyReference.cache
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Dominio\obj\Debug\Dominio.dll
+C:\Users\Oscar\Desktop\Facultad\Pro 3\TPC_Villalba-Bianchi\Dominio\obj\Debug\Dominio.pdb

@@ -13,10 +13,10 @@ namespace Web
     {
         Usuario usuario = new Usuario();
         UsuarioNegocio negocio = new UsuarioNegocio();
-        
+        bool bandera = false;
         protected void Page_Load(object sender, EventArgs e)
         {
-         //Mostrar Logueo   
+   
         }
 
         protected void btnAcceder_Click(object sender, EventArgs e)
@@ -25,14 +25,24 @@ namespace Web
             usuario.pass = tbPassword.Text;
 
             usuario = negocio.login(usuario);
+            IniciarSessionLogin(usuario.ID);
 
-            if (usuario.ID != 0)
+
+
+        }
+        protected void IniciarSessionLogin(int ID)
+        {
+            if (ID != 0)
             {
-                
+
                 Session["Login"] = usuario.ID;
-                Response.Redirect("CatalogoJuegos.aspx"); 
+                Response.Redirect("CatalogoJuegos.aspx");
             }
-            else{ Response.Redirect("Error.aspx"); }
+            else
+            {
+                Session["Login"] = 0;
+                Response.Redirect("Error.aspx");
+            }
         }
     }
 }
