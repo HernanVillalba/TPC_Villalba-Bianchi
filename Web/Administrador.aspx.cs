@@ -27,5 +27,12 @@ namespace Web
             gvJuegos.DataBind();
 
         }
+
+
+
+        protected void Agregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Agregar.aspx");
+        }
     }
 }

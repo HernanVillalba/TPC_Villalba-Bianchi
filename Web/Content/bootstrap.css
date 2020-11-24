@@ -5055,6 +5055,8 @@ a.badge:focus {
   padding-right: 15px;
   padding-left: 15px;
   border-radius: 6px;
+    height: 60px;
+    width: 697px;
 }
 .jumbotron .container {
   max-width: 100%;
