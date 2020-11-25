@@ -27,10 +27,16 @@
 
         <asp:Label ID="LblDesarrollador" runat="server" Text="Desarrollador"></asp:Label>
 
+        <asp:DropDownList ID="ddlDesarrollador" runat="server">
+        </asp:DropDownList>
+
     </div>
     <div>
 
         <asp:Label ID="LblPlataforma" runat="server" Text="Plataforma"></asp:Label>
+
+        <asp:DropDownList ID="ddlPlataforma" runat="server">
+        </asp:DropDownList>
 
     </div>
     <div>

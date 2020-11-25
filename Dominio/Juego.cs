@@ -16,11 +16,13 @@ namespace Dominio
         public Desarrollador DesarrolladorJuego { get; set; }
         public Plataforma PlataformaJuego { get; set; }
 
+        public int Cantidad { get; set; }
+
         public Juego()
         {
             DesarrolladorJuego = new Desarrollador();
             PlataformaJuego = new Plataforma();
-
+            Cantidad = 0;
         }
 
     }

@@ -89,5 +89,39 @@ namespace Negocio
 
         }
 
+        public List<Plataforma> GetDesarrolladres()
+        {
+            string query = "select * from Desarrolladores";
+            string UsuarioDS = "data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;";
+
+            SqlConnection Conexion = new SqlConnection(UsuarioDS);
+            SqlCommand Comando = new SqlCommand(query, Conexion);
+            SqlDataReader Lector;
+            List<Plataforma> lista = new List<Plataforma>();
+            try
+            {
+                Conexion.Open();
+                Lector = Comando.ExecuteReader();
+
+                while (Lector.Read())
+                {
+                    Plataforma aux = new Plataforma();
+                    aux.ID = Lector.GetInt32(0);
+                    aux.Nombre = Lector.GetString(1);
+                    lista.Add(aux);
+                }
+
+                Conexion.Close();
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
     }
 }

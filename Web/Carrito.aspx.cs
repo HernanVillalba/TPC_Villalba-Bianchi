@@ -16,6 +16,7 @@ namespace Web
         public Juego articuloBuscado = new Juego();
         public List<Juego> listaAux = new List<Juego>();
 
+
         Chango carro = new Chango();
         int IDAux;
         int agregar;
@@ -34,14 +35,14 @@ namespace Web
             try
             {
                 articuloBuscado = (listaAux = negocio.ListarTodosLosCampos()).Find(i => i.ID == IDAux && i.PlataformaJuego.ID == IDPlat);
-                
 
-                if(IDAux != 0 && agregar == 1 ) 
+
+                if (IDAux != 0 && agregar == 1)
                 {
                     AgregarItemLista();
                     Response.Redirect("Carrito.aspx");
                 }
-                if(IDAux != 0 &&  eliminar == 1)
+                if (IDAux != 0 && eliminar == 1)
                 {
                     EliminarItemLista();
                     Response.Redirect("Carrito.aspx");
@@ -55,42 +56,51 @@ namespace Web
 
             CargarLblTotal();
         }
-        
+
         private void CargarLblTotal()
         {
 
             foreach (Juego item in (List<Juego>)Session["ListaCarrito"])
             {
-                carro.Cantidad++;
-                carro.Total += item.PlataformaJuego.Precio;
+                
+                carro.Cantidad+=item.Cantidad;
+                carro.Total += item.PlataformaJuego.Precio*item.Cantidad;
             }
 
             lblCantidad.Text = carro.Cantidad.ToString();
             lblTotal.Text = carro.Total.ToString();
         }
 
-        private void AgregarItemLista() 
+        private void AgregarItemLista()
         {
-            if(Session["ListaCarrito"] == null)
+            //Buscamos si existe el item en la lista
+            foreach (var item in ((List<Juego>)Session["ListaCarrito"]))
             {
-                Session["ListaCarrito"] = new List<Juego>();
+                if (item.ID == articuloBuscado.ID)
+
+                {
+                    // si existe le acumulamos cantidad al objeto que 
+                    //alguna vez ya haya sido agregado
+                    item.Cantidad++;
+                    return;
+                }
             }
-            else
-            {
-                ((List<Juego>)Session["ListaCarrito"]).Add(articuloBuscado);
-            }
+            //si no existe agrega
+            articuloBuscado.Cantidad++;
+            ((List<Juego>)Session["ListaCarrito"]).Add(articuloBuscado);
+
         }
 
         private void EliminarItemLista()
-            {
-                ((List<Juego>)Session["ListaCarrito"]).Remove(articuloBuscado);
+        {
+            ((List<Juego>)Session["ListaCarrito"]).Remove(articuloBuscado);
 
-            }
-        
+        }
+
 
         private void ExisteListaCarrito()
         {
-            if(Session["ListaCarrito"] == null)
+            if (Session["ListaCarrito"] == null)
             {
                 Session["ListaCarrito"] = new List<Juego>();
             }
@@ -98,8 +108,8 @@ namespace Web
             {
                 listaAux = (List<Juego>)Session["ListaCarrito"];
             }
-         
+
         }
-       
+
     }
 }

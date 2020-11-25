@@ -50,7 +50,7 @@
             <td><%= item.PlataformaJuego.Nombre %></td>
 
             <td><%=item.PlataformaJuego.Precio %></td>
-            <td><%= ((List<Dominio.Juego>)Session["ListaCarrito"]).Count(I => I.ID == item.ID && I.PlataformaJuego.ID == item.PlataformaJuego.ID)%></td>
+            <td><%=item.Cantidad %></td>
         </tr>
 
         <%     }

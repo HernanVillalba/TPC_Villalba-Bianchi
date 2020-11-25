@@ -78,6 +78,15 @@ namespace Web
         protected global::System.Web.UI.WebControls.Label LblDesarrollador;
 
         /// <summary>
+        /// Control ddlDesarrollador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDesarrollador;
+
+        /// <summary>
         /// Control LblPlataforma.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace Web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblPlataforma;
+
+        /// <summary>
+        /// Control ddlPlataforma.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPlataforma;
 
         /// <summary>
         /// Control LblPrecio.
