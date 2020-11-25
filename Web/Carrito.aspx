@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="Web.Carrito" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+
     <%if (((List<Dominio.Juego>)Session["ListaCarrito"]).Count() == 0)
         {%>
     <h1>CARRITO VACIO</h1>
@@ -8,11 +10,24 @@
 
     <%else
         {%>
-    <div class="card" style="background-color: aquamarine; line-height: normal; list-style-type: none; table-layout: auto;">
-        <h1>Total de Items: <%=((List<Dominio.Juego>)Session["ListaCarrito"]).Count() %></h1>
-        <h1>Sus Items en el Carrito son :</h1>
+    <div class="jumbotron" style="background-color: aquamarine;">
+        <div>
 
+            <span class="badge badge-primary"  style="font-size:20px;">
+                Cantidad de articulos:
+                <asp:Label ID="lblCantidad" Text="0" runat="server" />
+            </span>
+        </div>
+        <div style="font-size:20px;">
+            <span class="badge badge-primary"  style="font-size:20px;">
+                Precio total: $
+                <asp:Label ID="lblTotal" Text="0" runat="server" />
+            </span>
+        </div>
     </div>
+
+    <br />
+    <br />
     <table class="table" border="1" style="border: thin outset #000000; margin: auto; background-color: #FFCCFF;">
         <tr style="border: 1px groove #000000;">
             <td>Imagen</td>
@@ -20,7 +35,7 @@
             <td>Plataforma</td>
             <td>Precio</td>
             <td>Cantidad</td>
-            
+
 
 
         </tr>
@@ -40,8 +55,8 @@
 
         <%     }
             }
-            
-            %>
+
+        %>
     </table>
-   
+
 </asp:Content>

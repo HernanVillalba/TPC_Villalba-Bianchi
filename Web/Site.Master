@@ -64,8 +64,7 @@
                         <li><a runat="server" href="Carrito.aspx">Carrito</a></li>
                         <%if ((int)Session["Login"] == 1)
                             { %>
-                        <li><a runat="server" href="Administrador.aspx">Administrar Productos</a></li>
-
+                        <li><a runat="server" href="Administrador.aspx">Administrar Productos/Usuarios</a></li>
                         <%} %>
                     </ul>
                     <nav class="navbar navbar-light bg-light" style="float: right;">

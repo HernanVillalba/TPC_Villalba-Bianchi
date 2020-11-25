@@ -5,17 +5,16 @@
     <br />
     <br />
     <div class="jumbotron" style="background-position: right center; background-image: url(https://www.hd-tecnologia.com/imagenes/articulos/2019/04/Crossplay-Las-familias-quieren-jugar-juntas-y-nadie-tiene-4-PlayStations.jpg); background-attachment: inherit; background-repeat: no-repeat;">
-        <h1>ID USUARIO = <%=(Session["Login"]).ToString() %> </h1>
         <h2 class="display-5">Los juegos queres</h2>
         <h2 class="display-5">al Precio que podes!</h2>
         <p class="lead">Buscas algo particular?</p>
-        <p class="lead">
+        <div class="lead">
             <asp:DropDownList ID="dropCat" runat="server"></asp:DropDownList>
             <div>
                 <asp:TextBox ID="txtBuscar" runat="server"></asp:TextBox>
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
             </div>
-        </p>
+        </div>
     </div>
 
     <div class="row">
