@@ -13,7 +13,6 @@ namespace Web
     {
         Usuario usuario = new Usuario();
         UsuarioNegocio negocio = new UsuarioNegocio();
-        bool bandera = false;
         protected void Page_Load(object sender, EventArgs e)
         {
    

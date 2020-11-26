@@ -20,6 +20,7 @@ namespace Dominio
 
         public Juego()
         {
+            ID = 0;
             DesarrolladorJuego = new Desarrollador();
             PlataformaJuego = new Plataforma();
             Cantidad = 0;

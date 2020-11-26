@@ -11,12 +11,11 @@ namespace Negocio
 {
     public class JuegoNegocio
     {
-       
+        string UsuarioDS = "data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;";
         public List<Juego> ListarTodosLosCampos()
         {
             //Vista creada en la base de datos
             string query = "select * from VW_ListarTodosLosCampos";
-            string UsuarioDS = "data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;";
 
             SqlConnection Conexion = new SqlConnection(UsuarioDS);
             SqlCommand Comando = new SqlCommand(query,Conexion);
@@ -59,7 +58,6 @@ namespace Negocio
         public List<Plataforma> GetPlataformas()
         {
             string query = "select * from Plataformas";
-            string UsuarioDS = "data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;";
 
             SqlConnection Conexion = new SqlConnection(UsuarioDS);
             SqlCommand Comando = new SqlCommand(query, Conexion);
@@ -92,7 +90,7 @@ namespace Negocio
         public List<Plataforma> GetDesarrolladres()
         {
             string query = "select * from Desarrolladores";
-            string UsuarioDS = "data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;";
+            
 
             SqlConnection Conexion = new SqlConnection(UsuarioDS);
             SqlCommand Comando = new SqlCommand(query, Conexion);
@@ -122,7 +120,33 @@ namespace Negocio
 
         }
 
+        public Juego GuardarJuego( Juego aux)
+        {
+            SqlConnection conexion = new SqlConnection(UsuarioDS);
+            SqlCommand comando = new SqlCommand("SP_NuevoJuego", conexion);
+            SqlDataReader lector;
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@nombre", aux.Nombre);
+            comando.Parameters.AddWithValue("@descripcion", aux.Descripcion);
+            comando.Parameters.AddWithValue("@imagenurl", aux.ImagenURL);
+            comando.Parameters.AddWithValue("@idplataforma", aux.PlataformaJuego.ID);
+            comando.Parameters.AddWithValue("@importe", aux.PlataformaJuego.Precio);
+            comando.Parameters.AddWithValue("@stock", aux.PlataformaJuego.Stock);
+            comando.Parameters.AddWithValue("@iddesarrollador", aux.DesarrolladorJuego.ID);
 
+            try
+            {
+                conexion.Open();
+                lector = comando.ExecuteReader();
+                conexion.Close();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return aux;
+        }
 
     }
 }
