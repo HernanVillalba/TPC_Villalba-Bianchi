@@ -60,6 +60,10 @@ VALUES (2, 'Link', 'Zelda', 'legendofzelda@link.com',  1010),
 	   (3, 'Oscar', 'Bianchi', 'oski@gmail.com', 2020),
 	   (4, 'Hernán', 'Villalaba', 'hernan@gmail.com', 2021)
 
+	   update Juegos
+	   set ImagenURL = 'https://i.blogs.es/45e357/rdr_xbox_1920x1080-wire/1366_2000.jpg'
+		where ID = 6
+		select * from juegos
 /*
 GO
 insert into Pedidos(IDUsuario, ImporteJuego, FechaCompra, EnvioPorCorreo, DireccionEnvio, Pagado, Estado)

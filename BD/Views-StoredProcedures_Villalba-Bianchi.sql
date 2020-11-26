@@ -42,6 +42,7 @@ BEGIN CATCH
 		 1);
 END CATCH
 
+
 /*
 --prueba del SP de Acción con parametros
 exec SP_Registrarse 'hola', 'asdasd', 'jjajaj', 1212, 'oskigay18', 'soygay'
@@ -63,3 +64,40 @@ END
 EXEC SP_BuscarPedidoPorUsuario 2
 drop procedure SP_BuscarPedidoPorUsuario
 */
+
+
+
+create procedure SP_NuevoJuego(
+
+--Datos del juego que traemos del visual
+@nombre varchar(200),
+@descripcion varchar(500),
+@imagenurl varchar (100),
+@idplataforma int,
+@importe money,
+@stock int,
+@iddesarrollador int
+)
+AS
+BEGIN TRY
+		--Ingresamos el juego
+		INSERT INTO Juegos (Nombre,Descripcion,ImagenURL)
+		values (@nombre,@descripcion,@imagenurl)
+		--Buscamos su ID recien creado
+		declare @idjuego int
+		set @idjuego = @@IDENTITY
+		--Creamos la nueva plataforma x juego para definir el stock e importe
+		INSERT INTO Plataforma_x_Juego(IDJuego,IDPlataforma,Importe,Stock)
+		VALUES(@idjuego,@idplataforma,@importe, @stock)
+		--Declaramos la desarrolladora del juego
+		INSERT INTO Desarrollador_x_Juego(IDJuego,IDDesarrollador)
+		VALUES (@idjuego,@iddesarrollador)
+
+END TRY
+BEGIN CATCH
+	 raiserror('Error al registrar el Juego en la DB',
+		 18,
+		 1);
+END CATCH
+
+exec SP_NuevoJuego 'Red Dead Redemption 2', 'GTA de Vaqueros', 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/480/public/media/image/2018/10/red-dead-redemption-2_22.jpg?itok=TyDias-N', 2, 3000, 4, 2
