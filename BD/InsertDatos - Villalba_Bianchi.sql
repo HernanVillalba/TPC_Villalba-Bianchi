@@ -16,6 +16,7 @@ VALUES ('God Of War', 'kratos viaja mucho junto a su hijo llamado BOY', 'https:/
 	   ('Fifa 20', 'Siempre el mismo juego, distinto número', 'https://tinyurl.com/y5zzyzo4'),		     --3
 	   ('Bloodborne', 'Dark Souls sin escudo', 'https://tinyurl.com/y6k2p7m6'),						     --4
 	   ('The Last Of Us', 'El mejor juego de la generación?', 'https://tinyurl.com/y6ywnm4w')			 --5
+	   ('Red Dead Redemption 2', 'GTA de Vaqueros', 'https://tinyurl.com/y4o2scoq', 2, 3000, 4, 2)	     --6
 GO
 INSERT INTO Plataforma_x_Juego(IDJuego,IDPlataforma,Importe,Stock)
 VALUES (1,1,1800,17),
@@ -55,15 +56,11 @@ VALUES ('admin', 'admin'),
 	   ('hernanvi_', 'herni')
 
 GO
-INSERT INTO Datos_Personales (IDUsuario, Nombre, Apellido, Mail, CP)
-VALUES (2, 'Link', 'Zelda', 'legendofzelda@link.com',  1010),
-	   (3, 'Oscar', 'Bianchi', 'oski@gmail.com', 2020),
-	   (4, 'Hernán', 'Villalaba', 'hernan@gmail.com', 2021)
+INSERT INTO Datos_Personales (IDUsuario, Nombre, Apellido, Mail)
+VALUES (2, 'Link', 'Zelda', 'legendofzelda@link.com'),
+	   (3, 'Oscar', 'Bianchi', 'oski@gmail.com'),
+	   (4, 'Hernán', 'Villalaba', 'hernan@gmail.com')
 
-	   update Juegos
-	   set ImagenURL = 'https://i.blogs.es/45e357/rdr_xbox_1920x1080-wire/1366_2000.jpg'
-		where ID = 6
-		select * from juegos
 /*
 GO
 insert into Pedidos(IDUsuario, ImporteJuego, FechaCompra, EnvioPorCorreo, DireccionEnvio, Pagado, Estado)

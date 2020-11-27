@@ -16,6 +16,7 @@
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
+
     <style>
         body {
             background-image: url(https://tinyurl.com/yykt4h5c);
@@ -23,6 +24,11 @@
             background-size: cover;
             background-attachment: fixed;
             background-color: #eeeded;
+        }
+        .centrado {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 

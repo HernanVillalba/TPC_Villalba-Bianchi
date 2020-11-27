@@ -33,8 +33,7 @@ namespace Web
         {
             if (ID != 0)
             {
-
-                Session["Login"] = usuario.ID;
+                Session["NombreUsuario"] = usuario.user;
                 Response.Redirect("CatalogoJuegos.aspx");
             }
             else

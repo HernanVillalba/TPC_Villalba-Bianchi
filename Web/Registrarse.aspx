@@ -27,6 +27,7 @@
             var NombreUsuario = document.getElementById("<%= txtUser.ClientID%>").value;
             var contraseña = document.getElementById("<%= txtContra.ClientID%>").value;
             var contraseñaC = document.getElementById("<%= txtContraC.ClientID%>").value;
+            var telefono = document.getElementById("<%= txtTelefono.ClientID%>").value;
 
             if (Mail != MailC) {
                 alert("Los Correos son diferentes, Reintente!");
@@ -38,7 +39,7 @@
                 return false;
             }
 
-            if (Nombre === "" || Apellido === "" || Mail === "" || MailC === "" || NombreUsuario === "" || contraseña === "" || contraseñaC === "" ) {
+            if (Nombre === "" || Apellido === "" || Mail === "" || MailC === "" || NombreUsuario === "" || contraseña === "" || contraseñaC === "" || telefono == "") {
                 alert("Complete todos los campos para registrarse!!!");
                 return false;
             }

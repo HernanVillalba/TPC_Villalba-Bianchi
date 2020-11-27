@@ -76,12 +76,22 @@ IDUsuario int not null,
 Apellido varchar(100) not null,
 Nombre varchar(100)not null,
 Mail varchar(200) not null,
-CP int not null,
+Telefono int not null,
 primary key (IDUsuario),
 constraint FK_IDUsu_Usu foreign key(IDUsuario) references Usuarios(ID)
 )
 go 
 alter table Datos_Personales add unique (IDUsuario, Mail)
+
+GO
+create table Datos_Envio(
+IDUsuario int not null primary key,
+Direccion varchar(200) null,
+Altura int null,
+CP int null
+)
+alter table Datos_Envio
+add constraint FK_DE_DP foreign key(IDUsuario) references Datos_Personales(IDUsuario)
 
 go 
 create table Pedidos(

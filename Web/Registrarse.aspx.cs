@@ -12,7 +12,7 @@ namespace Web
     public partial class Registrarse : System.Web.UI.Page
     {
         RegistrarUsuario regAux;
-        RegistrarseNegocio negocio;
+        UsuarioNegocio negocio;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -21,7 +21,7 @@ namespace Web
         protected void btnRegistrarse_Click(object sender, EventArgs e)
         {
             regAux = new RegistrarUsuario();
-            negocio = new RegistrarseNegocio();
+            negocio = new UsuarioNegocio();
 
             cargarReg();
             regAux = negocio.RegistrarseEnDB(regAux);
@@ -33,6 +33,7 @@ namespace Web
             else
             {
                 Response.Redirect("CatalogoJuegos.aspx");
+                Session["NombreUsuario"] = regAux.usuario.user; //guardo el nombre de usuario para saber si puede ver el perfil del mismo
             }
         }
 

@@ -19,7 +19,7 @@ create procedure SP_Registrarse(
 	@nombre	varchar(200),
 	@apellido varchar(200),
 	@mail varchar(200),
-	@CP INT,
+	@telefono INT,
 	@nombreUsuario varchar(200),
 	@contraseña varchar(200)
 ) WITH ENCRYPTION
@@ -32,8 +32,8 @@ BEGIN TRY
 	--ahora insert en Datos_Personales
 	declare @ultID int
 	set @ultID = @@IDENTITY
-	insert into Datos_Personales(IDUsuario,Apellido, Nombre, Mail, CP)
-	VALUES (@ultID, @apellido, @nombre, @mail, @CP)
+	insert into Datos_Personales(IDUsuario,Apellido, Nombre, Mail, Telefono)
+	VALUES (@ultID, @apellido, @nombre, @mail, @telefono)
 END TRY	
 
 BEGIN CATCH
@@ -68,8 +68,6 @@ drop procedure SP_BuscarPedidoPorUsuario
 
 
 create procedure SP_NuevoJuego(
-
---Datos del juego que traemos del visual
 @nombre varchar(200),
 @descripcion varchar(500),
 @imagenurl varchar (100),
@@ -95,9 +93,34 @@ BEGIN TRY
 
 END TRY
 BEGIN CATCH
-	 raiserror('Error al registrar el Juego en la DB',
-		 18,
-		 1);
+	 raiserror('Error al registrar el Juego en la DB',18,1);
 END CATCH
 
-exec SP_NuevoJuego 'Red Dead Redemption 2', 'GTA de Vaqueros', 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/480/public/media/image/2018/10/red-dead-redemption-2_22.jpg?itok=TyDias-N', 2, 3000, 4, 2
+-------------------------------------------
+--Procedimiento almacenado que trae todos los datos del usuario en Usuarios, DatosPersonales y DatosEnvio
+--por ahora lo uso solo para cargar el perfil del usuario
+
+create procedure SP_DatosUsuario(
+@nombreUsuario varchar(200)
+)
+as
+begin try
+	select isnull(U.ID,0) as ID, isnull(U.NombreUsuario,0) as NombreUsuario, 
+		   isnull(U.Contraseña,0) as Contraseña, isnull(DP.Apellido,0) as Apellido, isnull(DP.Nombre,0) as Nombre,
+	       isnull(DP.Mail,0) as Mail, isnull(DP.Telefono,0) as Telefono, isnull(DP.TelefonoAlter,0) as TelefonoAlter, 
+	       isnull(DE.Direccion,0) as Direccion, isnull(DE.Altura,0) as Altura, isnull(DE.CP,0) as CP
+	from Usuarios as U 
+	full join Datos_Personales as DP on DP.IDUsuario = U.ID
+	full join Datos_Envio as DE on DE.IDUsuario = U.ID
+	where U.NombreUsuario = @nombreUsuario 
+end try
+begin catch
+	raiserror('Error al obtener el usuario',18,1);
+end catch
+
+
+/*
+drop procedure SP_DatosUsuario
+exec SP_DatosUsuario 'link'
+*/
+
