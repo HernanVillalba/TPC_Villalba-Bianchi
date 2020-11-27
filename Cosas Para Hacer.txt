@@ -2,7 +2,7 @@ SQL
 Crear Fav x Usuario ID juego, ID USUARIO
 Des/Encriptar contraseña
 Agregar Columna 'Favoritos' en PXJ
-Crear Tabla 'Categorias'
+Crear Tabla 'Categorias' para 'Juegos'
 
 
 Visual
@@ -13,5 +13,5 @@ Enviar Correo de Confirmacion
 Filtro x Categorias
 Arreglar el Filtro x plataforma
 Intentamos Carrousel??
-Mejorar las Cartas y la Nav Bar
+Mejorar las Cartas y la Nav Bar XXXXXXXXXXXXXXXXXXXXXXXX
 agregar edicion perfil de usuario

@@ -11,7 +11,7 @@
 
     <style>
         body {
-            background-image: url(https://tinyurl.com/y5nlb8os);
+            background-image: url(https://tinyurl.com/y33w67gl);
             background-position: center center;
             background-size: cover;
             background-attachment: fixed;
@@ -55,7 +55,7 @@
             <h1 style="font-style: italic; color: #1a1c20; text-shadow: 0.1em 0.1em #333;">Iniciar sesión</h1>
         </div>
 
-        <div style="border-radius: 10px; background-color: rgb(242,242,242); padding: 40px;">
+        <div style="border-radius: 10px; background-color: rgb(242,242,242); padding: 40px; opacity:0.9;">
             <div class="form" style="width: 20rem; margin: 0 auto;">
                 <div class="card-group">
                     <label class="form-control-label">Usuario</label>

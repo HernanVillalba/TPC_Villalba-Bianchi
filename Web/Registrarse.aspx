@@ -12,7 +12,7 @@
 
     <style>
         body {
-            background-image: url(https://fondosmil.com/fondo/28067.jpg);
+            background-image: url(https://tinyurl.com/y33w67gl);
             background-position: center center;
             background-size: cover;
             background-attachment: fixed;
@@ -53,7 +53,7 @@
         <h1 style="font-style: italic; color: #1a1c20; text-shadow: 0.1em 0.1em #333;"><strong>Registrarse</strong></h1>
     </div>
 
-    <form runat="server" class="form-inline">
+    <form runat="server" class="form-inline" style="opacity:0.9;">
         <div style="border-radius: 10px; background-color: rgb(242,242,242); padding: 40px; width: 1000px; margin: 0 auto;">
             <div style="display: flex; align-items: center; justify-content: center;">
                 <h4 style="font-style: italic; color: #1a1c20; text-shadow: 0.1em 0.1em #333;"><strong>Datos personales</strong></h4>
