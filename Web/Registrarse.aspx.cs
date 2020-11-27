@@ -41,6 +41,7 @@ namespace Web
             regAux.DPUsuario.Nombre = txtNombre.Text;
             regAux.DPUsuario.Apellido = txtApellido.Text;
             regAux.DPUsuario.Mail = txtMail.Text;
+            regAux.DPUsuario.Telefono = Convert.ToInt32(txtTelefono.Text);
             regAux.usuario.user = txtUser.Text;
             regAux.usuario.pass = txtContra.Text;
         }

@@ -21,7 +21,7 @@ namespace Negocio
             comando.Parameters.AddWithValue("@nombre", reg.DPUsuario.Nombre);
             comando.Parameters.AddWithValue("@apellido", reg.DPUsuario.Apellido);
             comando.Parameters.AddWithValue("@mail", reg.DPUsuario.Mail);
-            comando.Parameters.AddWithValue("@CP", reg.DPUsuario.CP);
+            comando.Parameters.AddWithValue("@telefono", reg.DPUsuario.Telefono);
             comando.Parameters.AddWithValue("@nombreUsuario", reg.usuario.user);
             comando.Parameters.AddWithValue("@contraseña", reg.usuario.pass);
             SqlDataReader lector;
@@ -29,24 +29,44 @@ namespace Negocio
             {
                 conexion.Open();
                 lector = comando.ExecuteReader();
-                if (!lector.Read())
-                {
-
-                }
-                else
-                {
-                    reg.usuario.ID = 0;
-                }
+                //reg.usuario.ID = ObtenerIDUsuarioRegistrado(reg.usuario.user);
                 conexion.Close();
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-
-                throw ex;
+                reg.usuario.ID = 0;
+                return reg;
             }
 
+            reg.usuario.ID = 1;
             return reg;
+        }
+
+        private int ObtenerIDUsuarioRegistrado( string nombreUsuario) 
+        {
+            //no funca aun
+            int id;
+            SqlConnection conexion = new SqlConnection(DSUsuario);
+            SqlCommand comando = new SqlCommand("select * from Usuarios where NombreUsuario = @nombreusuario");
+            comando.Parameters.AddWithValue("@nombreusuario", nombreUsuario);
+            SqlDataReader lector;
+            try
+            {
+                conexion.Open();
+                lector = comando.ExecuteReader();
+                lector.Read();
+                id = lector.GetInt32(0);
+
+                conexion.Close();
+                return id;
+            }
+            catch (Exception)
+            {
+                return 0;
+                throw;
+            }
+
         }
     }
 }

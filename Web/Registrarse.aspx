@@ -27,7 +27,6 @@
             var NombreUsuario = document.getElementById("<%= txtUser.ClientID%>").value;
             var contraseña = document.getElementById("<%= txtContra.ClientID%>").value;
             var contraseñaC = document.getElementById("<%= txtContraC.ClientID%>").value;
-            var CP = document.getElementById("<%= txtCP.ClientID%>").value;
 
             if (Mail != MailC) {
                 alert("Los Correos son diferentes, Reintente!");
@@ -39,7 +38,7 @@
                 return false;
             }
 
-            if (Nombre === "" || Apellido === "" || Mail === "" || MailC === "" || NombreUsuario === "" || contraseña === "" || contraseñaC === "" || CP === "") {
+            if (Nombre === "" || Apellido === "" || Mail === "" || MailC === "" || NombreUsuario === "" || contraseña === "" || contraseñaC === "" ) {
                 alert("Complete todos los campos para registrarse!!!");
                 return false;
             }
@@ -63,8 +62,6 @@
                 <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
                 <label>Apellido:</label>
                 <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" />
-                <label>Código postal:</label>
-                <asp:TextBox runat="server" cssClass="form-control" ID="txtCP"/>
             </div>
 
             <hr />
@@ -77,6 +74,8 @@
                 <asp:TextBox runat="server" ID="txtMail" CssClass="form-control" TextMode="Email" />
                 <label>Mail:</label>
                 <asp:TextBox runat="server" ID="txtMailC" CssClass="form-control" TextMode="Email" />
+                <label>Telefono:</label>
+                <asp:TextBox runat="server" ID="txtTelefono" TextMode="Phone" />
             </div>
 
             <hr />

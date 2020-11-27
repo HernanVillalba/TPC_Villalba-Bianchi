@@ -10,7 +10,7 @@
     <%--<title><%: Page.Title %> - Mi aplicación ASP.NET</title>--%>
 
     <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
+        <%--<%: Scripts.Render("~/bundles/modernizr") %>--%>
     </asp:PlaceHolder>
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />

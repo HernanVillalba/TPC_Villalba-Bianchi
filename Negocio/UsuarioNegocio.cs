@@ -11,7 +11,7 @@ namespace Negocio
 {
     public class UsuarioNegocio
     {
-        string UsuarioDS = "data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;";
+        private string UsuarioDS = "data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;";
         //string query = "select * from Usuarios where NombreUsuario = @user and Contraseña = @pass";
         public Usuario login(Usuario user)
         {
@@ -45,6 +45,10 @@ namespace Negocio
 
                 throw ex;
             }
+        }
+
+        public void buscarUsuarioPorID(int ID)
+        {
         }
     }
 }
