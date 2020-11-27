@@ -15,6 +15,7 @@ namespace Web
         private JuegoNegocio negocio = new JuegoNegocio();
         public Juego articuloBuscado = new Juego();
         public List<Juego> listaAux = new List<Juego>();
+        public List<Juego> listaCarrito = new List<Juego>();
 
 
         Chango carro = new Chango();
@@ -22,13 +23,16 @@ namespace Web
         int agregar;
         int eliminar;
         int IDPlat;
+        int empty;
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             ExisteListaCarrito();
 
             IDAux = Convert.ToInt32(Request.QueryString["ID"]);
             agregar = Convert.ToInt32(Request.QueryString["add"]);
             eliminar = Convert.ToInt32(Request.QueryString["delete"]);
+            empty = Convert.ToInt32(Request.QueryString["empty"]);
             IDPlat = Convert.ToInt32(Request.QueryString["IDP"]);
 
 
@@ -47,6 +51,17 @@ namespace Web
                     EliminarItemLista();
                     Response.Redirect("Carrito.aspx");
                 }
+                if(IDAux != 0 && eliminar == 1)
+                {
+                    EliminarItemLista();
+                    Response.Redirect("Carrito.aspx");
+                }
+                if(empty == 1)
+                {
+                    listaCarrito = new List<Juego>();
+                    Session["ListaCarrito"] = listaCarrito;
+                    Response.Redirect("Carrito.aspx");
+                }
             }
             catch (Exception)
             {
@@ -55,6 +70,7 @@ namespace Web
             }
 
             CargarLblTotal();
+            
         }
 
         private void CargarLblTotal()
@@ -76,7 +92,7 @@ namespace Web
             //Buscamos si existe el item en la lista
             foreach (var item in ((List<Juego>)Session["ListaCarrito"]))
             {
-                if (item.ID == articuloBuscado.ID)
+                if (item.ID == articuloBuscado.ID && item.PlataformaJuego.ID == articuloBuscado.PlataformaJuego.ID)
 
                 {
                     // si existe le acumulamos cantidad al objeto que 
@@ -93,8 +109,15 @@ namespace Web
 
         private void EliminarItemLista()
         {
-            ((List<Juego>)Session["ListaCarrito"]).Remove(articuloBuscado);
-
+            foreach (Juego item in listaCarrito)
+            {
+                if(item.ID == IDAux)
+                {
+                    listaCarrito.Remove(item);
+                    Session["ListaCarrito"] = listaCarrito;
+                    return;
+                }
+            }
         }
 
 
@@ -106,7 +129,7 @@ namespace Web
             }
             else
             {
-                listaAux = (List<Juego>)Session["ListaCarrito"];
+                listaCarrito = (List<Juego>)Session["ListaCarrito"];
             }
 
         }

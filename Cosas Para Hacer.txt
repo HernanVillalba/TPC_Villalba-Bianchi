@@ -14,3 +14,4 @@ Filtro x Categorias
 Arreglar el Filtro x plataforma
 Intentamos Carrousel??
 Mejorar las Cartas y la Nav Bar
+agregar edicion perfil de usuario
