@@ -51,8 +51,8 @@
         <br />
 
         <div class="centrado">
-            <asp:Button Text="DescartarCambios" runat="server" CssClass="btn btn-primary" BorderColor="red" BackColor="red" />
-            <asp:Button Text="Guardar Cambios" runat="server" CssClass="btn btn-primary" />
+            <asp:Button ID="btnDescartar" Text="DescartarCambios" runat="server" CssClass="btn btn-primary" BorderColor="red" BackColor="red" />
+            <asp:Button ID="btnGuardar" Text="Guardar Cambios" runat="server" CssClass="btn btn-primary" OnClick="btnGuardar_Click" />
         </div>
 
     </div>

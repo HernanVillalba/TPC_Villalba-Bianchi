@@ -18,5 +18,10 @@ namespace Web
             Session["Productos"] = negocio.ListarTodosLosCampos();
             Session["busqueda"] = new List<Juego>();
         }
+
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session["NombreUsuario"] = null;
+        }
     }
 }

@@ -14,6 +14,14 @@ namespace Negocio
 
         private string UsuarioDS = "data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;";
 
+        public bool GuardarCambiosUsuario()
+        {
+            SqlConnection conexion = new SqlConnection(UsuarioDS);
+            SqlCommand comando = new SqlCommand("SP", conexion);
+
+            return true;
+        }
+
         public RegistrarUsuario GetUsuario(string nombreUsuario)
         {
             RegistrarUsuario aux = new RegistrarUsuario(); ;
@@ -28,19 +36,6 @@ namespace Negocio
                 lector = comando.ExecuteReader();
                 if (lector.Read())
                 {
-                    /*
-                    aux.usuario.ID = lector.GetInt32(0);
-                    aux.usuario.user = lector.GetString(1);
-                    aux.usuario.pass = lector.GetString(2);
-                    aux.DPUsuario.Apellido = lector.GetString(3);
-                    aux.DPUsuario.Nombre = lector.GetString(4);
-                    aux.DPUsuario.Mail = lector.GetString(5);
-                    aux.DPUsuario.Telefono = lector.GetInt32(6);
-                    aux.DPUsuario.Direccion = lector.GetString(7);
-                    aux.DPUsuario.Altura = lector.GetInt32(8);
-                    aux.DPUsuario.CP = lector.GetInt32(9);
-                    */
-
                     aux.usuario.ID = lector.GetInt32(0);
                     aux.usuario.user = lector.GetString(1);
                     aux.usuario.pass = lector.GetString(2);

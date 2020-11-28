@@ -80,9 +80,16 @@
                         <%  } %>
                     </ul>
                     <nav class="navbar navbar-light bg-light" style="float: right;">
+                        <%if (Session["NombreUsuario"] != null) //si inició sesion, muestro el boton para cerrar session
+                            { %>
+                        <asp:Button ID="btnCerrarSesion" Text="Cerrar Sesión" runat="server" OnClick="btnCerrarSesion_Click" CssClass="btn btn-primary" />
+                        <%  }
+                        else //si no inició sesión, le muestro el boton para hacerlo
+                        {%>
                         <a class="navbar-brand" href="Login.aspx">
-                            <img title="Iniciar sesión/Registrarse" src="https://image.flaticon.com/icons/png/512/1484/1484867.png" width="50" height="50" alt="imagen de usuario">
+                            <img title="Iniciar Sesión/Registrarse" src="https://image.flaticon.com/icons/png/512/1484/1484867.png" width="50" height="50" alt="imagen de usuario">
                         </a>
+                        <%} %>
                     </nav>
                 </div>
 
