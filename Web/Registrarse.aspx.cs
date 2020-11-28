@@ -15,7 +15,10 @@ namespace Web
         UsuarioNegocio negocio;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(Session["NombreUsuario"] != null)
+            {
+                Response.Redirect("CatalogoJuegos.aspx");
+            }
         }
 
         protected void btnRegistrarse_Click(object sender, EventArgs e)
@@ -33,7 +36,7 @@ namespace Web
             else
             {
                 Response.Redirect("CatalogoJuegos.aspx");
-                Session["NombreUsuario"] = regAux.usuario.user; //guardo el nombre de usuario para saber si puede ver el perfil del mismo
+                Session["NombreUsuario"] = regAux.usuario.user; //guardo el nombre de usuario para saber si puede ver el perfil del mismo.
             }
         }
 

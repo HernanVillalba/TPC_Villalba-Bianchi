@@ -13,6 +13,10 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["NombreUsuario"] == null || Session["NombreUsuario"].ToString() != "admin")
+            {
+                Response.Redirect("CatalogoJuegos.aspx");
+            }
             CargarGV();
         }
 

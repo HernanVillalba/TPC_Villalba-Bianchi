@@ -15,7 +15,10 @@ namespace Web
         UsuarioNegocio negocio = new UsuarioNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
-   
+            if(Session["NombreUsuario"] != null)
+            {
+                Response.Redirect("CatalogoJuegos.aspx");
+            }
         }
 
         protected void btnAcceder_Click(object sender, EventArgs e)

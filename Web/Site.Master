@@ -25,6 +25,7 @@
             background-attachment: fixed;
             background-color: #eeeded;
         }
+
         .centrado {
             display: flex;
             align-items: center;
@@ -72,10 +73,13 @@
                         <li><a href="Perfil.aspx">Mi perfil</a></li>
                         <li><a runat="server" href="CatalogoJuegos.aspx">Juegos</a></li>
                         <li><a runat="server" href="Carrito.aspx">Carrito</a></li>
+                        <li><a runat="server" href="Favoritos.aspx">Favoritos</a></li>
+                        <%if (Session["NombreUsuario"] != null && Session["NombreUsuario"].ToString() == "admin")
+                            {  %>
                         <li><a runat="server" href="Administrador.aspx">Administrar Productos/Usuarios</a></li>
+                        <%  } %>
                     </ul>
                     <nav class="navbar navbar-light bg-light" style="float: right;">
-
                         <a class="navbar-brand" href="Login.aspx">
                             <img title="Iniciar sesión/Registrarse" src="https://image.flaticon.com/icons/png/512/1484/1484867.png" width="50" height="50" alt="imagen de usuario">
                         </a>
