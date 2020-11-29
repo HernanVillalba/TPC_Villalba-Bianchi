@@ -15,7 +15,7 @@
         <asp:Button ID="Agregar" runat="server" CssClass="nav-justified" Text="Agregar Nuevo Producto" OnClick="Agregar_Click" />
     </div>
 
-    <asp:GridView ID="gvJuegos" runat="server" AutoGenerateColumns="false" BackColor="White">
+    <asp:GridView ID="dgvJuegos" runat="server" AutoGenerateColumns="false" BackColor="White" OnRowCommand="gvJuegos_RowCommand">
         <Columns>
             <asp:BoundField HeaderText="ID" DataField="ID" />
             <asp:ImageField HeaderText="Imagen" DataImageUrlField="ImagenURL" ControlStyle-Height="100" ControlStyle-Width="100" AlternateText="Imagen" />
@@ -27,8 +27,8 @@
             <asp:BoundField HeaderText="Valor" DataField="PlataformaJuego.Precio" />
             <asp:BoundField HeaderText="Desarrollador" DataField="DesarrolladorJuego.Nombre" />
             <asp:BoundField HeaderText="IDDesarrollador" DataField="DesarrolladorJuego.ID" />
-            <asp:ButtonField ButtonType="Button" Text="Modificar" />
-            <asp:ButtonField ButtonType="Button" Text="Eliminar" />
+            <asp:ButtonField ButtonType="Button" Text="Modificar" commandName="Modify"/>
+            <asp:ButtonField ButtonType="Button" Text="Eliminar" CommandName="Delete" />
         </Columns>
 
 

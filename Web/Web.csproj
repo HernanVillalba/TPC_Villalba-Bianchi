@@ -128,6 +128,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Detalles.aspx" />
+    <Content Include="Modificar.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="Perfil.aspx" />
@@ -263,6 +264,13 @@
     </Compile>
     <Compile Include="Detalles.aspx.designer.cs">
       <DependentUpon>Detalles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modificar.aspx.cs">
+      <DependentUpon>Modificar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modificar.aspx.designer.cs">
+      <DependentUpon>Modificar.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

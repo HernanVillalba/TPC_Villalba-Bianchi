@@ -18,7 +18,7 @@ ID int not null identity(1,1),
 Nombre varchar(150) not null,
 primary key(ID)
 )
-
+	
 GO
 create table Desarrollador_x_Juego(
 IDJuego int not null,
@@ -45,6 +45,7 @@ IDJuego int not null,
 IDPlataforma int not null,
 Importe	money not null,
 Stock int not null,
+Estado bit not null,
 primary key (IDJuego,IDPlataforma)
 )
 GO
@@ -77,6 +78,7 @@ Apellido varchar(100) not null,
 Nombre varchar(100)not null,
 Mail varchar(200) not null,
 Telefono int not null,
+TelefonoAlter int null,
 primary key (IDUsuario),
 constraint FK_IDUsu_Usu foreign key(IDUsuario) references Usuarios(ID)
 )
@@ -139,3 +141,4 @@ Add Constraint FK_IDPlataforma_PxJ Foreign Key(IDPlataforma) References Platafor
 go
 Alter Table Producto_x_pedido
 Add Constraint FK_IDJuego_PxJ Foreign Key (IDJuego) References Juegos(ID)
+

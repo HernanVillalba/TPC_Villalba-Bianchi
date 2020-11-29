@@ -13,7 +13,7 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["NombreUsuario"] == null || Session["NombreUsuario"].ToString() != "admin")
+            if (Session["NombreUsuario"] == null || Session["NombreUsuario"].ToString() != "admin")
             {
                 Response.Redirect("CatalogoJuegos.aspx");
             }
@@ -27,8 +27,8 @@ namespace Web
             List<Juego> lista = new List<Juego>();
             lista = negocio.ListarTodosLosCampos();
 
-            gvJuegos.DataSource = lista;
-            gvJuegos.DataBind();
+            dgvJuegos.DataSource = lista;
+            dgvJuegos.DataBind();
 
         }
 
@@ -37,6 +37,22 @@ namespace Web
         protected void Agregar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Agregar.aspx");
+        }
+
+        protected void gvJuegos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            string idJuego = dgvJuegos.Rows[index].Cells[0].Text;
+            string idPlat = dgvJuegos.Rows[index].Cells[5].Text;
+            if (e.CommandName == "Modify")
+            {
+                Response.Redirect("Modificar.aspx?IDJ=" + idJuego + "&IDP=" + idPlat);
+            } else if(e.CommandName=="Delete")
+            {
+                Response.Redirect("Error.aspx");
+
+            }
+
         }
     }
 }

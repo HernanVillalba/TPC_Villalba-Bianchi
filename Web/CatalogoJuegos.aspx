@@ -25,7 +25,7 @@
             <div class="card" style="width: 18rem; background-color: transparent;">
                 <div class="card-footer">
                     <a href="Favoritos.aspx?IDJuego= <%=item.ID %>&add=1" class="mx-auto btn btn-outline-info" style="float:right;">
-                        <g> <img src="https://tinyurl.com/y5mnq3y8" alt="img-fav" style="height:20px; width:20px;" /> </g>
+                        <img src="https://tinyurl.com/y5mnq3y8" alt="img-fav" style="height:20px; width:20px;" />
                     </a>
                 </div>
                 <img class="card-img-top" src="<%= item.ImagenURL %>" alt="imagen-juego" style="width: inherit;" height="120">
