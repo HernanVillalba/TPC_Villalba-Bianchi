@@ -96,13 +96,31 @@ namespace Web
         protected global::System.Web.UI.WebControls.TextBox tbxNombre;
 
         /// <summary>
-        /// Control txbDescripcion.
+        /// Control chkNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbDescripcion;
+        protected global::System.Web.UI.WebControls.CheckBox chkNombre;
+
+        /// <summary>
+        /// Control tbxDescripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxDescripcion;
+
+        /// <summary>
+        /// Control chkDesc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkDesc;
 
         /// <summary>
         /// Control tbxImagen.
@@ -114,6 +132,15 @@ namespace Web
         protected global::System.Web.UI.WebControls.TextBox tbxImagen;
 
         /// <summary>
+        /// Control chkImagen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkImagen;
+
+        /// <summary>
         /// Control newImagen.
         /// </summary>
         /// <remarks>
@@ -121,24 +148,6 @@ namespace Web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image newImagen;
-
-        /// <summary>
-        /// Control ddlDesarrolladora.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDesarrolladora;
-
-        /// <summary>
-        /// Control ddlPlataforma.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPlataforma;
 
         /// <summary>
         /// Control tbxStock.
@@ -150,12 +159,30 @@ namespace Web
         protected global::System.Web.UI.WebControls.TextBox tbxStock;
 
         /// <summary>
-        /// Control txtPrecio.
+        /// Control chkStock.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrecio;
+        protected global::System.Web.UI.WebControls.CheckBox chkStock;
+
+        /// <summary>
+        /// Control tbxPrecio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxPrecio;
+
+        /// <summary>
+        /// Control chkPrecio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPrecio;
     }
 }

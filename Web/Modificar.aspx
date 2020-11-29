@@ -37,45 +37,49 @@
                     </div>
                 </div>
             </td>
-            <td>
+            <td style="width: 531px">
                 <div class="card" style="background-color: red;">
                     <h3>Nuevos Datos</h3>
                     <div>
                         <asp:Label Text="Nombre: " runat="server" />
-                        <asp:TextBox runat="server" ID="tbxNombre" Height="25px" />
+                        <asp:TextBox runat="server" ID="tbxNombre" Height="25px" Width="211px" />
+                        <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkNombre" Font-Overline="True" Font-Size="12pt" />
+
                     </div>
 
                     <div>
                         <asp:Label Text="Descripcion: " runat="server" />
-                        <asp:TextBox runat="server" ID="txbDescripcion" Height="25px" />
+                        <asp:TextBox runat="server" ID="tbxDescripcion" Height="25px" Width="174px" />
+                        <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkDesc" Font-Overline="True" Font-Size="12pt"/>
+
                     </div>
                     <div>
                         <asp:Label Text="URL Imagen: " runat="server" />
-                        <asp:TextBox runat="server" ID="tbxImagen" Height="25px" />
+                        <asp:TextBox runat="server" ID="tbxImagen" Height="25px" OnTextChanged="TbxImagen_TextChanged" Width="164px" />
+                        <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkImagen" Font-Italic="True" Font-Size="12pt" />
+
                     </div>
                     <div>
-                        <asp:Image runat="server" ID="newImagen" Height="200px" />
-                    </div>
-                    <div>
-                        <asp:Label Text="Desarrolladora: " runat="server" />
-                        <asp:DropDownList runat="server" ID="ddlDesarrolladora" Height="25px" />
-                    </div>
-                    <div>
-                        <asp:Label Text="Plataforma: " runat="server" />
-                        <asp:DropDownList runat="server" ID="ddlPlataforma" Height="25px" />
+                        <asp:Image runat="server" ID="newImagen" Height="200px" OnDataBinding="TbxImagen_TextChanged" />
                     </div>
                     <div>
                         <asp:Label Text="Stock: " runat="server" />
                         <asp:TextBox runat="server" ID="tbxStock" Height="25px" />
+                        <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkStock" Font-Italic="True" Font-Size="12pt"/>
+
                     </div>
                     <div>
                         <asp:Label Text="Precio: " runat="server" />
-                        <asp:TextBox runat="server" ID="txtPrecio" Height="25px" />
+                        <asp:TextBox runat="server" ID="tbxPrecio" Height="25px" />
+                        <asp:CheckBox Text="Conservar Actual" runat="server" Font-Bold="False" Font-Italic="True" Font-Size="12pt" ID="chkPrecio" />
+
                     </div>
 
                 </div>
             </td>
         </tr>
     </table>
+
+    <asp:Button Text="Modificar" runat="server" OnClick="Click_Modificar" />
 </asp:Content>
 

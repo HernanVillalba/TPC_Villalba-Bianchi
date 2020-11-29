@@ -20,8 +20,6 @@ namespace Web
             idPlat = Convert.ToInt32(Request.QueryString["IDP"]);
             juego = ((List<Juego>)Session["Productos"]).Find(i => i.ID == idJuego && i.PlataformaJuego.ID == idPlat);
             CargarJuego();
-            cargarDDLS();
-
         }
 
         void CargarJuego()
@@ -35,17 +33,36 @@ namespace Web
             lblPrecio.Text = "Precio: " + juego.PlataformaJuego.Precio.ToString();
             lblStock.Text = "Stock: " + juego.PlataformaJuego.Stock.ToString();
         }
-        void cargarDDLS()
+
+        protected void TbxImagen_TextChanged(object sender, EventArgs e)
         {
-            JuegoNegocio datos = new JuegoNegocio();
-            ddlDesarrolladora.DataSource = datos.GetDesarrolladres();
-            ddlDesarrolladora.DataValueField = "ID";
-            ddlDesarrolladora.DataTextField = "Nombre";
-            ddlDesarrolladora.DataBind();
-            ddlPlataforma.DataSource = datos.GetPlataformas();
-            ddlPlataforma.DataValueField = "ID";
-            ddlPlataforma.DataTextField = "Nombre";
-            ddlPlataforma.DataBind();
+            newImagen.ImageUrl = tbxImagen.Text;
+            newImagen.AlternateText = tbxImagen.Text;
+           
+        }
+
+     
+
+        private void ActualizarJuego()
+        {
+            if (!chkDesc.Checked) juego.Descripcion = tbxDescripcion.Text;
+            if (!chkImagen.Checked) juego.ImagenURL = tbxImagen.Text;
+            if (!chkNombre.Checked) juego.Nombre = tbxNombre.Text;
+            if (!chkStock.Checked) juego.PlataformaJuego.Stock = Convert.ToInt32(tbxStock.Text);
+            if (!chkPrecio.Checked) juego.PlataformaJuego.Precio = Convert.ToDecimal(tbxPrecio.Text);
+        }
+
+        protected void Click_Modificar(object sender, EventArgs e)
+        {
+            ActualizarJuego();
+            GuardarCambios();
+            Response.Redirect("Administrador.aspx");
+        }
+
+        private void GuardarCambios()
+        {
+            JuegoNegocio aux = new JuegoNegocio();
+            aux.ActualizarJuego(juego);
         }
     }
 }

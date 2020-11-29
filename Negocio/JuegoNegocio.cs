@@ -147,6 +147,34 @@ namespace Negocio
             }
             return aux;
         }
+        public bool ActualizarJuego(Juego aux)
+        {
+            SqlConnection conexion = new SqlConnection(UsuarioDS);
+            SqlCommand comando = new SqlCommand("SP_ActualizarJuego", conexion);
+            SqlDataReader lector;
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@IDJUEGO", aux.ID);
+            comando.Parameters.AddWithValue("@Nombre", aux.Nombre);
+            comando.Parameters.AddWithValue("@Descripcion", aux.Descripcion);
+            comando.Parameters.AddWithValue("@ImagenURL", aux.ImagenURL);
+            comando.Parameters.AddWithValue("@IDPlataforma", aux.PlataformaJuego.ID);
+            comando.Parameters.AddWithValue("@Importe", aux.PlataformaJuego.Precio);
+            comando.Parameters.AddWithValue("@Stock", aux.PlataformaJuego.Stock);
+            try
+            {
+                conexion.Open();
+                lector = comando.ExecuteReader();
+                conexion.Close();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return true;
+        }
+
 
     }
 }
