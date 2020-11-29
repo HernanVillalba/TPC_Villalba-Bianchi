@@ -127,9 +127,43 @@ begin catch
 	raiserror('Error al obtener el usuario',18,1);
 end catch
 
+create procedure SP_ActualizarJuego(
+@IDJuego int,
+@Nombre varchar(200),
+@Descripcion varchar(200),
+@ImagenURL varchar(200),
+@IDPlataforma int,
+@Importe money,
+@Stock int
+)
+as
+begin try
+	
+		update Plataforma_x_Juego 
+		set 
+		Importe= @Importe, 
+		Stock = @Stock
+		where IDJuego = @IDJuego and IDPlataforma = @IDPlataforma
+		update Juegos
+		set 
+		Nombre = @Nombre, 
+		Descripcion = @Descripcion,
+		ImagenURL = @ImagenURL
+		where ID=@IDJuego
+end try
+
+begin catch
+	raiserror('Error al Actualizar el Juego',18,1);
+
+end catch
+
 
 /*
 drop procedure SP_DatosUsuario
 exec SP_DatosUsuario 'link'
 */
+
+select * from Juegos
+join Plataforma_x_Juego on Juegos.ID=Plataforma_x_Juego.IDJuego
+join Plataformas on Plataforma_x_Juego.IDPlataforma = Plataformas.ID
 

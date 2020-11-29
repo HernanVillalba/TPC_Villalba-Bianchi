@@ -5,6 +5,27 @@
 
     <br />
     <br />
+    <script>
+        function validar() {
+            var Nombre = document.getElementById("<%= tbxNombre.ClientID %>").value;
+            var Imagen = document.getElementById("<%= tbxImagen.ClientID %>").value;
+            var Descripcion = document.getElementById("<%= tbxDescripcion.ClientID%>").value;
+            var Stock = document.getElementById("<%= tbxStock.ClientID %>").value;
+            var Precio = document.getElementById("<%= tbxPrecio.ClientID%>").value;
+
+            if (Nombre === "" || Imagen === "" || Descripcion === "" || Stock === "" || Precio === "")
+            {
+                alert("No Ingreso Todos los datos, revise");
+                return false;
+            }
+
+
+
+            return true;
+        }
+
+    </script>
+
 
     <table style="font-size: 25px">
         <tr>
@@ -50,7 +71,7 @@
                     <div>
                         <asp:Label Text="Descripcion: " runat="server" />
                         <asp:TextBox runat="server" ID="tbxDescripcion" Height="25px" Width="174px" />
-                        <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkDesc" Font-Overline="True" Font-Size="12pt"/>
+                        <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkDesc" Font-Overline="True" Font-Size="12pt" />
 
                     </div>
                     <div>
@@ -65,7 +86,7 @@
                     <div>
                         <asp:Label Text="Stock: " runat="server" />
                         <asp:TextBox runat="server" ID="tbxStock" Height="25px" />
-                        <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkStock" Font-Italic="True" Font-Size="12pt"/>
+                        <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkStock" Font-Italic="True" Font-Size="12pt" />
 
                     </div>
                     <div>
@@ -80,6 +101,6 @@
         </tr>
     </table>
 
-    <asp:Button Text="Modificar" runat="server" OnClick="Click_Modificar" />
+    <asp:Button Text="Modificar" runat="server" OnClientClick="return validar()" OnClick="Click_Modificar" />
 </asp:Content>
 

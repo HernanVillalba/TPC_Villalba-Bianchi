@@ -38,10 +38,10 @@ namespace Web
         {
             newImagen.ImageUrl = tbxImagen.Text;
             newImagen.AlternateText = tbxImagen.Text;
-           
+
         }
 
-     
+
 
         private void ActualizarJuego()
         {
@@ -50,6 +50,7 @@ namespace Web
             if (!chkNombre.Checked) juego.Nombre = tbxNombre.Text;
             if (!chkStock.Checked) juego.PlataformaJuego.Stock = Convert.ToInt32(tbxStock.Text);
             if (!chkPrecio.Checked) juego.PlataformaJuego.Precio = Convert.ToDecimal(tbxPrecio.Text);
+
         }
 
         protected void Click_Modificar(object sender, EventArgs e)
