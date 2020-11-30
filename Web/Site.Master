@@ -7,10 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <%--<title><%: Page.Title %> - Mi aplicación ASP.NET</title>--%>
+    <title><%: Page.Title %> Herosky</title>
 
     <asp:PlaceHolder runat="server">
-        <%--<%: Scripts.Render("~/bundles/modernizr") %>--%>
+        Scripts.Render("~/bundles/modernizr")
     </asp:PlaceHolder>
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
@@ -70,7 +70,10 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        <%if (Session["NombreUsuario"] != null)
+                            {%>
                         <li><a href="Perfil.aspx">Mi perfil</a></li>
+                        <%} %>
                         <li><a runat="server" href="CatalogoJuegos.aspx">Juegos</a></li>
                         <li><a runat="server" href="Carrito.aspx">Carrito</a></li>
                         <li><a runat="server" href="Favoritos.aspx">Favoritos</a></li>

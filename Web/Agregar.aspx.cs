@@ -16,9 +16,9 @@ namespace Web
         JuegoNegocio negocio;
         protected void Page_Load(object sender, EventArgs e)
         {
-            CargarDDLS();
-            
+            SosAdministradorONo();
 
+            CargarDDLS();
         }
 
         void CargarDDLS()
@@ -36,6 +36,8 @@ namespace Web
 
 
         }
+
+
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -61,6 +63,15 @@ namespace Web
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Administrador.aspx");
+        }
+
+        public void SosAdministradorONo()
+        {
+            //redirecciona si no está logueado o si no es el admin.
+            if (Session["NombreUsuario"] == null || Session["NombreUsuario"].ToString() != "admin")
+            {
+                Response.Redirect("CatalogoJuegos.aspx");
+            }
         }
     }
 }

@@ -6,7 +6,7 @@
     <br />
 
 
-    <%if (((List<Dominio.Juego>)Session["listaFav"]).Count() == 0)
+    <%if (cantidadItemsListaFav == 0)
         { %>
     <h2>Te interesa algún producto? guardalo para más tarde!</h2>
     <%  } %>
