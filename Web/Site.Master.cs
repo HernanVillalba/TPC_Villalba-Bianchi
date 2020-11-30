@@ -21,9 +21,11 @@ namespace Web
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
         {
+            
             Session["NombreUsuario"] = null;
             Session["ListaFav"] = null;
             Session["ListaCarrito"] = null;
+            
 
             Response.Redirect("Login.aspx");
         }

@@ -13,18 +13,40 @@ namespace Negocio
     {
 
         private string UsuarioDS = "data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;";
+        SqlConnection conexion;
+        SqlCommand comando;
 
-        public bool GuardarCambiosUsuario()
+        public bool GuardarCambiosPerfil(UsuarioCompleto usuario)
         {
-            SqlConnection conexion = new SqlConnection(UsuarioDS);
-            SqlCommand comando = new SqlCommand("SP", conexion);
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_GuardarDatosPersonales", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@id",usuario.Usuario.ID);
+            comando.Parameters.AddWithValue("@nombreUsuario",usuario.Usuario.nombreUsuario);
+            comando.Parameters.AddWithValue("@contraseña",usuario.Usuario.pass);
+            comando.Parameters.AddWithValue("@nombre",usuario.DPUsuario.Nombre);
+            comando.Parameters.AddWithValue("@apellido",usuario.DPUsuario.Apellido);
+            comando.Parameters.AddWithValue("@mail",usuario.DPUsuario.Mail);
+            comando.Parameters.AddWithValue("@telefono",usuario.DPUsuario.Telefono);
+            comando.Parameters.AddWithValue("@telefonoAlter",usuario.DPUsuario.TelefonAlter);
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteReader();
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
             return true;
         }
 
-        public RegistrarUsuario GetUsuario(string nombreUsuario)
+        public UsuarioCompleto GetUsuario(string nombreUsuario)
         {
-            RegistrarUsuario aux = new RegistrarUsuario(); ;
+            UsuarioCompleto aux = new UsuarioCompleto(); ;
             SqlConnection conexion = new SqlConnection(UsuarioDS);
             SqlCommand comando = new SqlCommand("SP_DatosUsuario", conexion);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
@@ -36,17 +58,17 @@ namespace Negocio
                 lector = comando.ExecuteReader();
                 if (lector.Read())
                 {
-                    aux.usuario.ID = lector.GetInt32(0);
-                    aux.usuario.user = lector.GetString(1);
-                    aux.usuario.pass = lector.GetString(2);
+                    aux.Usuario.ID = lector.GetInt32(0);
+                    aux.Usuario.nombreUsuario = lector.GetString(1);
+                    aux.Usuario.pass = lector.GetString(2);
                     aux.DPUsuario.Apellido = lector.GetString(3);
                     aux.DPUsuario.Nombre = lector.GetString(4);
                     aux.DPUsuario.Mail = lector.GetString(5);
                     aux.DPUsuario.Telefono = lector.GetInt32(6);
                     aux.DPUsuario.TelefonAlter = lector.GetInt32(7);
-                    aux.DPUsuario.Direccion = lector.GetString(8);
-                    aux.DPUsuario.Altura = lector.GetInt32(9);
-                    aux.DPUsuario.CP = lector.GetInt32(10);
+                    aux.DatosEnvio.Direccion = lector.GetString(8);
+                    aux.DatosEnvio.Altura = lector.GetInt32(9);
+                    aux.DatosEnvio.CP = lector.GetInt32(10);
                 }
                 else
                 {
@@ -68,7 +90,7 @@ namespace Negocio
             //necesito una conexion, un comando y un lector.
             SqlConnection conexion = new SqlConnection(UsuarioDS);
             SqlCommand comando = new SqlCommand("select * from Usuarios where NombreUsuario = @user and Contraseña = @pass", conexion);
-            comando.Parameters.AddWithValue("@user", user.user);
+            comando.Parameters.AddWithValue("@user", user.nombreUsuario);
             comando.Parameters.AddWithValue("@pass", user.pass);
             SqlDataReader lector;
 
@@ -81,7 +103,7 @@ namespace Negocio
                 {
                     //asigno los valores de las columnas de la consulta
                     user.ID = lector.GetInt32(0);
-                    user.user = lector.GetString(1);
+                    user.nombreUsuario = lector.GetString(1);
                     user.pass = lector.GetString(2);
                 }
                 else { user.ID = 0; }
@@ -97,7 +119,7 @@ namespace Negocio
             }
         }
 
-        public RegistrarUsuario RegistrarseEnDB(RegistrarUsuario reg)
+        public UsuarioCompleto RegistrarseEnDB(UsuarioCompleto reg)
         {
             SqlConnection conexion = new SqlConnection(UsuarioDS);
             SqlCommand comando = new SqlCommand("SP_Registrarse", conexion);
@@ -106,8 +128,8 @@ namespace Negocio
             comando.Parameters.AddWithValue("@apellido", reg.DPUsuario.Apellido);
             comando.Parameters.AddWithValue("@mail", reg.DPUsuario.Mail);
             comando.Parameters.AddWithValue("@telefono", reg.DPUsuario.Telefono);
-            comando.Parameters.AddWithValue("@nombreUsuario", reg.usuario.user);
-            comando.Parameters.AddWithValue("@contraseña", reg.usuario.pass);
+            comando.Parameters.AddWithValue("@nombreUsuario", reg.Usuario.nombreUsuario);
+            comando.Parameters.AddWithValue("@contraseña", reg.Usuario.pass);
             SqlDataReader lector;
             try
             {
@@ -118,12 +140,28 @@ namespace Negocio
             }
             catch (Exception)
             {
-                reg.usuario.ID = 0;
+                reg.Usuario.ID = 0;
                 return reg;
             }
 
-            reg.usuario.ID = 1;
+            reg.Usuario.ID = 1;
             return reg;
+        }
+        
+        public void ClonarUsuario(UsuarioCompleto original, UsuarioCompleto copia)
+        {
+            //uso esto porque no me clona solo igulando
+            copia.Usuario.ID = original.Usuario.ID;
+            copia.Usuario.pass = original.Usuario.pass;
+            copia.DPUsuario.Apellido = original.DPUsuario.Apellido;
+            copia.DPUsuario.Nombre = original.DPUsuario.Nombre;
+            copia.DPUsuario.Mail = original.DPUsuario.Mail;
+            copia.DPUsuario.Telefono = original.DPUsuario.Telefono;
+            copia.DPUsuario.TelefonAlter = original.DPUsuario.TelefonAlter;
+            copia.DatosEnvio.Direccion = original.DatosEnvio.Direccion;
+            copia.DatosEnvio.Altura = original.DatosEnvio.Altura;
+            copia.DatosEnvio.CP = original.DatosEnvio.CP;
+
         }
     }
 

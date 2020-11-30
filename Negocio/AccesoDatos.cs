@@ -16,8 +16,9 @@ namespace Negocio
         public AccesoDatos()
         {
             // .\\SQLEXPRESS
-            Conexion = new SqlConnection("data source =.; initial catalog =Villalba-Bianchi_DB; integrated security=sspi");
+            Conexion = new SqlConnection("data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;");
         }
+
         public void SetearConsulta(string consulta)
         {
             Comando = new SqlCommand(consulta);

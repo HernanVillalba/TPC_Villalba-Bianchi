@@ -2,17 +2,20 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <br />
-    <br />
-    <div class="jumbotron" style="height: auto; background-position: right center; background-image: url(https://www.hd-tecnologia.com/imagenes/articulos/2019/04/Crossplay-Las-familias-quieren-jugar-juntas-y-nadie-tiene-4-PlayStations.jpg); background-attachment: initial; background-repeat: no-repeat;">
-        <h2 class="display-5">Los juegos queres</h2>
-        <h2 class="display-5">al Precio que podes!</h2>
-        <p class="lead">Buscas algo particular?</p>
-        <div class="lead">
-            <asp:DropDownList ID="dropCat" runat="server"></asp:DropDownList>
-            <div>
-                <asp:TextBox ID="txtBuscar" runat="server"></asp:TextBox>
-                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
+    <div class="centrado">
+        <div class="jumbotron" style="height: 210px; background-position: right center; background-image: url(https://www.hd-tecnologia.com/imagenes/articulos/2019/04/Crossplay-Las-familias-quieren-jugar-juntas-y-nadie-tiene-4-PlayStations.jpg); background-attachment: initial; background-repeat: no-repeat;">
+            <h2 class="display-5">Los juegos queres al Precio que podes!</h2>
+            <p class="lead">Buscas algo particular?</p>
+            <div class="lead">
+                <div class="dropdown" style="width:150px; opacity:0.9;">
+                    <asp:DropDownList ID="dropCat" runat="server" CssClass="dropdown-item" BackColor="#393e46"></asp:DropDownList>
+                </div>
+                <br />
+                <div class="input-group">
+                    <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" CssClass="btn btn-secondary" />
+                </div>
+
             </div>
         </div>
     </div>
@@ -22,10 +25,10 @@
             foreach (Dominio.Juego item in (List<Dominio.Juego>)Session["Productos"])
             {%>
         <div class="col-md-4">
-            <div class="card" style="width: 18rem; background-color: transparent;">
-                <div class="card-footer">
-                    <a href="Favoritos.aspx?IDJuego= <%=item.ID %>&add=1" class="mx-auto btn btn-outline-info" style="float:right;">
-                        <img src="https://tinyurl.com/y5mnq3y8" alt="img-fav" style="height:20px; width:20px;" />
+            <div class="card" style="width: 18rem; background-color: transparent; border-color: transparent; border-radius: 10px;">
+                <div class="card-footer" style="border-radius: 5px;">
+                    <a href="Favoritos.aspx?IDJuego= <%=item.ID %>&add=1" class="mx-auto btn btn-outline-info" style="float: right;">
+                        <img src="https://tinyurl.com/y5mnq3y8" alt="img-fav" style="height: 20px; width: 20px;" />
                     </a>
                 </div>
                 <img class="card-img-top" src="<%= item.ImagenURL %>" alt="imagen-juego" style="width: inherit;" height="120">

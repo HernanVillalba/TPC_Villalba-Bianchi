@@ -32,8 +32,8 @@ VALUES (1,1,1800,17,1),
 	   (3,3,80,77,1),
 	   (4,1,450,9,1),
 	   (5,1,1299,3,1),
-	   (5,4,799,9),
-	   (6,2,3000,15)
+	   (5,4,799,9,1),
+	   (6,2,3000,15,1)
 GO
 INSERT INTO Desarrolladores(Nombre)
 VALUES ('Santa Monica Studio'), --1

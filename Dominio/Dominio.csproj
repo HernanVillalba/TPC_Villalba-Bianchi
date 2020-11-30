@@ -42,12 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Chango.cs" />
+    <Compile Include="DatosEnvio.cs" />
     <Compile Include="DatosPersonales.cs" />
     <Compile Include="Desarrollador.cs" />
     <Compile Include="Juego.cs" />
     <Compile Include="Plataforma.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrarUsuario.cs" />
+    <Compile Include="UsuarioCompleto.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

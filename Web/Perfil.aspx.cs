@@ -12,37 +12,52 @@ namespace Web
 {
     public partial class Perfil : System.Web.UI.Page
     {
-        RegistrarUsuario usuario = new RegistrarUsuario();
-        RegistrarUsuario usuarioAux = new RegistrarUsuario();
+        UsuarioCompleto usuario = new UsuarioCompleto();
+        UsuarioCompleto usuarioAux = new UsuarioCompleto();
         UsuarioNegocio negocio = new UsuarioNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (Session["NombreUsuario"] == null || Session["NombreUsuario"].ToString() == "admin")
             {
                 Response.Redirect("Login.aspx");
             }
-            
 
+            if(Session["CargoUsuario"] == null)
+            {
                 cargarUsuarioEnTextBox();
+                Session["CargoUsuario"] = true;
+            }
+            else
+            {
+                Session["CargoUsuario"] = null;
+            }
+            
         }
 
         private void cargarUsuarioEnTextBox()
         {
             string nombreUsuario = (string)Session["NombreUsuario"];
             usuario = negocio.GetUsuario(nombreUsuario);
+            if (Session["IDUsuario"] == null)
+            {
+                Session["IDUsuario"] = usuario.Usuario.ID;
+            }
 
-            tbNombreUsuario.Text = usuario.usuario.user;
-            tbContraseña.Text = usuario.usuario.pass;
-            
+
+            tbNombreUsuario.Text = usuario.Usuario.nombreUsuario;
+            tbContraseña.Text = usuario.Usuario.pass;
+            lblContra.Text = usuario.Usuario.pass;
+
             tbApellido.Text = usuario.DPUsuario.Apellido;
             tbNombre.Text = usuario.DPUsuario.Nombre;
             tbMail.Text = usuario.DPUsuario.Mail;
             tbTelefono.Text = usuario.DPUsuario.Telefono.ToString();
             tbTelefonoAlter.Text = usuario.DPUsuario.TelefonAlter.ToString();
 
-            tbDireccion.Text = usuario.DPUsuario.Direccion;
-            tbAltura.Text = usuario.DPUsuario.Altura.ToString();
-            tbCP.Text = usuario.DPUsuario.CP.ToString();
+            tbDireccion.Text = usuario.DatosEnvio.Direccion;
+            tbAltura.Text = usuario.DatosEnvio.Altura.ToString();
+            tbCP.Text = usuario.DatosEnvio.CP.ToString();
 
         }
 
@@ -50,34 +65,31 @@ namespace Web
         {
             CargarUsuarioAUX();
 
-            /*
-             //esto es para validar si hubo cambios, pero aún no funca
-            if (usuarioAux != usuario)
+            if (negocio.GuardarCambiosPerfil(usuarioAux))
             {
-                //guardo
-                Response.Redirect("Perfil.aspx");
+                Session["GuardardoExitoso"] = true;
             }
             else
             {
-                //no guardo
-                Response.Redirect("Error.aspx");
+                Session["GuardardoExitoso"] = false;
             }
-            */
+            usuario = usuarioAux;
+            Response.Redirect("Perfil.aspx");
         }
 
         private void CargarUsuarioAUX()
         {
-            usuarioAux.usuario.ID = usuario.usuario.ID; //esto por en los TB no cargo el ID
-            usuarioAux.usuario.user = tbNombreUsuario.Text;
-            usuarioAux.usuario.pass = tbContraseña.Text;
+            usuarioAux.Usuario.ID = (int)Session["IDUsuario"]; //esto por en los TB no cargo el ID
+            usuarioAux.Usuario.nombreUsuario = tbNombreUsuario.Text;
+            usuarioAux.Usuario.pass = tbContraseña.Text;
             usuarioAux.DPUsuario.Apellido = tbApellido.Text;
             usuarioAux.DPUsuario.Nombre = tbNombre.Text;
             usuarioAux.DPUsuario.Mail = tbMail.Text;
             usuarioAux.DPUsuario.Telefono = Convert.ToInt32(tbTelefono.Text);
             usuarioAux.DPUsuario.TelefonAlter = Convert.ToInt32(tbTelefonoAlter.Text);
-            usuarioAux.DPUsuario.Direccion = tbDireccion.Text;
-            usuarioAux.DPUsuario.Altura = Convert.ToInt32(tbAltura.Text);
-            usuarioAux.DPUsuario.CP = Convert.ToInt32(tbCP.Text);
+            usuarioAux.DatosEnvio.Direccion = tbDireccion.Text;
+            usuarioAux.DatosEnvio.Altura = Convert.ToInt32(tbAltura.Text);
+            usuarioAux.DatosEnvio.CP = Convert.ToInt32(tbCP.Text);
         }
     }
 }

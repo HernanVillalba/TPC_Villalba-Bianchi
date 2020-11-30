@@ -5,69 +5,56 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Iniciar sesión / Registrarse</title>
+    <title>Iniciar sesión</title>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <style>
         body {
             background-image: url(https://tinyurl.com/y33w67gl);
-            background-position: center center;
-            background-size: cover;
-            background-attachment: fixed;
-            background-color: #eeeded;
+        }
+
+        .centrado {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
-    <script>
-        function validar() {
-            var Usuario = document.getElementById("tbUsuario").value;
-            var Password = document.getElementById("<% = tbPassword.ClientID%>").value;
-            var valido = true;
 
-            if (Usuario === "") {
-                alert("Completa el campo de usuario!");
-                valido = false;
-            }
-            else {
-                $("#tbUsuario").removeClass("is-invalid");
-                $("#tbUsuario").addClass("is-valid");
-            }
-
-
-            if (Password === "") {
-                alert("Completa el campo de password!");
-                valido = false;
-            }
-            else {
-                $("#tbPassword").removeClass("is-invalid");
-                $("#tbPassword").addClass("is-valid");
-            }
-
-            if (!valido) { return false; }
-            else { return true; }
-        }
-    </script>
 </head>
 <body>
     <form runat="server">
-
-        <div style="display: flex; align-items: center; justify-content: center;">
+        <div class="centrado">
+            <img title="Iniciar Sesión/Registrarse" src="https://image.flaticon.com/icons/png/512/1484/1484867.png" height="100" alt="imagen de usuario" />
+        </div>
+        <div class="centrado">
             <h1 style="font-style: italic; color: #1a1c20; text-shadow: 0.1em 0.1em #333;">Iniciar sesión</h1>
         </div>
 
-        <div style="border-radius: 10px; background-color: rgb(242,242,242); padding: 40px; opacity:0.9;">
-            <div class="form" style="width: 20rem; margin: 0 auto;">
-                <div class="card-group">
-                    <label class="form-control-label">Usuario</label>
-                    <asp:TextBox CssClass="form-control" ID="tbUsuario" ClientIDMode="Static" runat="server" />
+        <div class="centrado">
+            <div style="width: 500px; border-radius: 10px; background-color: rgb(242,242,242); padding: 40px; opacity: 0.9;">
+                <div style="width: 20rem; margin: 0 auto;">
+                    <%if (Session["InicioSesion"] != null && (bool)Session["InicioSesion"] == false)
+                        {%>
+                    <label class="form-control-label" style="color: red;">Usuario o contraseña incorrectos</label>
+                    <% } %>
+                    <div class="form-group">
+                        <label class="form-control-label">Usuario</label>
+                        <asp:TextBox CssClass="form-control" ID="tbUsuario" ClientIDMode="Static" runat="server" placeHolder="Nombre de usuario" Required="true" />
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label" for="inputPassword">Contraseña</label>
+                        <div class="input-control">
+                            <asp:TextBox CssClass="form-control" ID="tbPassword" ClientIDMode="Static" runat="server" TextMode="Password" placeHolder="Contraseña" Required="true" />
+                        </div>
+                    </div>
                     <br />
 
-                    <label class="form-control-label" for="inputPassword">Contraseña</label>
-                    <asp:TextBox CssClass="form-control" ID="tbPassword" ClientIDMode="Static" runat="server" TextMode="Password" />
-                    <br />
-
-                    <asp:Button ID="btnAcceder" CssClass="btn btn-primary btn-block" Text="Acceder" OnClientClick="return validar()" OnClick="btnAcceder_Click" runat="server" />
+                    <asp:Button ID="btnAcceder" autopostback="false" CssClass="btn btn-primary btn-block" Text="Acceder" OnClick="btnAcceder_Click" runat="server" />
                     <hr />
+
 
                     <div style="display: flex; align-items: center; justify-content: center;">
                         <label class="form-control-label" for="btnRegistrarse">¿Eres nuevo? </label>
@@ -76,7 +63,10 @@
                 </div>
             </div>
         </div>
+
     </form>
+
+
 </body>
 </html>
 

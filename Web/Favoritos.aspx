@@ -26,7 +26,7 @@
         <tr style="border: 1px groove #000000;">
             <td>
                 <a href="Favoritos.aspx?IDJuego=<%= item.ID.ToString()%>&delete=1" class="mx-auto btn btn-outline-info" style="float: left;">
-                    <g><img src="https://tinyurl.com/y5mnq3y8" alt="img-fav" style="height:20px; width:20px;" /></g>
+                    <img src="https://tinyurl.com/y5mnq3y8" alt="img-fav" style="height:20px; width:20px;" />
                 </a>
             </td>
             <td><%= item.Nombre %></td>

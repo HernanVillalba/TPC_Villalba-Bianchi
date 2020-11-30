@@ -10,12 +10,19 @@
     <title><%: Page.Title %> Herosky</title>
 
     <asp:PlaceHolder runat="server">
-        Scripts.Render("~/bundles/modernizr")
+        <!--Scripts.Render("~/bundles/modernizr");-->
     </asp:PlaceHolder>
+
+
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <style>
         body {
@@ -59,45 +66,57 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+        <ul class="nav justify-content-center">
+            <%if (Session["NombreUsuario"] != null && Session["NombreUsuario"].ToString() != "admin")
+                { %>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color: cornflowerblue;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%=Session["NombreUsuario"] %></a>
+                <div class="dropdown-menu">
+                    <a href="Perfil.aspx" class="dropdown-item">Mis datos</a>
+                    <div class="dropdown-divider"></div>
+                    <asp:Button ID="btnCerrarSesion" Text="Salir" runat="server" OnClick="btnCerrarSesion_Click" CssClass="dropdown-item" />
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <%if (Session["NombreUsuario"] != null)
-                            {%>
-                        <li><a href="Perfil.aspx">Mi perfil</a></li>
-                        <%} %>
-                        <li><a runat="server" href="CatalogoJuegos.aspx">Juegos</a></li>
-                        <li><a runat="server" href="Carrito.aspx">Carrito</a></li>
-                        <li><a runat="server" href="Favoritos.aspx">Favoritos</a></li>
-                        <%if (Session["NombreUsuario"] != null && Session["NombreUsuario"].ToString() == "admin")
-                            {  %>
-                        <li><a runat="server" href="Administrador.aspx">Administrar Productos/Usuarios</a></li>
-                        <%  } %>
-                    </ul>
-                    <nav class="navbar navbar-light bg-light" style="float: right;">
-                        <%if (Session["NombreUsuario"] != null) //si inició sesion, muestro el boton para cerrar session
-                            { %>
-                        <asp:Button ID="btnCerrarSesion" Text="Cerrar Sesión" runat="server" OnClick="btnCerrarSesion_Click" CssClass="btn btn-primary" />
-                        <%  }
-                        else //si no inició sesión, le muestro el boton para hacerlo
-                        {%>
-                        <a class="navbar-brand" href="Login.aspx">
-                            <img title="Iniciar Sesión/Registrarse" src="https://image.flaticon.com/icons/png/512/1484/1484867.png" width="50" height="50" alt="imagen de usuario">
-                        </a>
-                        <%} %>
-                    </nav>
-                </div>
+                <%} %>
+            <li class="nav-item">
+                <a runat="server" href="CatalogoJuegos.aspx">Juegos</a>
+            </li>
+            <li class="nav-item">
+                <a runat="server" href="Favoritos.aspx">Favoritos</a>
+            </li>
+            <li class="nav-item">
+                <a runat="server" href="Carrito.aspx">Carrito</a>
+            </li>
+            <li class="nav-item"></li>
 
-            </div>
-        </div>
+            <%if (Session["NombreUsuario"] != null && Session["NombreUsuario"].ToString() == "admin")
+                {  %>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color: #595b83;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administrar</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="Juego_Agregar.aspx">Agregar juego</a>
+                    <a class="dropdown-item" href="Juego_Editar-Eliminar.aspx">Editar/Eliminar juego</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Alta Usuario</a>
+                    <a class="dropdown-item" href="#">Baja Usuario</a>
+                    <div class="dropdown-divider"></div>
+                    <asp:Button ID="Button1" Text="Salir" runat="server" OnClick="btnCerrarSesion_Click" CssClass="dropdown-item" />
+                </div>
+            </li>
+            <%  } %>
+            <%if (Session["NombreUsuario"] == null) //si inició sesion, muestro el boton para cerrar session
+                { %>
+            <li class="nav-item">
+                <a class="btn btn-info" href="Login.aspx">Iniciar sesión</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-dark" href="Registrarse.aspx">Registrarse</a>
+            </li>
+                <%} %>
+        </ul>
+        <hr />
+
+
+
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>

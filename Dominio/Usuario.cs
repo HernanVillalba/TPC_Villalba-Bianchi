@@ -9,7 +9,7 @@ namespace Dominio
     public class Usuario
     {
         public int ID { get; set; }
-        public string user { get; set; }
+        public string nombreUsuario { get; set; }
         public string pass { get; set; }
 
         public Usuario()

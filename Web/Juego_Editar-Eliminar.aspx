@@ -1,18 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Administrador.aspx.cs" Inherits="Web.Administrador" %>
+﻿<%@ Page Title="Editar/Eliminar" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Juego_Editar-Eliminar.aspx.cs" Inherits="Web.Administrador" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-
-
 
     <div class="jumbotron">
         <asp:DropDownList ID="dropCat" runat="server" Height="24px" Width="168px"></asp:DropDownList>
         <asp:TextBox ID="txtBuscar" runat="server" Height="24px" Width="192px"></asp:TextBox>
         <asp:Button ID="Button2" runat="server" CssClass="badge" Height="24px" Text="Buscar" Width="112px" />
-    </div>
-
-    <div>
-        <asp:Button ID="Agregar" runat="server" CssClass="nav-justified" Text="Agregar Nuevo Producto" OnClick="Agregar_Click" />
     </div>
 
     <asp:GridView ID="dgvJuegos" runat="server" AutoGenerateColumns="false" BackColor="White" OnRowCommand="gvJuegos_RowCommand">

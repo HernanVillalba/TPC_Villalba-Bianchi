@@ -11,7 +11,7 @@ namespace Web
 {
     public partial class Registrarse : System.Web.UI.Page
     {
-        RegistrarUsuario regAux;
+        UsuarioCompleto regAux;
         UsuarioNegocio negocio;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,20 +23,20 @@ namespace Web
 
         protected void btnRegistrarse_Click(object sender, EventArgs e)
         {
-            regAux = new RegistrarUsuario();
+            regAux = new UsuarioCompleto();
             negocio = new UsuarioNegocio();
 
             cargarReg();
             regAux = negocio.RegistrarseEnDB(regAux);
 
-            if(regAux.usuario.ID == 0)
+            if(regAux.Usuario.ID == 0)
             {
                 Response.Redirect("Error.aspx");
             }
             else
             {
                 Response.Redirect("CatalogoJuegos.aspx");
-                Session["NombreUsuario"] = regAux.usuario.user; //guardo el nombre de usuario para saber si puede ver el perfil del mismo.
+                Session["NombreUsuario"] = regAux.Usuario.nombreUsuario; //guardo el nombre de usuario para saber si puede ver el perfil del mismo.
             }
         }
 
@@ -46,8 +46,8 @@ namespace Web
             regAux.DPUsuario.Apellido = txtApellido.Text;
             regAux.DPUsuario.Mail = txtMail.Text;
             regAux.DPUsuario.Telefono = Convert.ToInt32(txtTelefono.Text);
-            regAux.usuario.user = txtUser.Text;
-            regAux.usuario.pass = txtContra.Text;
+            regAux.Usuario.nombreUsuario = txtUser.Text;
+            regAux.Usuario.pass = txtContra.Text;
         }
     }
 }

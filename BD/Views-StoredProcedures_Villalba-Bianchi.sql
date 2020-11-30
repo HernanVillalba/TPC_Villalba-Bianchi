@@ -126,6 +126,10 @@ end try
 begin catch
 	raiserror('Error al obtener el usuario',18,1);
 end catch
+/*
+drop procedure SP_DatosUsuario
+exec SP_DatosUsuario 'link'
+*/
 
 create procedure SP_ActualizarJuego(
 @IDJuego int,
@@ -158,12 +162,34 @@ begin catch
 end catch
 
 
-/*
-drop procedure SP_DatosUsuario
-exec SP_DatosUsuario 'link'
-*/
+CREATE PROCEDURE SP_GuardarDatosPersonales(
+@id int,
+@nombreUsuario varchar(200),
+@contraseña varchar(200),
+@nombre varchar(200),
+@apellido varchar(200),
+@mail varchar(200),
+@telefono int,
+@telefonoAlter int
+)
+AS
+BEGIN TRY
+	update Usuarios 
+	set NombreUsuario =  @nombreUsuario, Contraseña =  @contraseña
+	where ID = @id
+	update Datos_Personales
+	set Nombre = @nombre, Apellido = @apellido, Mail = @mail, 
+	Telefono = @telefono, TelefonoAlter = @telefonoAlter
+	where IDUsuario = @id
+END TRY
+begin catch
+	 raiserror('Error al registrar el usuario en la DB',18,1);
+end catch
 
-select * from Juegos
-join Plataforma_x_Juego on Juegos.ID=Plataforma_x_Juego.IDJuego
-join Plataformas on Plataforma_x_Juego.IDPlataforma = Plataformas.ID
+exec SP_GuardarDatosPersonales 4, 'hernanvi_', 'herni', 'Hernan', 'Villalba', 'hernan@gmail.com', 99999, 99999
+drop procedure SP_GuardarDatosPersonales
+
+
+
+
 
