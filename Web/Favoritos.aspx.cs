@@ -11,16 +11,17 @@ namespace Web
 {
     public partial class Favoritos : System.Web.UI.Page
     {
-        public int cantidadItemsListaFav; 
+        public int cantidadItemsListaFav;
         public List<Juego> listaFav = new List<Juego>();
         private Juego juegoBuscado = new Juego();
         JuegoNegocio negocio = new JuegoNegocio();
         private int IDAux;
+        private int IDPlat;
         private int add;
         private int delete;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
 
             ExisteFav();
             CargarVariables();
@@ -44,9 +45,10 @@ namespace Web
         private void CargarVariables()
         {
             IDAux = Convert.ToInt32(Request.QueryString["IDJuego"]);
+            IDPlat = Convert.ToInt32(Request.QueryString["IDPlataforma"]);
             add = Convert.ToInt32(Request.QueryString["add"]);
             delete = Convert.ToInt32(Request.QueryString["delete"]);
-            juegoBuscado = (negocio.ListarTodosLosCampos()).Find(i => i.ID == IDAux);
+            juegoBuscado = (negocio.ListarTodosLosCampos()).Find(i => i.ID == IDAux && i.PlataformaJuego.ID == IDPlat);
         }
 
         private void eliminarItem()
@@ -64,7 +66,15 @@ namespace Web
 
         private void agregarItem()
         {
-            ((List<Juego>)Session["listaFav"]).Add(juegoBuscado);
+            int cont = 0;
+            foreach (var item in ((List<Juego>)Session["listaFav"]))
+            {
+                if (item.ID == juegoBuscado.ID && item.PlataformaJuego.ID == juegoBuscado.PlataformaJuego.ID)
+                {
+                    cont++;
+                }
+            }
+            if (cont==0) { ((List<Juego>)Session["listaFav"]).Add(juegoBuscado); }
         }
 
         public void ExisteFav()
