@@ -67,7 +67,7 @@ namespace Web
         private void agregarItem()
         {
             int cont = 0;
-            foreach (var item in ((List<Juego>)Session["listaFav"]))
+            foreach (var item in (List<Juego>)Session["listaFav"])
             {
                 if (item.ID == juegoBuscado.ID && item.PlataformaJuego.ID == juegoBuscado.PlataformaJuego.ID)
                 {

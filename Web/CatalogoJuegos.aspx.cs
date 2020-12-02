@@ -12,6 +12,7 @@ namespace Web
     public partial class CatalogoJuegos : System.Web.UI.Page
     {
         public List<Juego> busqueda;    
+        public int fav;
         protected void Page_Load(object sender, EventArgs e)
         {
             cargarDrop();
@@ -45,5 +46,7 @@ namespace Web
             aux = ((List<Dominio.Juego>)Session["Productos"]).FindAll(i => i.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()) && i.PlataformaJuego.ID == int.Parse(dropCat.SelectedValue));
             Session.Add("Productos",aux);
         }
+
+       
     }
 }

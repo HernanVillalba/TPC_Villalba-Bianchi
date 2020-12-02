@@ -13,14 +13,20 @@
             var Stock = document.getElementById("<%= tbxStock.ClientID %>").value;
             var Precio = document.getElementById("<%= tbxPrecio.ClientID%>").value;
 
-            if (Nombre === "" || Imagen === "" || Descripcion === "" || Stock === "" || Precio === "")
-            {
+            if ((Nombre === "") || (Imagen === "") || (Descripcion === "") || (Stock === "") || (Precio === "")) {
                 alert("No Ingreso Todos los datos, revise");
                 return false;
             }
 
+            if (isNaN(Stock)) {
+                alert("Como me vas a poner Stock con Letras papi?");
+                return false;
 
-
+            }
+            if (isNaN(Precio)) {
+                alert("No somos romanos, escribime el precio sin letras!!!!");
+                return false;
+            }
             return true;
         }
 

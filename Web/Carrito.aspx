@@ -58,6 +58,7 @@
             <td><%= item.PlataformaJuego.Nombre %></td>
 
             <td><%=item.PlataformaJuego.Precio %></td>
+            <td><%=item.Cantidad %></td>
         </tr>
 
         <%     }
