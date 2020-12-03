@@ -219,8 +219,8 @@ begin
 	join Plataformas as P on P.ID = PxJ.IDPlataforma
 	join Desarrollador_x_Juego as DxJ on DxJ.IDJuego=J.ID
 	join Desarrolladores as D on D.ID=DxJ.IDDesarrollador
-	join Usuarios as U on U.ID = 4
-	join Favoritos as F on F.IDUsuario = 4
-	where f.IDJuego = J.ID and f.IDPlataforma=P.ID and F.IDUsuario = 4
+	join Usuarios as U on U.ID = @idUsuario
+	join Favoritos as F on F.IDUsuario = @idUsuario
+	where f.IDJuego = J.ID and f.IDPlataforma=P.ID and F.IDUsuario = @idUsuario
 end
 

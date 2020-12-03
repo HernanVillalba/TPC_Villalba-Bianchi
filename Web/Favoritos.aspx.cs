@@ -115,7 +115,7 @@ namespace Web
             {
                 listaFav = (List<Juego>)Session["listaFav"];
             }
-
+            
             CargarListaFav();
             cantidadItemsListaFav = ((List<Dominio.Juego>)Session["listaFav"]).Count(); //para mostrar cartel de fav vacio
         }
