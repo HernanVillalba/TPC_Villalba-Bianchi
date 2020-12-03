@@ -7,11 +7,12 @@ Crear Tabla 'Categorias' para 'Juegos'
 
 Visual
 ABM Pedido:
-    Agregar Juego:
+    Agregar Juego: XXXXXXXXXXXXXXXXXXXX
     Seguimiento?
 Enviar Correo de Confirmacion
 Filtro x Categorias
-Arreglar el Filtro x plataforma
+Arreglar el Filtro x plataforma XXXXXXXXXXXXXXX
 Intentamos Carrousel??
 Mejorar las Cartas y la Nav Bar XXXXXXXXXXXXXXXXXXXXXXXX
-agregar edicion perfil de usuario
+agregar edicion perfil de usuario XXXXXXXXXXXXXXXXXX
+preguntar si el juego está dado de baja o sin stock para agregar a fav/Carrito

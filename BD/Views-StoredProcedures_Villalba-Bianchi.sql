@@ -9,9 +9,6 @@ join Plataformas as P on P.ID = PxJ.IDPlataforma
 join Desarrollador_x_Juego as DxJ on DxJ.IDJuego=J.ID
 join Desarrolladores as D on D.ID=DxJ.IDDesarrollador
 
---select * from VW_ListarTodosLosCampos
---drop view ListarTodosLosCampos
-
 ----PROCEDIMIENTOS ALMACENADOS----
 
 --procedimiento almacenado que primero inserta los datos de la tabla de usuario, toma ese ID (que es identity) y
@@ -44,13 +41,6 @@ BEGIN CATCH
 		 1);
 END CATCH
 
-
-/*
---prueba del SP de Acción con parametros
-exec SP_Registrarse 'hola', 'asdasd', 'jjajaj', 1212, 'oskigay18', 'soygay'
-drop procedure SP_Registrarse
-*/
-
 ------------------------------------------------------------------------------------------------
 --SP que busca todos los pedidos del usuario logeado
 create procedure SP_BuscarPedidoPorUsuario(
@@ -61,13 +51,7 @@ BEGIN
 	   SELECT * FROM Pedidos where IDUsuario = @IDUsuario
 END
 
-/*
- PRUEBA DE SP DE CONSULTA CON PARAMETRO
-EXEC SP_BuscarPedidoPorUsuario 2
-drop procedure SP_BuscarPedidoPorUsuario
-*/
-
-
+------------------------------------------------------------------------------------------------
 
 create procedure SP_NuevoJuego(
 @nombre varchar(200),
@@ -98,7 +82,7 @@ BEGIN CATCH
 	 raiserror('Error al registrar el Juego en la DB',18,1);
 END CATCH
 
--------------------------------------------
+------------------------------------------------------------------------------------------------------
 --Procedimiento almacenado que trae todos los datos del usuario en Usuarios, DatosPersonales y DatosEnvio
 --por ahora lo uso solo para cargar el perfil del usuario
 
@@ -126,10 +110,8 @@ end try
 begin catch
 	raiserror('Error al obtener el usuario',18,1);
 end catch
-/*
-drop procedure SP_DatosUsuario
-exec SP_DatosUsuario 'link'
-*/
+
+---------------------------------------------------------------------------------------------------------------
 
 create procedure SP_ActualizarJuego(
 @IDJuego int,
@@ -161,6 +143,7 @@ begin catch
 
 end catch
 
+-------------------------------------------------------------------------------------------------------------------
 
 CREATE PROCEDURE SP_GuardarDatosPersonales(
 @id int,
@@ -190,6 +173,54 @@ exec SP_GuardarDatosPersonales 4, 'hernanvi_', 'herni', 'Hernan', 'Villalba', 'h
 drop procedure SP_GuardarDatosPersonales
 
 
+-------------------------------------------------------------------------------------------------------------------
 
 
+CREATE PROCEDURE SP_AgregarFavorito(
+@idUsuario int,
+@idJuego int,
+@idPlataforma int
+)
+as
+begin try
+		insert into Favoritos(IDUsuario,IDJuego,IDPlataforma)
+		values(@idUsuario,@idJuego,@idPlataforma)
+end try
+
+begin catch
+		raiserror('No se agregó el fav en la tabla,',18,1);
+end catch
+
+---------------------------------------------------------------------------------------
+
+create procedure SP_EliminarFavorito(
+@idUsuario int,
+@idJuego int,
+@idPlataforma int
+)
+as
+begin try
+		delete from Favoritos
+		where  @idUsuario = IDUsuario and @idJuego = IDJuego and @idPlataforma = IDPlataforma
+end try
+
+begin catch
+		raiserror('No se eliminó el fav en la tabla,',18,1);
+end catch
+
+---------------------------------------------------------------------------------------
+Create procedure SP_ListarFavUsuario(
+@idUsuario int
+)
+as
+begin
+	select J.ID, J.Nombre as Juego, J.Descripcion , J.ImagenURL, PxJ.Importe, PxJ.Stock, P.ID as IDPlataforma, P.Nombre as Plataforma, D.ID as IDDesarrollador, D.Nombre as Desarrollador from Juegos as J
+	join Plataforma_x_Juego as PxJ on PxJ.IDJuego= J.ID
+	join Plataformas as P on P.ID = PxJ.IDPlataforma
+	join Desarrollador_x_Juego as DxJ on DxJ.IDJuego=J.ID
+	join Desarrolladores as D on D.ID=DxJ.IDDesarrollador
+	join Usuarios as U on U.ID = 4
+	join Favoritos as F on F.IDUsuario = 4
+	where f.IDJuego = J.ID and f.IDPlataforma=P.ID and F.IDUsuario = 4
+end
 

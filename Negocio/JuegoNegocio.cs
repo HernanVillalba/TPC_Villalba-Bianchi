@@ -12,39 +12,41 @@ namespace Negocio
     public class JuegoNegocio
     {
         string UsuarioDS = "data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;";
+        SqlConnection conexion;
+        SqlCommand comando;
+        SqlDataReader lector;
         public List<Juego> ListarTodosLosCampos()
         {
             //Vista creada en la base de datos
             string query = "select * from VW_ListarTodosLosCampos";
 
-            SqlConnection Conexion = new SqlConnection(UsuarioDS);
-            SqlCommand Comando = new SqlCommand(query,Conexion);
-            SqlDataReader Lector;
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand(query,conexion);
             List<Juego> Lista = new List<Juego>();
 
             try
             {
-                Conexion.Open();
-                Lector = Comando.ExecuteReader();
+                conexion.Open();
+                lector = comando.ExecuteReader();
 
-                while (Lector.Read())
+                while (lector.Read())
                 {
                     Juego aux = new Juego();
                     
-                    aux.ID = Lector.GetInt32(0);
-                    aux.Nombre = Lector.GetString(1);
-                    aux.Descripcion = Lector.GetString(2);
-                    aux.ImagenURL = Lector.GetString(3);
-                    aux.PlataformaJuego.Precio = Lector.GetSqlMoney(4);
-                    aux.PlataformaJuego.Stock = Lector.GetInt32(5);
-                    aux.PlataformaJuego.ID = Lector.GetInt32(6);
-                    aux.PlataformaJuego.Nombre = Lector.GetString(7);
-                    aux.DesarrolladorJuego.ID = Lector.GetInt32(8);
-                    aux.DesarrolladorJuego.Nombre = Lector.GetString(9);
+                    aux.ID = lector.GetInt32(0);
+                    aux.Nombre = lector.GetString(1);
+                    aux.Descripcion = lector.GetString(2);
+                    aux.ImagenURL = lector.GetString(3);
+                    aux.PlataformaJuego.Precio = lector.GetSqlMoney(4);
+                    aux.PlataformaJuego.Stock = lector.GetInt32(5);
+                    aux.PlataformaJuego.ID = lector.GetInt32(6);
+                    aux.PlataformaJuego.Nombre = lector.GetString(7);
+                    aux.DesarrolladorJuego.ID = lector.GetInt32(8);
+                    aux.DesarrolladorJuego.Nombre = lector.GetString(9);
 
                     Lista.Add(aux);
                 }
-                Conexion.Close();
+                conexion.Close();
                 return Lista;
             }
             catch (Exception ex)
@@ -57,13 +59,13 @@ namespace Negocio
 
         public void AgregarFavorito(int IDU, int IDJ, int IDP)
         {
-            SqlConnection conexion = new SqlConnection(UsuarioDS);
-            SqlCommand comando = new SqlCommand("SP_AgregarFavorito", conexion);
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_AgregarFavorito", conexion);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idUsuario", IDU);
             comando.Parameters.AddWithValue("@idJuego",IDJ);
             comando.Parameters.AddWithValue("@idPlataforma",IDP);
-
+            
             try
             {
                 conexion.Open();
@@ -76,34 +78,55 @@ namespace Negocio
             }
         }
 
-        public List<Juego> ListarFavortitos(int IDU)
+        public void EliminarFavorito(int IDU, int IDJ, int IDP)
         {
-            SqlConnection conexion = new SqlConnection(UsuarioDS);
-            SqlCommand comando = new SqlCommand("SP_ListarFavUsuario", conexion);
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_EliminarFavorito", conexion);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idUsuario", IDU);
-            SqlDataReader Lector;
+            comando.Parameters.AddWithValue("@idJuego", IDJ);
+            comando.Parameters.AddWithValue("@idPlataforma", IDP);
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteReader();
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<Juego> ListarFavortitos(int IDU)
+        {
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_ListarFavUsuario", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUsuario", IDU);
             List<Juego> lista = new List<Juego>();
 
             try
             {
                 conexion.Open();
-                Lector = comando.ExecuteReader();
+                lector = comando.ExecuteReader();
 
-                while (Lector.Read())
+                while (lector.Read())
                 {
                     Juego aux = new Juego();
 
-                    aux.ID = Lector.GetInt32(0);
-                    aux.Nombre = Lector.GetString(1);
-                    aux.Descripcion = Lector.GetString(2);
-                    aux.ImagenURL = Lector.GetString(3);
-                    aux.PlataformaJuego.Precio = Lector.GetSqlMoney(4);
-                    aux.PlataformaJuego.Stock = Lector.GetInt32(5);
-                    aux.PlataformaJuego.ID = Lector.GetInt32(6);
-                    aux.PlataformaJuego.Nombre = Lector.GetString(7);
-                    aux.DesarrolladorJuego.ID = Lector.GetInt32(8);
-                    aux.DesarrolladorJuego.Nombre = Lector.GetString(9);
+                    aux.ID = lector.GetInt32(0);
+                    aux.Nombre = lector.GetString(1);
+                    aux.Descripcion = lector.GetString(2);
+                    aux.ImagenURL = lector.GetString(3);
+                    aux.PlataformaJuego.Precio = lector.GetSqlMoney(4);
+                    aux.PlataformaJuego.Stock = lector.GetInt32(5);
+                    aux.PlataformaJuego.ID = lector.GetInt32(6);
+                    aux.PlataformaJuego.Nombre = lector.GetString(7);
+                    aux.DesarrolladorJuego.ID = lector.GetInt32(8);
+                    aux.DesarrolladorJuego.Nombre = lector.GetString(9);
 
                     lista.Add(aux);
                 }
@@ -120,24 +143,23 @@ namespace Negocio
         {
             string query = "select * from Plataformas";
 
-            SqlConnection Conexion = new SqlConnection(UsuarioDS);
-            SqlCommand Comando = new SqlCommand(query, Conexion);
-            SqlDataReader Lector;
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand(query, conexion);
             List<Plataforma> lista = new List<Plataforma>();
             try
             { 
-                Conexion.Open();
-                Lector = Comando.ExecuteReader();
+                conexion.Open();
+                lector = comando.ExecuteReader();
 
-                while (Lector.Read())
+                while (lector.Read())
                 {
                     Plataforma aux = new Plataforma();
-                    aux.ID = Lector.GetInt32(0);
-                    aux.Nombre = Lector.GetString(1);
+                    aux.ID = lector.GetInt32(0);
+                    aux.Nombre = lector.GetString(1);
                     lista.Add(aux);
                 }
 
-                Conexion.Close();
+                conexion.Close();
                 return lista;
 
             }
@@ -153,24 +175,23 @@ namespace Negocio
             string query = "select * from Desarrolladores";
             
 
-            SqlConnection Conexion = new SqlConnection(UsuarioDS);
-            SqlCommand Comando = new SqlCommand(query, Conexion);
-            SqlDataReader Lector;
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand(query, conexion);
             List<Plataforma> lista = new List<Plataforma>();
             try
             {
-                Conexion.Open();
-                Lector = Comando.ExecuteReader();
+                conexion.Open();
+                lector = comando.ExecuteReader();
 
-                while (Lector.Read())
+                while (lector.Read())
                 {
                     Plataforma aux = new Plataforma();
-                    aux.ID = Lector.GetInt32(0);
-                    aux.Nombre = Lector.GetString(1);
+                    aux.ID = lector.GetInt32(0);
+                    aux.Nombre = lector.GetString(1);
                     lista.Add(aux);
                 }
 
-                Conexion.Close();
+                conexion.Close();
                 return lista;
 
             }

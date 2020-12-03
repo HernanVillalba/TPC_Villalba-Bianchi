@@ -25,7 +25,7 @@
 <body>
     <form runat="server">
         <div class="centrado">
-            <img title="Iniciar Sesión/Registrarse" src="https://image.flaticon.com/icons/png/512/1484/1484867.png" height="100" alt="imagen de usuario" />
+            <img src="https://image.flaticon.com/icons/png/512/1484/1484867.png" height="100" alt="imagen de usuario" />
         </div>
         <div class="centrado">
             <h1 style="font-style: italic; color: #1a1c20; text-shadow: 0.1em 0.1em #333;">Iniciar sesión</h1>

@@ -72,6 +72,7 @@ namespace Web
 
         private void eliminarItem()
         {
+            /*
             foreach (Juego item in listaFav)
             {
                 if (item.ID == IDJuego && item.PlataformaJuego.ID == IDPlat)
@@ -81,6 +82,8 @@ namespace Web
                     return;
                 }
             }
+            */
+            negocio.EliminarFavorito(IDUsuario, IDJuego, IDPlat);
         }
 
         private void agregarItem()
