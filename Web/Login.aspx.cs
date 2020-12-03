@@ -30,8 +30,6 @@ namespace Web
             usuario = negocio.login(usuario);
             IniciarSessionLogin(usuario.ID);
 
-
-
         }
         protected void IniciarSessionLogin(int ID)
         {

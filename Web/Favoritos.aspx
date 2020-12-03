@@ -5,7 +5,6 @@
     <br />
     <br />
 
-
     <%if (cantidadItemsListaFav == 0)
         { %>
     <h2>Te interesa algún producto? guardalo para más tarde!</h2>

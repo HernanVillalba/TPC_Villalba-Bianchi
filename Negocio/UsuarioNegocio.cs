@@ -44,7 +44,7 @@ namespace Negocio
             return true;
         }
 
-        public UsuarioCompleto GetUsuario(string nombreUsuario)
+        public UsuarioCompleto GetearUsuario(string nombreUsuario)
         {
             UsuarioCompleto aux = new UsuarioCompleto(); ;
             SqlConnection conexion = new SqlConnection(UsuarioDS);

@@ -73,6 +73,20 @@ primary key (ID)
 go
 alter table Usuarios add unique(NombreUsuario) --unico usuario e inrrepetible
 
+GO
+CREATE TABLE Favoritos(
+IDUsuario int not null,
+IDJuego int not null,
+IDPlataforma int not null
+primary key(IDUsuario, IDJuego, IDPlataforma)
+)
+GO
+alter table Favoritos
+add constraint FK_FAV_Usuarios foreign key(IDUsuario) references Usuarios(ID)
+GO
+alter table Favoritos
+add constraint FK_FAV_PXJ_IDJ foreign key(IDJuego,IDPlataforma) references Plataforma_x_Juego(IDJuego,IDPlataforma)
+
 go 
 create table Datos_Personales(
 IDUsuario int not null,

@@ -11,22 +11,30 @@ namespace Web
 {
     public partial class Favoritos : System.Web.UI.Page
     {
+        UsuarioNegocio negocioUsuario = new UsuarioNegocio(); // para cargar el id de usuario en la session
+        UsuarioCompleto user = new UsuarioCompleto();
+
+
         public int cantidadItemsListaFav;
         public List<Juego> listaFav = new List<Juego>();
         private Juego juegoBuscado = new Juego();
         JuegoNegocio negocio = new JuegoNegocio();
-        private int IDAux;
+        private int IDJuego;
         private int IDPlat;
+        private int IDUsuario;
         private int add;
         private int delete;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["NombreUsuario"] == null)
+            {
+                Response.Redirect("");
+            }
 
-
-            ExisteFav();
             CargarVariables();
+            ExisteFav();
 
-            if (IDAux != 0 && juegoBuscado != null)
+            if (IDJuego != 0 && juegoBuscado != null)
             {
                 if (add == 1)
                 {
@@ -42,20 +50,31 @@ namespace Web
 
         }
 
+        private void CargarListaFav()
+        {
+            //cargar desde la DB
+           Session["listaFav"] = listaFav = negocio.ListarFavortitos(IDUsuario);
+        }
+
         private void CargarVariables()
         {
-            IDAux = Convert.ToInt32(Request.QueryString["IDJuego"]);
+            string nombreUser = Session["NombreUsuario"].ToString();
+            user = negocioUsuario.GetearUsuario(nombreUser);
+            IDUsuario = user.Usuario.ID;
+
+
+            IDJuego = Convert.ToInt32(Request.QueryString["IDJuego"]);
             IDPlat = Convert.ToInt32(Request.QueryString["IDPlataforma"]);
             add = Convert.ToInt32(Request.QueryString["add"]);
             delete = Convert.ToInt32(Request.QueryString["delete"]);
-            juegoBuscado = (negocio.ListarTodosLosCampos()).Find(i => i.ID == IDAux && i.PlataformaJuego.ID == IDPlat);
+            juegoBuscado = (negocio.ListarTodosLosCampos()).Find(i => i.ID == IDJuego && i.PlataformaJuego.ID == IDPlat);
         }
 
         private void eliminarItem()
         {
             foreach (Juego item in listaFav)
             {
-                if (item.ID == IDAux)
+                if (item.ID == IDJuego && item.PlataformaJuego.ID == IDPlat)
                 {
                     listaFav.Remove(item);
                     Session["listaFav"] = listaFav;
@@ -66,20 +85,25 @@ namespace Web
 
         private void agregarItem()
         {
-            int cont = 0;
+
+            bool existe = false;
             foreach (var item in (List<Juego>)Session["listaFav"])
             {
                 if (item.ID == juegoBuscado.ID && item.PlataformaJuego.ID == juegoBuscado.PlataformaJuego.ID)
                 {
-                    cont++;
+                    existe=true; //
                 }
             }
-            if (cont==0) { ((List<Juego>)Session["listaFav"]).Add(juegoBuscado); }
+            if (!existe)
+            {
+                negocio.AgregarFavorito(IDUsuario, IDJuego, IDPlat); //agrega en la DB
+                ((List<Juego>)Session["listaFav"]).Add(juegoBuscado); //agrega a la session
+            }
         }
+
 
         public void ExisteFav()
         {
-
             if (Session["listaFav"] == null)
             {
                 Session["listaFav"] = new List<Juego>();
@@ -88,7 +112,9 @@ namespace Web
             {
                 listaFav = (List<Juego>)Session["listaFav"];
             }
-            cantidadItemsListaFav = ((List<Dominio.Juego>)Session["listaFav"]).Count();
+
+            CargarListaFav();
+            cantidadItemsListaFav = ((List<Dominio.Juego>)Session["listaFav"]).Count(); //para mostrar cartel de fav vacio
         }
     }
 }

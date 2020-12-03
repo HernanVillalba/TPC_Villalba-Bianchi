@@ -38,7 +38,7 @@ namespace Web
         private void cargarUsuarioEnTextBox()
         {
             string nombreUsuario = (string)Session["NombreUsuario"];
-            usuario = negocio.GetUsuario(nombreUsuario);
+            usuario = negocio.GetearUsuario(nombreUsuario);
             if (Session["IDUsuario"] == null)
             {
                 Session["IDUsuario"] = usuario.Usuario.ID;

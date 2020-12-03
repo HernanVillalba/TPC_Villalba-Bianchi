@@ -55,6 +55,67 @@ namespace Negocio
 
         }
 
+        public void AgregarFavorito(int IDU, int IDJ, int IDP)
+        {
+            SqlConnection conexion = new SqlConnection(UsuarioDS);
+            SqlCommand comando = new SqlCommand("SP_AgregarFavorito", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUsuario", IDU);
+            comando.Parameters.AddWithValue("@idJuego",IDJ);
+            comando.Parameters.AddWithValue("@idPlataforma",IDP);
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteReader();
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        public List<Juego> ListarFavortitos(int IDU)
+        {
+            SqlConnection conexion = new SqlConnection(UsuarioDS);
+            SqlCommand comando = new SqlCommand("SP_ListarFavUsuario", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUsuario", IDU);
+            SqlDataReader Lector;
+            List<Juego> lista = new List<Juego>();
+
+            try
+            {
+                conexion.Open();
+                Lector = comando.ExecuteReader();
+
+                while (Lector.Read())
+                {
+                    Juego aux = new Juego();
+
+                    aux.ID = Lector.GetInt32(0);
+                    aux.Nombre = Lector.GetString(1);
+                    aux.Descripcion = Lector.GetString(2);
+                    aux.ImagenURL = Lector.GetString(3);
+                    aux.PlataformaJuego.Precio = Lector.GetSqlMoney(4);
+                    aux.PlataformaJuego.Stock = Lector.GetInt32(5);
+                    aux.PlataformaJuego.ID = Lector.GetInt32(6);
+                    aux.PlataformaJuego.Nombre = Lector.GetString(7);
+                    aux.DesarrolladorJuego.ID = Lector.GetInt32(8);
+                    aux.DesarrolladorJuego.Nombre = Lector.GetString(9);
+
+                    lista.Add(aux);
+                }
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+                lista = null;
+            }
+            return lista;
+        }
+
         public List<Plataforma> GetPlataformas()
         {
             string query = "select * from Plataformas";

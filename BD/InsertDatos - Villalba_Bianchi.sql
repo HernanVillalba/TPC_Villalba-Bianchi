@@ -12,7 +12,7 @@ VALUES ('PlayStation 4'), --ID1
 GO
 INSERT INTO Juegos(Nombre,Descripcion,ImagenURL) 													   --ID
 VALUES ('God Of War', 'kratos viaja mucho junto a su hijo llamado BOY', 'https://tinyurl.com/y6lwpktj'), --1
-	   ('Resident Evil 4', 'Dejó de ser survival horror', 'https://tinyurl.com/y3jtxo85'),			     --2
+	   ('Resident Evil 4', 'Dejó de ser survival horror', 'https://tinyurl.com/y2yklvmn'),			     --2
 	   ('Fifa 20', 'Siempre el mismo juego, distinto número', 'https://tinyurl.com/y5zzyzo4'),		     --3
 	   ('Bloodborne', 'Dark Souls sin escudo', 'https://tinyurl.com/y6k2p7m6'),						     --4
 	   ('The Last Of Us', 'El mejor juego de la generación?', 'https://tinyurl.com/y6ywnm4w'),			 --5
@@ -40,14 +40,16 @@ VALUES ('Santa Monica Studio'), --1
 	   ('Capcom'),				--2
 	   ('Electronic Arts'),		--3
 	   ('From Software'),		--4
-	   ('Naughty Dog')			--5
+	   ('Naughty Dog'),			--5
+	   ('Rockstar Games')
 GO
 INSERT INTO Desarrollador_x_Juego(IDJuego,IDDesarrollador)
 VALUES (1,1),
 	   (2,2),
 	   (3,3),
 	   (4,4),
-	   (5,5)
+	   (5,5),
+	   (6,6)
 	   
 GO
 INSERT INTO Usuarios(NombreUsuario,Contraseña)
