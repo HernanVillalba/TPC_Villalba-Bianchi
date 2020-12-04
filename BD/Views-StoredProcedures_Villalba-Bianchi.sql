@@ -224,3 +224,53 @@ begin
 	where f.IDJuego = J.ID and f.IDPlataforma=P.ID and F.IDUsuario = @idUsuario
 end
 
+-------------------------------------------------------------------------------
+Create procedure SP_AgregarItemCarrito(
+@idUsuario int,
+@idJuego int,
+@idPlataforma int,
+@cantidad int
+)
+as 
+begin try
+	insert into Carrito(IDUsuario, IDJuego, IDPlataforma, Cantidad)
+	values (@idUsuario, @idJuego, @idPlataforma, @cantidad)
+end	try
+begin catch
+	raiserror('No se agregó el item al carrito.',18,1);
+end catch
+
+select*From Carrito
+-------------------------------------------------------------------------------
+create procedure SP_EliminarItemCarrito(
+@idUsuario int,
+@idJuego int,
+@idPlataforma int
+)
+as
+begin try	
+	delete from Carrito
+	where IDUsuario=@idUsuario and IDJuego	= @idJuego and IDPlataforma=@idPlataforma
+end try
+begin catch
+	raiserror('No se eliminó el item al carrito.',18,1);
+end catch
+
+-------------------------------------------------------------------------------
+create procedure SP_ListarCarrito(
+@idUsuario int
+)
+as
+begin try
+	select J.ImagenURL, J.Nombre, P.Nombre, PxJ.Importe, C.Cantidad
+	from Juegos as J
+	join Plataforma_x_Juego as PxJ on PxJ.IDJuego=J.ID
+	join Plataformas as P on P.ID=PxJ.IDPlataforma 
+	join Usuarios as U on U.ID = @idUsuario
+	join Carrito as C on C.IDUsuario = @idUsuario 
+	where C.IDJuego=J.ID and C.IDPlataforma=PxJ.IDPlataforma
+end try	
+
+begin catch
+	raiserror('No se puede listar el carrito del usuario.',18,1);
+end catch

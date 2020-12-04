@@ -33,12 +33,13 @@ namespace Web
         }
         protected void IniciarSessionLogin(int ID)
         {
-
             if (ID != 0)
             {
                 Session["InicioSesion"] = true;
                 Session["NombreUsuario"] = usuario.nombreUsuario;
+                Session["IDUsuario"] = usuario.ID;
                 Response.Redirect("CatalogoJuegos.aspx");
+                //user = negocioUsuario.GetearUsuario(nombreUser);
             }
             else
             {

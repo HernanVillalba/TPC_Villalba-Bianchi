@@ -1,7 +1,7 @@
 SQL
-Crear Fav x Usuario ID juego, ID USUARIO
+Crear Fav x Usuario ID juego, ID USUARIO XXXXXXXXXXXXXXX
 Des/Encriptar contraseña
-Agregar Columna 'Favoritos' en PXJ
+Agregar Columna 'Favoritos' en PXJ XXXXXXXXXXX
 Crear Tabla 'Categorias' para 'Juegos'
 
 
@@ -12,7 +12,7 @@ ABM Pedido:
 Enviar Correo de Confirmacion
 Filtro x Categorias
 Arreglar el Filtro x plataforma XXXXXXXXXXXXXXX
-Intentamos Carrousel??
+Intentamos Carrousel?? 
 Mejorar las Cartas y la Nav Bar XXXXXXXXXXXXXXXXXXXXXXXX
 agregar edicion perfil de usuario XXXXXXXXXXXXXXXXXX
 preguntar si el juego está dado de baja o sin stock para agregar a fav/Carrito

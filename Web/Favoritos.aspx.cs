@@ -36,10 +36,15 @@ namespace Web
 
             if (IDJuego != 0 && juegoBuscado != null)
             {
-                if (add == 1)
+                if (add == 1 && juegoBuscado.PlataformaJuego.Stock > 0)
                 {
                     agregarItem();
                     Response.Redirect("Favoritos.aspx");
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('No hay stock para agregar el juego!');", true);
+
                 }
                 if (delete == 1)
                 {
@@ -72,17 +77,6 @@ namespace Web
 
         private void eliminarItem()
         {
-            /*
-            foreach (Juego item in listaFav)
-            {
-                if (item.ID == IDJuego && item.PlataformaJuego.ID == IDPlat)
-                {
-                    listaFav.Remove(item);
-                    Session["listaFav"] = listaFav;
-                    return;
-                }
-            }
-            */
             negocio.EliminarFavorito(IDUsuario, IDJuego, IDPlat);
         }
 

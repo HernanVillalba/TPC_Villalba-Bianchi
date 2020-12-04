@@ -87,6 +87,21 @@ GO
 alter table Favoritos
 add constraint FK_FAV_PXJ_IDJ foreign key(IDJuego,IDPlataforma) references Plataforma_x_Juego(IDJuego,IDPlataforma)
 
+GO
+CREATE TABLE Carrito(
+IDUsuario int not null,
+IDJuego int not null,
+IDPlataforma int not null,
+Cantidad int not null,
+primary key(IDUsuario,IDJuego,IDPlataforma)
+)
+GO
+ALTER TABLE Carrito
+ADD CONSTRAINT FK_Car_Usu FOREIGN KEY(IDUsuario) REFERENCES Usuarios(ID)
+GO
+ALTER TABLE Carrito
+ADD CONSTRAINT FK_Car_PxJ_IDJ_IDP FOREIGN KEY(IDJuego,IDPlataforma) REFERENCES Plataforma_x_Juego(IDJuego,IDPlataforma)
+
 go 
 create table Datos_Personales(
 IDUsuario int not null,
