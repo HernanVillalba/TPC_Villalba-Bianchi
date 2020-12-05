@@ -154,8 +154,8 @@ constraint FK_IDPED_PED foreign key(IDPedido) references Pedidos(ID)
 
 go
 create table Producto_x_pedido(
-IDJuego int not null,
 IDPedido int not null,
+IDJuego int not null,
 Precio Money not null,
 Cantidad tinyint not null,
 IDPlataforma int not null ,
@@ -167,9 +167,6 @@ go
 Alter Table Producto_x_pedido
 Add Constraint FK_IDPedido Foreign Key(IDpedido) References Pedidos(ID)
 go
-Alter Table Producto_x_pedido
-Add Constraint FK_IDPlataforma_PxJ Foreign Key(IDPlataforma) References Plataformas(ID)
-go
-Alter Table Producto_x_pedido
-Add Constraint FK_IDJuego_PxJ Foreign Key (IDJuego) References Juegos(ID)
+alter table Producto_x_pedido
+add constraint FK_PxP_PXJ_IDJ_IDP foreign key(IDJuego,IDPlataforma) references Plataforma_x_Juego(IDJuego,IDPlataforma)
 

@@ -15,4 +15,4 @@ Arreglar el Filtro x plataforma XXXXXXXXXXXXXXX
 Intentamos Carrousel?? 
 Mejorar las Cartas y la Nav Bar XXXXXXXXXXXXXXXXXXXXXXXX
 agregar edicion perfil de usuario XXXXXXXXXXXXXXXXXX
-preguntar si el juego está dado de baja o sin stock para agregar a fav/Carrito
+preguntar si el juego está dado de baja o sin stock para agregar a (fav ya está)/Carrito

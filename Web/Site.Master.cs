@@ -25,6 +25,7 @@ namespace Web
             Session["NombreUsuario"] = null;
             Session["ListaFav"] = null;
             Session["ListaCarrito"] = null;
+            Session["IDUsuario"] = null;
             
 
             Response.Redirect("Login.aspx");

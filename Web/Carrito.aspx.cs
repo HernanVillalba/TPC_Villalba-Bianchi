@@ -13,32 +13,30 @@ namespace Web
     public partial class Carrito : System.Web.UI.Page
     {
         private JuegoNegocio negocio = new JuegoNegocio();
-        public Juego articuloBuscado = new Juego();
+        public Juego articuloSeleccionado = new Juego();
         public List<Juego> listaAux = new List<Juego>();
         public List<Juego> listaCarrito = new List<Juego>();
 
 
         Chango carro = new Chango();
+        int IDU;
         int IDAux;
         int agregar;
         int eliminar;
         int IDPlat;
         int empty;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             
             ExisteListaCarrito();
 
-            IDAux = Convert.ToInt32(Request.QueryString["ID"]);
-            agregar = Convert.ToInt32(Request.QueryString["add"]);
-            eliminar = Convert.ToInt32(Request.QueryString["delete"]);
-            empty = Convert.ToInt32(Request.QueryString["empty"]);
-            IDPlat = Convert.ToInt32(Request.QueryString["IDP"]);
+            CargarVariables();
 
 
             try
             {
-                articuloBuscado = (listaAux = negocio.ListarTodosLosCampos()).Find(i => i.ID == IDAux && i.PlataformaJuego.ID == IDPlat);
+                articuloSeleccionado = (listaAux = negocio.ListarTodosLosCampos()).Find(i => i.ID == IDAux && i.PlataformaJuego.ID == IDPlat);
 
 
                 if (IDAux != 0 && agregar == 1)
@@ -58,8 +56,7 @@ namespace Web
                 }
                 if(empty == 1)
                 {
-                    listaCarrito = new List<Juego>();
-                    Session["ListaCarrito"] = listaCarrito;
+                    negocio.VaciarCarrito(IDU);
                     Response.Redirect("Carrito.aspx");
                 }
             }
@@ -73,10 +70,20 @@ namespace Web
             
         }
 
+        private void CargarVariables()
+        {
+            IDU = Convert.ToInt32(Session["IDUsuario"]);
+            IDAux = Convert.ToInt32(Request.QueryString["ID"]);
+            agregar = Convert.ToInt32(Request.QueryString["add"]);
+            eliminar = Convert.ToInt32(Request.QueryString["delete"]);
+            empty = Convert.ToInt32(Request.QueryString["empty"]);
+            IDPlat = Convert.ToInt32(Request.QueryString["IDP"]);
+        }
+
         private void CargarLblTotal()
         {
 
-            foreach (Juego item in (List<Juego>)Session["ListaCarrito"])
+            foreach (Juego item in listaCarrito)
             {
                 
                 carro.Cantidad+=item.Cantidad;
@@ -90,34 +97,26 @@ namespace Web
         private void AgregarItemLista()
         {
             //Buscamos si existe el item en la lista
-            foreach (var item in ((List<Juego>)Session["ListaCarrito"]))
+            foreach (var item in listaCarrito)
             {
-                if (item.ID == articuloBuscado.ID && item.PlataformaJuego.ID == articuloBuscado.PlataformaJuego.ID)
+                if (item.ID == articuloSeleccionado.ID && item.PlataformaJuego.ID == articuloSeleccionado.PlataformaJuego.ID)
 
                 {
                     // si existe le acumulamos cantidad al objeto que 
                     //alguna vez ya haya sido agregado
-                    item.Cantidad++;
+                    listaCarrito.Add(item);
+                    negocio.SumarCantidadItemCarrito(IDU, IDAux, IDPlat);
                     return;
                 }
             }
             //si no existe agrega
-            articuloBuscado.Cantidad++;
-            ((List<Juego>)Session["ListaCarrito"]).Add(articuloBuscado);
+            negocio.AgregarItemCarrito(IDU, IDAux, IDPlat);
 
         }
 
         private void EliminarItemLista()
         {
-            foreach (Juego item in listaCarrito)
-            {
-                if(item.ID == IDAux)
-                {
-                    listaCarrito.Remove(item);
-                    Session["ListaCarrito"] = listaCarrito;
-                    return;
-                }
-            }
+            negocio.EliminarItemCarrito(IDU,IDAux,IDPlat);
         }
 
 
@@ -129,8 +128,13 @@ namespace Web
             }
             else
             {
+
                 listaCarrito = (List<Juego>)Session["ListaCarrito"];
             }
+
+            
+            listaCarrito = negocio.ListarCarrito(IDU);
+            Session["ListaCarrito"] = listaCarrito;
 
         }
 

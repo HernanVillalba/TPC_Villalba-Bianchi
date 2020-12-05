@@ -21,7 +21,7 @@ namespace Negocio
             string query = "select * from VW_ListarTodosLosCampos";
 
             conexion = new SqlConnection(UsuarioDS);
-            comando = new SqlCommand(query,conexion);
+            comando = new SqlCommand(query, conexion);
             List<Juego> Lista = new List<Juego>();
 
             try
@@ -32,7 +32,7 @@ namespace Negocio
                 while (lector.Read())
                 {
                     Juego aux = new Juego();
-                    
+
                     aux.ID = lector.GetInt32(0);
                     aux.Nombre = lector.GetString(1);
                     aux.Descripcion = lector.GetString(2);
@@ -56,16 +56,14 @@ namespace Negocio
             }
 
         }
-
-        public void AgregarFavorito(int IDU, int IDJ, int IDP)
+        public void EliminarItemCarrito(int IDU, int IDJ, int IDP)
         {
             conexion = new SqlConnection(UsuarioDS);
-            comando = new SqlCommand("SP_AgregarFavorito", conexion);
+            comando = new SqlCommand("SP_EliminarItemCarrito", conexion);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idUsuario", IDU);
-            comando.Parameters.AddWithValue("@idJuego",IDJ);
-            comando.Parameters.AddWithValue("@idPlataforma",IDP);
-            
+            comando.Parameters.AddWithValue("@idJuego", IDJ);
+            comando.Parameters.AddWithValue("@idPlataforma", IDP);
             try
             {
                 conexion.Open();
@@ -75,6 +73,131 @@ namespace Negocio
             catch (Exception)
             {
 
+                throw;
+            }
+        }
+
+        public List<Juego> ListarCarrito(int IDU)
+        {
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_ListarCarrito", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUsuario", IDU);
+            List<Juego> lista = new List<Juego>();
+
+            try
+            {
+                conexion.Open();
+                lector = comando.ExecuteReader();
+                while (lector.Read())
+                {
+                    Juego aux = new Juego();
+
+                    aux.ID = lector.GetInt32(0);
+                    aux.Nombre = lector.GetString(1);
+                    aux.Descripcion = lector.GetString(2);
+                    aux.ImagenURL = lector.GetString(3);
+                    aux.PlataformaJuego.Precio = lector.GetSqlMoney(4);
+                    aux.PlataformaJuego.Stock = lector.GetInt32(5);
+                    aux.PlataformaJuego.ID = lector.GetInt32(6);
+                    aux.PlataformaJuego.Nombre = lector.GetString(7);
+                    aux.DesarrolladorJuego.ID = lector.GetInt32(8);
+                    aux.DesarrolladorJuego.Nombre = lector.GetString(9);
+                    aux.Cantidad = lector.GetInt32(10);
+
+                    lista.Add(aux);
+                }
+
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+                lista = null;
+            }
+
+            return lista;
+        }
+
+        public void AgregarFavorito(int IDU, int IDJ, int IDP)
+        {
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_AgregarFavorito", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUsuario", IDU);
+            comando.Parameters.AddWithValue("@idJuego", IDJ);
+            comando.Parameters.AddWithValue("@idPlataforma", IDP);
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteReader();
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        public void VaciarCarrito(int IDU)
+        {
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_VaciarCarrito", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUsuario", IDU);
+            try
+            {
+                conexion.Open();
+                comando.ExecuteReader();
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void AgregarItemCarrito(int IDU, int IDJ, int IDP)
+        {
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_AgregarItemCarrito", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUsuario", IDU);
+            comando.Parameters.AddWithValue("@idJuego", IDJ);
+            comando.Parameters.AddWithValue("@idPlataforma", IDP);
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteReader();
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void SumarCantidadItemCarrito(int IDU, int IDJ, int IDP)
+        {
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_SumarCantidadItemCarrito", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUsuario", IDU);
+            comando.Parameters.AddWithValue("@idJuego", IDJ);
+            comando.Parameters.AddWithValue("@idPlataforma", IDP);
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteReader();
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 

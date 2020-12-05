@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
-    <%if (((List<Dominio.Juego>)Session["ListaCarrito"]).Count() == 0)
+    <%if (listaCarrito.Count() == 0)
         {%>
     <div class="jumbotron jumbotron-fluid" style="height:auto;">
         <div class="container">
@@ -47,11 +47,11 @@
             <td>Cantidad</td>
         </tr>
 
-        <%foreach (Dominio.Juego item in (List<Dominio.Juego>)Session["ListaCarrito"])
+        <%foreach (Dominio.Juego item in listaCarrito)
             {%>
 
         <tr style="border: 1px groove #000000;">
-            <td><a class="btn btn-primary" href="Carrito.aspx?ID=<%=item.ID.ToString() %>&delete=1" style="background-color: #af2d2d;">Eliminar </a></td>
+            <td><a class="btn btn-primary" href="Carrito.aspx?ID=<%=item.ID.ToString() %>&IDP=<%= item.PlataformaJuego.ID %>&delete=1" style="background-color: #af2d2d;">Eliminar </a></td>
             <td>
                 <img src="<%= item.ImagenURL %>" class="card-img-top" style="width: 120px; height: 60px;" alt="Imagen del <%=item.Nombre %>"></td>
             <td><%= item.Nombre %></td>
