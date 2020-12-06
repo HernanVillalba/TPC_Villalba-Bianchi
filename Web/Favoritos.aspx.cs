@@ -28,7 +28,7 @@ namespace Web
         {
             if (Session["NombreUsuario"] == null)
             {
-                Response.Redirect("");
+                Response.Redirect("Login.aspx");
             }
 
             CargarVariables();
@@ -58,7 +58,12 @@ namespace Web
         private void CargarListaFav()
         {
             //cargar desde la DB
-           Session["listaFav"] = listaFav = negocio.ListarFavortitos(IDUsuario);
+
+            if (IDUsuario == 0)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            Session["listaFav"] = listaFav = negocio.ListarFavortitos(IDUsuario);
         }
 
         private void CargarVariables()
@@ -84,6 +89,8 @@ namespace Web
         {
 
             bool existe = false;
+
+      
             foreach (var item in (List<Juego>)Session["listaFav"])
             {
                 if (item.ID == juegoBuscado.ID && item.PlataformaJuego.ID == juegoBuscado.PlataformaJuego.ID)
