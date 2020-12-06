@@ -13,6 +13,7 @@ namespace Web
     {
         Usuario usuario = new Usuario();
         UsuarioNegocio negocio = new UsuarioNegocio();
+        JuegoNegocio favs = new JuegoNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -38,6 +39,7 @@ namespace Web
                 Session["InicioSesion"] = true;
                 Session["NombreUsuario"] = usuario.nombreUsuario;
                 Session["IDUsuario"] = usuario.ID;
+                Session["listaFav"] = favs.ListarFavortitos(usuario.ID);
                 Response.Redirect("CatalogoJuegos.aspx");
                 //user = negocioUsuario.GetearUsuario(nombreUser);
             }

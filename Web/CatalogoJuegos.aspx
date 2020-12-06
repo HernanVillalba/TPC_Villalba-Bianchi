@@ -30,9 +30,19 @@
         <div class="col-md-4">
             <div class="card" style="width: 18rem; background-color: transparent; border-color: transparent; border-radius: 10px;">
                 <div class="card-footer" style="border-radius: 5px;">
-                    <a href="Favoritos.aspx?IDJuego= <%=item.ID %>&IDPlataforma=<%=item.PlataformaJuego.ID %>&add=1" class="mx-auto btn btn-outline-info" style="float: right;">
-                        <img title="Agregar a favoritos" src="https://tinyurl.com/y5mnq3y8" alt="img-fav" style="height: 20px; width: 20px;" />
-                    </a>
+                    
+                        <%  if (Session["listaFav"] == null || ((List<Dominio.Juego>)Session["listaFav"]).Find(i => i.ID == item.ID && i.PlataformaJuego.ID == item.PlataformaJuego.ID) == null)
+                            { %>
+                      <a  href="Favoritos.aspx?IDJuego= <%=item.ID %>&IDPlataforma=<%=item.PlataformaJuego.ID %>&add=1" class="mx-auto btn btn-outline-info" style="float: right;">
+                        <img title="Agregar a favoritos" src="https://tinyurl.com/y5mnq3y8" alt="img-fav" style="height: 20px; width: 20px;" /></a>
+
+                        <% }
+                            else
+                            {%>
+                   <a href="Favoritos.aspx?IDJuego=<%= item.ID %>&IDPlataforma=<%=item.PlataformaJuego.ID %>&delete=1" class="mx-auto btn btn-outline-info" style="float: right;">
+                        <img title="Agregar a favoritos" src="https://tinyurl.com/y6oj2a6l" alt="img-fav" style="height: 20px; width: 20px;" /></a>
+
+                        <% } %> 
                 </div>
                 <img class="card-img-top" src="<%= item.ImagenURL %>" alt="imagen-juego" style="width: inherit;" height="120">
                 <div class="card-body">
