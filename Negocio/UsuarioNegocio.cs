@@ -21,14 +21,14 @@ namespace Negocio
             conexion = new SqlConnection(UsuarioDS);
             comando = new SqlCommand("SP_GuardarDatosPersonales", conexion);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@id",usuario.Usuario.ID);
-            comando.Parameters.AddWithValue("@nombreUsuario",usuario.Usuario.nombreUsuario);
-            comando.Parameters.AddWithValue("@contraseña",usuario.Usuario.pass);
-            comando.Parameters.AddWithValue("@nombre",usuario.DPUsuario.Nombre);
-            comando.Parameters.AddWithValue("@apellido",usuario.DPUsuario.Apellido);
-            comando.Parameters.AddWithValue("@mail",usuario.DPUsuario.Mail);
-            comando.Parameters.AddWithValue("@telefono",usuario.DPUsuario.Telefono);
-            comando.Parameters.AddWithValue("@telefonoAlter",usuario.DPUsuario.TelefonAlter);
+            comando.Parameters.AddWithValue("@id", usuario.Usuario.ID);
+            comando.Parameters.AddWithValue("@nombreUsuario", usuario.Usuario.nombreUsuario);
+            comando.Parameters.AddWithValue("@contraseña", usuario.Usuario.pass);
+            comando.Parameters.AddWithValue("@nombre", usuario.DPUsuario.Nombre);
+            comando.Parameters.AddWithValue("@apellido", usuario.DPUsuario.Apellido);
+            comando.Parameters.AddWithValue("@mail", usuario.DPUsuario.Mail);
+            comando.Parameters.AddWithValue("@telefono", usuario.DPUsuario.Telefono);
+            comando.Parameters.AddWithValue("@telefonoAlter", usuario.DPUsuario.TelefonAlter);
 
             try
             {
@@ -75,7 +75,7 @@ namespace Negocio
                     aux = null;
                 }
                 conexion.Close();
-                
+
             }
             catch (Exception)
             {
@@ -147,7 +147,7 @@ namespace Negocio
             reg.Usuario.ID = 1;
             return reg;
         }
-        
+
         public void ClonarUsuario(UsuarioCompleto original, UsuarioCompleto copia)
         {
             //uso esto porque no me clona solo igulando
@@ -162,6 +162,74 @@ namespace Negocio
             copia.DatosEnvio.Altura = original.DatosEnvio.Altura;
             copia.DatosEnvio.CP = original.DatosEnvio.CP;
 
+        }
+
+        public List<DatosEnvio> ListarDirecciones(int IDU)
+        {
+            SqlConnection conexion = new SqlConnection(UsuarioDS);
+            SqlCommand comando = new SqlCommand("SP_ListarDirecciones", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUsuario", IDU);
+            List<DatosEnvio> lista = new List<DatosEnvio>();
+            SqlDataReader lector;
+            try
+            {
+                conexion.Open();
+                lector = comando.ExecuteReader();
+                while (lector.Read())
+                {
+                    DatosEnvio aux = new DatosEnvio();
+                    aux.ID = lector.GetInt32(0);
+                    aux.Direccion = lector.GetString(1);
+                    aux.Altura = lector.GetInt32(2);
+                    aux.CP = lector.GetInt32(3);
+
+                    lista.Add(aux);
+                }
+                conexion.Close();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return lista;
+        }
+
+        public DatosEnvio ListarDireccionXID(int IDenvio)
+        {
+            string query = "select Direccion, Altura, CP from Direcciones where idEnvio = @idEnvio";
+            SqlConnection conexion = new SqlConnection(UsuarioDS);
+            SqlCommand comando = new SqlCommand(query, conexion);
+            comando.Parameters.AddWithValue("@idEnvio", IDenvio);
+            SqlDataReader lector;
+            DatosEnvio aux = new DatosEnvio();
+
+            try
+            {
+                conexion.Open();
+                lector = comando.ExecuteReader();
+                if (lector.Read())
+                {
+                    aux.ID = IDenvio;
+                    aux.Direccion = lector.GetString(0);
+                    aux.Altura = lector.GetInt32(1);
+                    aux.CP = lector.GetInt32(2);
+              
+                }
+                conexion.Close();
+
+            }
+            catch (Exception)
+            {
+                aux.ID = 0;
+            }
+
+
+
+            return aux;
         }
     }
 

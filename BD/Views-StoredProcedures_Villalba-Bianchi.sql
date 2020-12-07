@@ -308,11 +308,28 @@ begin catch
 	raiserror('No se puede vaciar el carrito',18,1);
 end catch
 
+create procedure SP_ListarDirecciones(
+@idUsuario int)
+as
+begin try
+	select IDEnvio,Direccion, Altura, CP from Direcciones
+	where IDUsuario = @idUsuario
+end try
+begin catch
+	raiserror('No se pudo listar las Direcciones',18,1);
 
-exec SP_ListarCarrito 4
+end catch
 
 
 
+create procedure SP_ListarDireccion_X_ID(
+@idEnvio int)
+as
+begin try
+	select idEnvio,Direccion, Altura, CP from Direcciones
+	where idEnvio = @idEnvio
+end try
+begin catch
+	raiserror('No se pudo listar las Direcciones',18,1);
 
-
-
+end catch

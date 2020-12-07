@@ -8,6 +8,7 @@ namespace Dominio
 {
     public class DatosEnvio
     {
+        public int ID { get; set; }
         public string Direccion{ get; set; }
         public int Altura { get; set; }
         public int CP { set; get; }

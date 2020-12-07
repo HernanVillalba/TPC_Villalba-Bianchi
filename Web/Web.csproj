@@ -105,6 +105,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Elegir_Envio.aspx" />
     <Content Include="Juego_Editar-Eliminar.aspx" />
     <Content Include="Juego_Agregar.aspx" />
     <Content Include="Carrito.aspx" />
@@ -129,6 +130,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Detalles.aspx" />
     <Content Include="Modificar.aspx" />
+    <Content Include="Pedidos.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="Perfil.aspx" />
@@ -168,6 +170,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elegir_Envio.aspx.cs">
+      <DependentUpon>Elegir_Envio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Elegir_Envio.aspx.designer.cs">
+      <DependentUpon>Elegir_Envio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Juego_Editar-Eliminar.aspx.cs">
       <DependentUpon>Juego_Editar-Eliminar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -271,6 +280,13 @@
     </Compile>
     <Compile Include="Modificar.aspx.designer.cs">
       <DependentUpon>Modificar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pedidos.aspx.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedidos.aspx.designer.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

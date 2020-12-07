@@ -117,13 +117,15 @@ go
 alter table Datos_Personales add unique (IDUsuario, Mail)
 
 GO
-create table Datos_Envio(
-IDUsuario int not null primary key,
+create table Direcciones(
+IDEnvio int identity(1,1) not null,
+IDUsuario int not null,
 Direccion varchar(200) null,
 Altura int null,
 CP int null
+primary key(IDEnvio,IDusuario)
 )
-alter table Datos_Envio
+alter table Direcciones
 add constraint FK_DE_DP foreign key(IDUsuario) references Datos_Personales(IDUsuario)
 
 go 

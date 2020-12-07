@@ -28,12 +28,12 @@ namespace Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-              CargarVariables();
+            CargarVariables();
             ExisteListaCarrito();
-
-          
-
-
+            if (IDU == 0)
+            {
+                Response.Redirect("Login.aspx");
+            }
             try
             {
                 articuloSeleccionado = (listaAux = negocio.ListarTodosLosCampos()).Find(i => i.ID == IDAux && i.PlataformaJuego.ID == IDPlat);
@@ -41,7 +41,22 @@ namespace Web
 
                 if (IDAux != 0 && agregar == 1)
                 {
-                    AgregarItemLista();
+                    if (articuloSeleccionado.PlataformaJuego.Stock > 0)
+                    {
+                        AgregarItemLista();
+                        Response.Redirect("Carrito.aspx");
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('No hay stock para agregar el juego!');", true);
+                        Response.Redirect("Carrito.aspx");
+                    }
+                  
+
+                }
+                if (IDAux != 0 && eliminar == 1)
+                {
+                    EliminarItemLista();
                     Response.Redirect("Carrito.aspx");
                 }
                 if (IDAux != 0 && eliminar == 1)
@@ -49,17 +64,13 @@ namespace Web
                     EliminarItemLista();
                     Response.Redirect("Carrito.aspx");
                 }
-                if(IDAux != 0 && eliminar == 1)
-                {
-                    EliminarItemLista();
-                    Response.Redirect("Carrito.aspx");
-                }
-                if(empty == 1)
+                if (empty == 1)
                 {
                     negocio.VaciarCarrito(IDU);
                     Response.Redirect("Carrito.aspx");
                 }
             }
+
             catch (Exception)
             {
 
@@ -67,7 +78,7 @@ namespace Web
             }
 
             CargarLblTotal();
-            
+
         }
 
         private void CargarVariables()
@@ -85,9 +96,9 @@ namespace Web
 
             foreach (Juego item in listaCarrito)
             {
-                
-                carro.Cantidad+=item.Cantidad;
-                carro.Total += item.PlataformaJuego.Precio*item.Cantidad;
+
+                carro.Cantidad += item.Cantidad;
+                carro.Total += item.PlataformaJuego.Precio * item.Cantidad;
             }
 
             lblCantidad.Text = carro.Cantidad.ToString();
@@ -116,7 +127,7 @@ namespace Web
 
         private void EliminarItemLista()
         {
-            negocio.EliminarItemCarrito(IDU,IDAux,IDPlat);
+            negocio.EliminarItemCarrito(IDU, IDAux, IDPlat);
         }
 
 
@@ -132,7 +143,7 @@ namespace Web
                 listaCarrito = (List<Juego>)Session["ListaCarrito"];
             }
 
-            
+
             listaCarrito = negocio.ListarCarrito(IDU);
             Session["ListaCarrito"] = listaCarrito;
 

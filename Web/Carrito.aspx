@@ -30,13 +30,15 @@
             </div>
             <div class="form-group" style="float: right;">
                 <a href="Carrito.aspx?empty=1" class="btn btn-primary" style="background-color: darkred; border-bottom-color: darkred;">Vaciar carrito</a>
-                <a href="#" class="btn btn-primary">Continuar compra</a>
+                <a href="Compra.aspx" class="btn btn-primary">Continuar compra</a>
             </div>
         </div>
     </div>
 
     <br />
     <br />
+
+    
     <table class="table table-dark" border="1" style="border: thin outset #000000; margin: auto; background-color: #30475e; opacity: 0.9;">
         <tr style="border: 1px groove #000000; background-color: #222831;">
             <td></td>
