@@ -231,6 +231,51 @@ namespace Negocio
 
             return aux;
         }
+
+        public void AgregarDireccion(DatosEnvio Direccion, int IDU)
+        {
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_AgregarDireccion", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUsuario", IDU);
+            comando.Parameters.AddWithValue("@Direccion", Direccion.Direccion);
+            comando.Parameters.AddWithValue("@Altura", Direccion.Altura);
+            comando.Parameters.AddWithValue("@CP", Direccion.CP);
+
+            try
+            {
+                conexion.Open();
+                comando.ExecuteReader();
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+
+                
+            }
+
+
+        }
+        
+        public void BorrarDireccion(int IDD)
+        {
+            string query = "delete from Direcciones where IDEnvio = @IDEnvio";
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand(query, conexion);
+            comando.Parameters.AddWithValue("@IDEnvio", IDD);
+            try
+            {
+                conexion.Open();
+                comando.ExecuteReader();
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+
     }
 
 }

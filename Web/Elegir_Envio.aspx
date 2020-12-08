@@ -32,10 +32,13 @@
                     <ItemStyle HorizontalAlign="Center" Width="100px"></ItemStyle>
                 </asp:BoundField>
 
-                <asp:ButtonField HeaderText="Seleccione" ButtonType="Button" CommandName="Seleccion" Text="Aqui" ItemStyle-CssClass="btn-outline-info">
-                    <ItemStyle HorizontalAlign="Center" Width="60px" CssClass="btn-outline-info"></ItemStyle>
+                <asp:ButtonField HeaderText="Seleccione" ButtonType="Button" CommandName="Seleccion" Text="Aqui">
+                    <ItemStyle HorizontalAlign="Center" Width="60px" CssClass="btn-outline-info" BorderColor="Black"></ItemStyle>
                 </asp:ButtonField>
 
+                <asp:ButtonField ButtonType="Button" CommandName="Eliminar" Text="Borrar" >
+                    <ItemStyle HorizontalAlign="Center" Width="60px" CssClass="btn-outline-danger" BorderColor="Black"></ItemStyle>
+                </asp:ButtonField>
 
             </Columns>
             <EditRowStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -48,9 +51,9 @@
             <h3 style="text-align: center">No es ninguna de estas?</h3>
             <h3 style="text-align: center">🠟🠟🠟Agrega otra direccion apretando Aqui 🠟🠟🠟</h3>
             <hr class="my-4">
-            <div style="text-align:center">
-    
-            <asp:Button  style="width:100px; height:50px;" ID="btnAgregar" OnCommand="btnAgregar_Command"  Text="Agregar Direccion" runat="server" />
+            <div style="text-align: center">
+
+                <asp:Button Style="width: 100px; height: 50px;" ID="btnAgregar" OnCommand="btnAgregar_Command" Text="Agregar Direccion" runat="server" />
             </div>
 
         </div>

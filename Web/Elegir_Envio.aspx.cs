@@ -53,6 +53,11 @@ namespace Web
                 Session["DireccionUsuario"] = aux;
                 Response.Redirect("SeleccionarPago.aspx");
             }
+            else if (e.CommandName == "Eliminar")
+            {
+                negocio.BorrarDireccion(aux.ID);
+                Response.Redirect("Elegir_Envio.aspx");
+            }
         }
 
         protected void btnAgregar_Command(object sender, CommandEventArgs e)

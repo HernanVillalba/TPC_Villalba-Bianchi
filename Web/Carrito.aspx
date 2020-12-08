@@ -30,7 +30,7 @@
             </div>
             <div class="form-group" style="float: right;">
                 <a href="Carrito.aspx?empty=1" class="btn btn-primary" style="background-color: darkred; border-bottom-color: darkred;">Vaciar carrito</a>
-                <a href="Compra.aspx" class="btn btn-primary">Continuar compra</a>
+                <a href="Elegir_Envio.aspx" class="btn btn-primary">Continuar compra</a>
             </div>
         </div>
     </div>
@@ -53,7 +53,6 @@
             {%>
 
         <tr style="border: 1px groove #000000;">
-            <td><a class="btn btn-primary" href="Carrito.aspx?ID=<%=item.ID.ToString() %>&IDP=<%= item.PlataformaJuego.ID %>&delete=1" style="background-color: #af2d2d;">Eliminar </a></td>
             <td>
                 <img src="<%= item.ImagenURL %>" class="card-img-top" style="width: 120px; height: 60px;" alt="Imagen del <%=item.Nombre %>"></td>
             <td><%= item.Nombre %></td>
