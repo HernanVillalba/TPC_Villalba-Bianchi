@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Agregar_Direccion.aspx" />
+    <Content Include="Compra.aspx" />
     <Content Include="Elegir_Envio.aspx" />
     <Content Include="Juego_Editar-Eliminar.aspx" />
     <Content Include="Juego_Agregar.aspx" />
@@ -178,6 +179,13 @@
     </Compile>
     <Compile Include="Agregar_Direccion.aspx.designer.cs">
       <DependentUpon>Agregar_Direccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Compra.aspx.cs">
+      <DependentUpon>Compra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Compra.aspx.designer.cs">
+      <DependentUpon>Compra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Elegir_Envio.aspx.cs">
       <DependentUpon>Elegir_Envio.aspx</DependentUpon>

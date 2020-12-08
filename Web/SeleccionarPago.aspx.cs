@@ -12,7 +12,7 @@ namespace Web
     public partial class SeleccionarPago : System.Web.UI.Page
     {
         public DatosEnvio aux = new DatosEnvio();
-           
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["DireccionUsuario"] == null)
@@ -23,9 +23,14 @@ namespace Web
 
         }
 
+        protected void ddlTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int tipoPago = int.Parse(ddlTipo.SelectedItem.Value);
+            if (tipoPago == 2)
+            { ddlTarjeta.Enabled = true; }
+            else { ddlTarjeta.Enabled = false; }
 
-
-
+        }
 
 
     }
