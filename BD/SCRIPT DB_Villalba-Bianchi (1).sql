@@ -172,3 +172,13 @@ go
 alter table Producto_x_pedido
 add constraint FK_PxP_PXJ_IDJ_IDP foreign key(IDJuego,IDPlataforma) references Plataforma_x_Juego(IDJuego,IDPlataforma)
 
+go 
+create table Tarjetas(
+IDTarjeta int identity(1,1) not null,
+IDUsuario int not null,
+Numero int not null,
+Clave tinyint not null,
+primary key(IDTarjeta,IDUsuario))
+go
+alter table Tarjetas
+Add Constraint PK_Tarjetas Foreign Key(IDUsuario) references Usuarios(ID)

@@ -320,16 +320,14 @@ begin catch
 
 end catch
 
-
-
-create procedure SP_ListarDireccion_X_ID(
-@idEnvio int)
+create procedure SP_ListarTarjetas(
+@idUsuario int)
 as
 begin try
-	select idEnvio,Direccion, Altura, CP from Direcciones
-	where idEnvio = @idEnvio
+		select IDTarjeta, Numero, Clave from tarjetas
+		where IDUsuario = @idUsuario
 end try
 begin catch
-	raiserror('No se pudo listar las Direcciones',18,1);
+	raiserror('No se pudo obtener las Tarjetas',18,1);
 
 end catch

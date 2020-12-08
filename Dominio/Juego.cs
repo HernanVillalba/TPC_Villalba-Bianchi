@@ -15,6 +15,7 @@ namespace Dominio
         public string ImagenURL { get; set; }
         public Desarrollador DesarrolladorJuego { get; set; }
         public Plataforma PlataformaJuego { get; set; }
+        public bool Estado { get; set; }
 
         public int Cantidad { get; set; }
 

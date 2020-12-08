@@ -15,7 +15,11 @@ namespace Web
         public int fav;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
             cargarDrop();
+
+            }
             
 
             /*
@@ -43,6 +47,7 @@ namespace Web
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         { List<Juego>  aux = new List<Juego>();
+
             if (int.Parse(dropCat.SelectedValue) > 0)
             {
                 aux = ((List<Dominio.Juego>)Session["Productos"]).FindAll(i => i.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()) && i.PlataformaJuego.ID == int.Parse(dropCat.SelectedValue));

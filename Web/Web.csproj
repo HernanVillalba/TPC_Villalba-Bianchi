@@ -105,6 +105,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Agregar_Direccion.aspx" />
     <Content Include="Elegir_Envio.aspx" />
     <Content Include="Juego_Editar-Eliminar.aspx" />
     <Content Include="Juego_Agregar.aspx" />
@@ -163,6 +164,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SeleccionarPago.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -170,6 +172,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agregar_Direccion.aspx.cs">
+      <DependentUpon>Agregar_Direccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Agregar_Direccion.aspx.designer.cs">
+      <DependentUpon>Agregar_Direccion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Elegir_Envio.aspx.cs">
       <DependentUpon>Elegir_Envio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -245,6 +254,13 @@
     </Compile>
     <Compile Include="Registrarse.aspx.designer.cs">
       <DependentUpon>Registrarse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionarPago.aspx.cs">
+      <DependentUpon>SeleccionarPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeleccionarPago.aspx.designer.cs">
+      <DependentUpon>SeleccionarPago.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

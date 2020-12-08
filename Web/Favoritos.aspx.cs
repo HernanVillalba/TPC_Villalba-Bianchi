@@ -36,16 +36,12 @@ namespace Web
 
             if (IDJuego != 0 && juegoBuscado != null)
             {
-                if (add == 1 && juegoBuscado.PlataformaJuego.Stock > 0)
+                if (add == 1 )
                 {
                     agregarItem();
                     Response.Redirect("Favoritos.aspx");
                 }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('No hay stock para agregar el juego!');", true);
-
-                }
+              
                 if (delete == 1)
                 {
                     eliminarItem();
@@ -68,9 +64,8 @@ namespace Web
 
         private void CargarVariables()
         {
-            string nombreUser = Session["NombreUsuario"].ToString();
-            user = negocioUsuario.GetearUsuario(nombreUser);
-            IDUsuario = user.Usuario.ID;
+
+            IDUsuario = Convert.ToInt32(Session["IDUsuario"]);
 
 
             IDJuego = Convert.ToInt32(Request.QueryString["IDJuego"]);
