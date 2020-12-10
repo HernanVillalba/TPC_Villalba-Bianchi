@@ -143,3 +143,22 @@ begin catch
 		raiserror('No se pudo agregar la Direccion',18,1)
 end catch
 
+------------------------------------------------------------------------------
+
+create procedure SP_AgregarTarjeta(
+@idUsuario int,
+@Numero varchar(200),
+@Clave varchar(5),
+@Tipo int,
+@alias varchar(200)
+)
+as
+
+begin try
+		insert into Tarjetas(IDUsuario,Numero,Clave,TipoTarjeta,Alias)
+		values (@idUsuario,@Numero,@Clave, @Tipo, @alias)
+end try
+begin catch
+	raiserror('No se pudo guardar las Tarjetas',18,1);
+
+end catch

@@ -184,5 +184,3 @@ primary key(IDTarjeta,IDUsuario))
 go
 alter table Tarjetas
 Add Constraint PK_Tarjetas Foreign Key(IDUsuario) references Usuarios(ID)
- select* from Tarjetas
-
