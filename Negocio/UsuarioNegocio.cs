@@ -56,7 +56,7 @@ namespace Negocio
                 conexion.Open();
                 lector = comando.ExecuteReader();
 
-                
+
                 if (lector.Read())
                 {
                     aux.Usuario.ID = lector.GetInt32(0);
@@ -72,7 +72,7 @@ namespace Negocio
                 {
                     aux = null;
                 }
-                
+
 
             }
             catch (Exception)
@@ -280,16 +280,17 @@ namespace Negocio
             {
                 conexion.Open();
                 lector = comando.ExecuteReader();
-                while (lector.Read()) {
+                while (lector.Read())
+                {
                     Tarjeta auxTarj = new Tarjeta();
                     auxTarj.IDTarjeta = lector.GetInt32(0);
                     auxTarj.IDUsuario = lector.GetInt32(1);
                     auxTarj.Numero = lector.GetString(2);
-                    auxTarj.Clave = Convert.ToInt32(lector.GetString(3));
+                    auxTarj.Clave = lector.GetString(3);
                     auxTarj.tipoTarjeta = lector.GetInt32(4);
                     auxTarj.Alias = lector.GetString(5);
                     aux.Add(auxTarj);
-                        }
+                }
             }
             catch (Exception)
             {
@@ -299,7 +300,63 @@ namespace Negocio
             conexion.Close();
             return aux;
         }
+        public void GuardarTarjeta(Tarjeta nueva)
+        {
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_AgregarTarjeta", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUsuario", nueva.IDUsuario);
+            comando.Parameters.AddWithValue("@Numero", nueva.Numero);
+            comando.Parameters.AddWithValue("@Clave", nueva.Clave);
+            comando.Parameters.AddWithValue("@Tipo", nueva.tipoTarjeta);
+            comando.Parameters.AddWithValue("@alias", nueva.Alias);
 
+            try
+            {
+                conexion.Open();
+                comando.ExecuteReader();
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+            conexion.Close();
+
+        }
+
+        public Tarjeta CargarTarjeta(int ID)
+        {
+            Tarjeta aux = new Tarjeta();
+            string query = "select * from Tarjetas where idTarjeta = @ID";
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand(query, conexion);
+            comando.Parameters.AddWithValue("@ID", ID);
+
+            try
+            {
+                conexion.Open();
+                lector = comando.ExecuteReader();
+                while (lector.Read())
+                {
+                    aux.IDTarjeta = lector.GetInt32(0);
+                    aux.IDUsuario = lector.GetInt32(1);
+                    aux.Numero = lector.GetString(2);
+                    aux.Clave = lector.GetString(3);
+                    aux.tipoTarjeta = lector.GetInt32(4);
+                    aux.Alias = lector.GetString(5);
+                }
+            }
+            catch (Exception)
+            {
+
+                aux = null;
+            }
+            conexion.Close();
+            return aux;
+
+        }
     }
 
 }

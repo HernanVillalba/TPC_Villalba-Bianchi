@@ -11,9 +11,9 @@ namespace Dominio
         public int IDTarjeta { get; set; }
         public int IDUsuario { get; set; }
         public string Numero { get; set; }
-        public int Clave { get; set; }
+        public string Clave { get; set; }
         public int tipoTarjeta { get; set; }
         public string Alias { get; set; }
-       
+
     }
 }

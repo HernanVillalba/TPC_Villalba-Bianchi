@@ -39,7 +39,6 @@ namespace Web
         {
             JuegoNegocio aux = new JuegoNegocio();
             dropCat.DataSource = aux.GetPlataformas();
-
             dropCat.DataTextField = "Nombre";
             dropCat.DataValueField = "Id";
             dropCat.DataBind();
