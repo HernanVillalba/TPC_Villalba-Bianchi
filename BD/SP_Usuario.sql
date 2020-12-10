@@ -50,7 +50,7 @@ END
 --por ahora lo uso solo para cargar el perfil del usuario
 
 create procedure SP_DatosUsuario(
-@nombreUsuario varchar(200)
+@idUsuario int
 )
 as
 begin try
@@ -61,25 +61,21 @@ begin try
 		   isnull(DP.Nombre,0) as Nombre,
 	       isnull(DP.Mail,0) as Mail, 
 		   isnull(DP.Telefono,0) as Telefono, 
-		   isnull(DP.TelefonoAlter,0) as TelefonoAlter, 
-	       isnull(DE.Direccion,0) as Direccion,
-		   isnull(DE.Altura,0) as Altura,
-		   isnull(DE.CP,0) as CP
+		   isnull(DP.TelefonoAlter,0) as TelefonoAlter
 	from Usuarios as U 
 	full join Datos_Personales as DP on DP.IDUsuario = U.ID
-	full join Datos_Envio as DE on DE.IDUsuario = U.ID
-	where U.NombreUsuario = @nombreUsuario 
+	where U.ID = @idUsuario 
 end try
 begin catch
 	raiserror('Error al obtener el usuario',18,1);
 end catch
+
 
 ---------------------------------------------------------------------------------------------------------------
 
 CREATE PROCEDURE SP_GuardarDatosPersonales(
 @id int,
 @nombreUsuario varchar(200),
-@contraseña varchar(200),
 @nombre varchar(200),
 @apellido varchar(200),
 @mail varchar(200),
@@ -89,7 +85,7 @@ CREATE PROCEDURE SP_GuardarDatosPersonales(
 AS
 BEGIN TRY
 	update Usuarios 
-	set NombreUsuario =  @nombreUsuario, Contraseña =  @contraseña
+	set NombreUsuario =  @nombreUsuario
 	where ID = @id
 	update Datos_Personales
 	set Nombre = @nombre, Apellido = @apellido, Mail = @mail, 

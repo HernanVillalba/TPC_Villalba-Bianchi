@@ -10,14 +10,11 @@ namespace Dominio
     {
         public Usuario Usuario { set; get; }
         public DatosPersonales DPUsuario { set; get; }
-        
-        public DatosEnvio DatosEnvio { set; get; }
 
         public UsuarioCompleto()
         {
             Usuario = new Usuario();
             DPUsuario = new DatosPersonales();
-            DatosEnvio = new DatosEnvio();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Negocio
         private string UsuarioDS = "data source=.\\SQLEXPRESS; initial catalog=DB_VILLALBA_BIANCHI; integrated security=sspi;";
         SqlConnection conexion;
         SqlCommand comando;
+        SqlDataReader lector;
 
         public bool GuardarCambiosPerfil(UsuarioCompleto usuario)
         {
@@ -23,7 +24,6 @@ namespace Negocio
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@id", usuario.Usuario.ID);
             comando.Parameters.AddWithValue("@nombreUsuario", usuario.Usuario.nombreUsuario);
-            comando.Parameters.AddWithValue("@contraseña", usuario.Usuario.pass);
             comando.Parameters.AddWithValue("@nombre", usuario.DPUsuario.Nombre);
             comando.Parameters.AddWithValue("@apellido", usuario.DPUsuario.Apellido);
             comando.Parameters.AddWithValue("@mail", usuario.DPUsuario.Mail);
@@ -44,18 +44,19 @@ namespace Negocio
             return true;
         }
 
-        public UsuarioCompleto GetearUsuario(string nombreUsuario)
+        public UsuarioCompleto GetearUsuario(int IDUsuario)
         {
-            UsuarioCompleto aux = new UsuarioCompleto(); ;
             SqlConnection conexion = new SqlConnection(UsuarioDS);
             SqlCommand comando = new SqlCommand("SP_DatosUsuario", conexion);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
-            SqlDataReader lector;
+            comando.Parameters.AddWithValue("@idUsuario", IDUsuario);
+            UsuarioCompleto aux = new UsuarioCompleto();
             try
             {
                 conexion.Open();
                 lector = comando.ExecuteReader();
+
+                
                 if (lector.Read())
                 {
                     aux.Usuario.ID = lector.GetInt32(0);
@@ -66,15 +67,12 @@ namespace Negocio
                     aux.DPUsuario.Mail = lector.GetString(5);
                     aux.DPUsuario.Telefono = lector.GetInt32(6);
                     aux.DPUsuario.TelefonAlter = lector.GetInt32(7);
-                    aux.DatosEnvio.Direccion = lector.GetString(8);
-                    aux.DatosEnvio.Altura = lector.GetInt32(9);
-                    aux.DatosEnvio.CP = lector.GetInt32(10);
                 }
                 else
                 {
                     aux = null;
                 }
-                conexion.Close();
+                
 
             }
             catch (Exception)
@@ -82,6 +80,7 @@ namespace Negocio
                 aux = null;
             }
 
+            conexion.Close();
             return aux;
         }
 
@@ -92,7 +91,6 @@ namespace Negocio
             SqlCommand comando = new SqlCommand("select * from Usuarios where NombreUsuario = @user and Contraseña = @pass", conexion);
             comando.Parameters.AddWithValue("@user", user.nombreUsuario);
             comando.Parameters.AddWithValue("@pass", user.pass);
-            SqlDataReader lector;
 
             try
             {
@@ -130,7 +128,6 @@ namespace Negocio
             comando.Parameters.AddWithValue("@telefono", reg.DPUsuario.Telefono);
             comando.Parameters.AddWithValue("@nombreUsuario", reg.Usuario.nombreUsuario);
             comando.Parameters.AddWithValue("@contraseña", reg.Usuario.pass);
-            SqlDataReader lector;
             try
             {
                 conexion.Open();
@@ -158,9 +155,6 @@ namespace Negocio
             copia.DPUsuario.Mail = original.DPUsuario.Mail;
             copia.DPUsuario.Telefono = original.DPUsuario.Telefono;
             copia.DPUsuario.TelefonAlter = original.DPUsuario.TelefonAlter;
-            copia.DatosEnvio.Direccion = original.DatosEnvio.Direccion;
-            copia.DatosEnvio.Altura = original.DatosEnvio.Altura;
-            copia.DatosEnvio.CP = original.DatosEnvio.CP;
 
         }
 
@@ -171,7 +165,6 @@ namespace Negocio
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idUsuario", IDU);
             List<DatosEnvio> lista = new List<DatosEnvio>();
-            SqlDataReader lector;
             try
             {
                 conexion.Open();
@@ -204,7 +197,6 @@ namespace Negocio
             SqlConnection conexion = new SqlConnection(UsuarioDS);
             SqlCommand comando = new SqlCommand(query, conexion);
             comando.Parameters.AddWithValue("@idEnvio", IDenvio);
-            SqlDataReader lector;
             DatosEnvio aux = new DatosEnvio();
 
             try
@@ -217,7 +209,7 @@ namespace Negocio
                     aux.Direccion = lector.GetString(0);
                     aux.Altura = lector.GetInt32(1);
                     aux.CP = lector.GetInt32(2);
-              
+
                 }
                 conexion.Close();
 
@@ -251,12 +243,12 @@ namespace Negocio
             catch (Exception)
             {
 
-                
+
             }
 
 
         }
-        
+
         public void BorrarDireccion(int IDD)
         {
             string query = "delete from Direcciones where IDEnvio = @IDEnvio";

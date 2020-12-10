@@ -107,6 +107,7 @@
   <ItemGroup>
     <Content Include="Agregar_Direccion.aspx" />
     <Content Include="Compra.aspx" />
+    <Content Include="EditarPerfil.aspx" />
     <Content Include="Elegir_Envio.aspx" />
     <Content Include="Juego_Editar-Eliminar.aspx" />
     <Content Include="Juego_Agregar.aspx" />
@@ -186,6 +187,13 @@
     </Compile>
     <Compile Include="Compra.aspx.designer.cs">
       <DependentUpon>Compra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditarPerfil.aspx.cs">
+      <DependentUpon>EditarPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditarPerfil.aspx.designer.cs">
+      <DependentUpon>EditarPerfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="Elegir_Envio.aspx.cs">
       <DependentUpon>Elegir_Envio.aspx</DependentUpon>
