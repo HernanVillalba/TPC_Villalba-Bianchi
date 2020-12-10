@@ -12,5 +12,6 @@ namespace Dominio
         public string Direccion{ get; set; }
         public int Altura { get; set; }
         public int CP { set; get; }
+       
     }
 }

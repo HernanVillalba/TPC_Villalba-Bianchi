@@ -26,8 +26,11 @@ namespace Dominio
 
         public bool Pagado { get; set; }
 
-        public string Estado { get; set; } //HAcer Droplist
-        
+        public string Estado { get; set; } //Hacer Droplist
 
+        Pedido()
+        {
+
+        }
     }
 }

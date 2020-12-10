@@ -176,9 +176,13 @@ go
 create table Tarjetas(
 IDTarjeta int identity(1,1) not null,
 IDUsuario int not null,
-Numero int not null,
-Clave tinyint not null,
+Numero varchar(200) not null,
+Clave varchar(5) not null,
+TipoTarjeta int not null,
+Alias varchar(200) not null,
 primary key(IDTarjeta,IDUsuario))
 go
 alter table Tarjetas
 Add Constraint PK_Tarjetas Foreign Key(IDUsuario) references Usuarios(ID)
+ select* from Tarjetas
+

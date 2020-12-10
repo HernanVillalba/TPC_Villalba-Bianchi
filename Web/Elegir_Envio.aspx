@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="centrado">
 
-        <div class="jumbotron" style="width: 592px; height: 100px;">
+        <div class="jumbotron" style="width: 592px; background-color:transparent; height: 100px;">
             <div>
-                <h3 style="text-align: center; height: auto">Elija una Direccion Para continuar </h3>
+                <h3 style="text-align: center; color:#6fe7dd; height: auto">Elija una Direccion Para continuar </h3>
             </div>
 
         </div>

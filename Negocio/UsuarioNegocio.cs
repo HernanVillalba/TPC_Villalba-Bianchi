@@ -268,6 +268,38 @@ namespace Negocio
             }
         }
 
+        public List<Tarjeta> ListarTarjetas(int IDU)
+        {
+            List<Tarjeta> aux = new List<Tarjeta>();
+            string query = "select * from Tarjetas where IDUsuario = @idUsuario";
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand(query, conexion);
+            comando.Parameters.AddWithValue("@idUsuario", IDU);
+            SqlDataReader lector;
+            try
+            {
+                conexion.Open();
+                lector = comando.ExecuteReader();
+                while (lector.Read()) {
+                    Tarjeta auxTarj = new Tarjeta();
+                    auxTarj.IDTarjeta = lector.GetInt32(0);
+                    auxTarj.IDUsuario = lector.GetInt32(1);
+                    auxTarj.Numero = lector.GetString(2);
+                    auxTarj.Clave = Convert.ToInt32(lector.GetString(3));
+                    auxTarj.tipoTarjeta = lector.GetInt32(4);
+                    auxTarj.Alias = lector.GetString(5);
+                    aux.Add(auxTarj);
+                        }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            conexion.Close();
+            return aux;
+        }
+
     }
 
 }

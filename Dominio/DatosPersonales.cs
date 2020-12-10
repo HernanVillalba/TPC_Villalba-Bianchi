@@ -14,5 +14,6 @@ namespace Dominio
         public string Mail { get; set; }
         public int Telefono { get; set; }
         public int TelefonAlter { get; set; }
+      
     }
 }
