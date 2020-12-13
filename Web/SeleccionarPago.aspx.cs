@@ -11,7 +11,7 @@ namespace Web
 {
     public partial class SeleccionarPago : System.Web.UI.Page
     {
-        private DatosEnvio aux = new DatosEnvio();
+        private Direccion aux = new Direccion();
         private UsuarioNegocio negocio = new UsuarioNegocio();
         private int IDU;
         protected void Page_Load(object sender, EventArgs e)

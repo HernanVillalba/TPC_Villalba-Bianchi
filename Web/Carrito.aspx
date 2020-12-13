@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
-    <%if (listaCarrito.Count() == 0)
+    <%if (listaCarrito == null || listaCarrito.Count() == 0)
         {%>
     <div class="jumbotron jumbotron-fluid" style="height:auto;">
         <div class="container">

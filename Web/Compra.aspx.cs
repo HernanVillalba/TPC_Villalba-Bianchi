@@ -41,8 +41,8 @@ namespace Web
 
         private void CargarLblEnvio()
         {
-            DatosEnvio aux = (DatosEnvio)Session["DireccionUsuario"];
-            string calle = aux.Direccion, altura = aux.Altura.ToString();
+            Direccion aux = (Direccion)Session["DireccionUsuario"];
+            string calle = aux.NombreDireccion, altura = aux.Altura.ToString();
             lblDireccion.Text = "Direccion: " + calle + " " + altura;
             lblCP.Text = "Codigo Postal: " + aux.CP;
         }

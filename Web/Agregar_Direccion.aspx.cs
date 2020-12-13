@@ -11,28 +11,50 @@ namespace Web
 {
     public partial class Agregar_Direccion : System.Web.UI.Page
     {
-        DatosEnvio aux = new DatosEnvio();
+        Direccion aux = new Direccion();
         int IDU;
         UsuarioNegocio negocio = new UsuarioNegocio();
+        int volverAElegirEnvio;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["IDUsuario"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
 
+            volverAElegirEnvio = Convert.ToInt32(Request.QueryString["VolverElegirEnvio"]);
         }
 
-        protected void btnContinuar_Click(object sender, EventArgs e)
+        protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            aux.Direccion = txbCalle.Text;
-            aux.Altura =Convert.ToInt32(txbAltura.Text);
+            aux.NombreDireccion = txbCalle.Text;
+            aux.Altura = Convert.ToInt32(txbAltura.Text);
             aux.CP = Convert.ToInt32(txbCP.Text);
             IDU = Convert.ToInt32(Session["IDUsuario"]);
 
             negocio.AgregarDireccion(aux, IDU);
-            Response.Redirect("Elegir_Envio.aspx");
+
+            if (volverAElegirEnvio == 1) //si vino desde elegir envio de la compra, lo redirijo alli al tocar cancelar
+            {
+                Response.Redirect("Elegir_Envio.aspx");
+            }
+            else
+            {
+                Response.Redirect("Mis_Direcciones.aspx");
+            }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Elegir_Envio.aspx");
+            if (volverAElegirEnvio == 1) //si vino desde elegir envio de la compra, lo redirijo alli al tocar cancelar
+            {
+                Response.Redirect("Elegir_Envio.aspx");
+            }
+            else
+            {
+                //si vino desde mis direcciones, lo redirijo hacía allí
+                Response.Redirect("Mis_Direcciones.aspx");
+            }
         }
     }
 }

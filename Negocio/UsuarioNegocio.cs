@@ -17,10 +17,55 @@ namespace Negocio
         SqlCommand comando;
         SqlDataReader lector;
 
+        public void EliminarDireccion(int IDU, int IDEnvio)
+        {
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_EliminarDireccion", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idDireccion", IDEnvio);
+            comando.Parameters.AddWithValue("@idUsuario", IDU);
+            try
+            {
+                conexion.Open();
+                comando.ExecuteReader();
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public bool chequearContraseña(Usuario usuario)
+        {
+            bool leyo =false;
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand("SP_ChequearPass", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idUsuario", usuario.ID);
+            comando.Parameters.AddWithValue("@contraseña", usuario.pass);
+
+            try
+            {
+                conexion.Open();
+                lector = comando.ExecuteReader();
+                if (lector.Read())
+                {
+                    leyo = true;
+                }
+                conexion.Close();
+            }
+            catch (Exception)
+            {
+                leyo = false;
+            }
+            return leyo;
+        }
+
         public bool GuardarCambiosPerfil(UsuarioCompleto usuario)
         {
             conexion = new SqlConnection(UsuarioDS);
-            comando = new SqlCommand("SP_GuardarDatosPersonales", conexion);
+            comando = new SqlCommand("SP_GuardarMisDatos", conexion);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@id", usuario.Usuario.ID);
             comando.Parameters.AddWithValue("@nombreUsuario", usuario.Usuario.nombreUsuario);
@@ -158,22 +203,22 @@ namespace Negocio
 
         }
 
-        public List<DatosEnvio> ListarDirecciones(int IDU)
+        public List<Direccion> ListarDirecciones(int IDU)
         {
             SqlConnection conexion = new SqlConnection(UsuarioDS);
             SqlCommand comando = new SqlCommand("SP_ListarDirecciones", conexion);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idUsuario", IDU);
-            List<DatosEnvio> lista = new List<DatosEnvio>();
+            List<Direccion> lista = new List<Direccion>();
             try
             {
                 conexion.Open();
                 lector = comando.ExecuteReader();
                 while (lector.Read())
                 {
-                    DatosEnvio aux = new DatosEnvio();
+                    Direccion aux = new Direccion();
                     aux.ID = lector.GetInt32(0);
-                    aux.Direccion = lector.GetString(1);
+                    aux.NombreDireccion = lector.GetString(1);
                     aux.Altura = lector.GetInt32(2);
                     aux.CP = lector.GetInt32(3);
 
@@ -191,13 +236,13 @@ namespace Negocio
             return lista;
         }
 
-        public DatosEnvio ListarDireccionXID(int IDenvio)
+        public Direccion ListarDireccionXID(int IDenvio)
         {
             string query = "select Direccion, Altura, CP from Direcciones where idEnvio = @idEnvio";
             SqlConnection conexion = new SqlConnection(UsuarioDS);
             SqlCommand comando = new SqlCommand(query, conexion);
             comando.Parameters.AddWithValue("@idEnvio", IDenvio);
-            DatosEnvio aux = new DatosEnvio();
+            Direccion aux = new Direccion();
 
             try
             {
@@ -206,7 +251,7 @@ namespace Negocio
                 if (lector.Read())
                 {
                     aux.ID = IDenvio;
-                    aux.Direccion = lector.GetString(0);
+                    aux.NombreDireccion = lector.GetString(0);
                     aux.Altura = lector.GetInt32(1);
                     aux.CP = lector.GetInt32(2);
 
@@ -224,13 +269,13 @@ namespace Negocio
             return aux;
         }
 
-        public void AgregarDireccion(DatosEnvio Direccion, int IDU)
+        public void AgregarDireccion(Direccion Direccion, int IDU)
         {
             conexion = new SqlConnection(UsuarioDS);
             comando = new SqlCommand("SP_AgregarDireccion", conexion);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idUsuario", IDU);
-            comando.Parameters.AddWithValue("@Direccion", Direccion.Direccion);
+            comando.Parameters.AddWithValue("@Direccion", Direccion.NombreDireccion);
             comando.Parameters.AddWithValue("@Altura", Direccion.Altura);
             comando.Parameters.AddWithValue("@CP", Direccion.CP);
 

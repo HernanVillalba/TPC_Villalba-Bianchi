@@ -132,6 +132,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Detalles.aspx" />
+    <Content Include="Mis_Direcciones.aspx" />
     <Content Include="Modificar.aspx" />
     <Content Include="Pedidos.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -255,6 +256,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mis_Direcciones.aspx.cs">
+      <DependentUpon>Mis_Direcciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mis_Direcciones.aspx.designer.cs">
+      <DependentUpon>Mis_Direcciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Perfil.aspx.cs">
       <DependentUpon>Perfil.aspx</DependentUpon>

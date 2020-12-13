@@ -14,31 +14,35 @@
                 </div>
                 <div class="form-group">
                     <label>Nombre: </label>
-                    <asp:TextBox runat="server" ID="tbNombre" CssClass="form-control" required="true"/>
+                    <asp:TextBox runat="server" ID="tbNombre" CssClass="form-control" required="true" />
                 </div>
                 <div class="form-group">
                     <label>Apellido</label>
-                    <asp:TextBox runat="server" ID="tbApellido" CssClass="form-control" required="true"/>
+                    <asp:TextBox runat="server" ID="tbApellido" CssClass="form-control" required="true" />
                 </div>
                 <div class="form-group">
                     <label>Teléfono</label>
-                    <asp:TextBox runat="server" ID="tbTel" CssClass="form-control" required="true"/>
+                    <asp:TextBox runat="server" ID="tbTel" CssClass="form-control" required="true" />
                 </div>
                 <div class="form-group">
                     <label>Teléfono alternativo</label>
-                    <asp:TextBox runat="server" ID="tbTelAlter" CssClass="form-control" required="true"/>
+                    <asp:TextBox runat="server" ID="tbTelAlter" CssClass="form-control" required="true" />
                 </div>
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <label>Para guardar, ingrese su contraseña: </label>
-        <asp:TextBox runat="server" ID="tbContraseña"/>
+
+    <div class="centrado">
+        <div class="form-group">
+            <label>Para guardar, ingrese su contraseña: </label>
+            <asp:TextBox runat="server" ID="tbContraseña" CssClass="form-control" TextMode="Password"/>
+        </div>
     </div>
+
     <div class="centrado">
         <div class="row">
             <div class="col">
-                <a href="Perfil.aspx" class="btn btn-primary btn-block" style="background-color:red; border-color:red;">Descartar cambios</a>
+                <a href="Perfil.aspx" class="btn btn-primary btn-block" style="background-color: red; border-color: red;">Descartar cambios</a>
             </div>
             <div class="col">
                 <asp:Button ID="btnGuardar" Text="Guardar cambios" runat="server" CssClass="btn btn-primary btn-block" OnClick="btnGuardar_Click" />

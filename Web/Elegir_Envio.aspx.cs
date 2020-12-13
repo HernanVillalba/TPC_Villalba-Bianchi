@@ -12,7 +12,7 @@ namespace Web
     public partial class Elegir_Envio : System.Web.UI.Page
     {
         UsuarioNegocio negocio = new UsuarioNegocio();
-        public List<DatosEnvio> listaDirecciones = new List<DatosEnvio>();
+        public List<Direccion> listaDirecciones = new List<Direccion>();
         private int IDEnvio;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -42,10 +42,10 @@ namespace Web
 
         protected void gvDirecciones_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            DatosEnvio aux = new DatosEnvio();
+            Direccion aux = new Direccion();
             int index = Convert.ToInt32(e.CommandArgument);
             aux.ID = Convert.ToInt32(gvDirecciones.Rows[index].Cells[0].Text.ToString());
-            aux.Direccion = gvDirecciones.Rows[index].Cells[1].Text;
+            aux.NombreDireccion = gvDirecciones.Rows[index].Cells[1].Text;
             aux.Altura = Convert.ToInt32(gvDirecciones.Rows[index].Cells[2].Text);
             aux.CP = Convert.ToInt32(gvDirecciones.Rows[index].Cells[3].Text);
             if(e.CommandName == "Seleccion")
@@ -63,7 +63,7 @@ namespace Web
         protected void btnAgregar_Command(object sender, CommandEventArgs e)
         {
 
-            Response.Redirect("Agregar_Direccion.aspx");
+            Response.Redirect("Agregar_Direccion.aspx?VolverElegirEnvio=1");
         }
     }
 }

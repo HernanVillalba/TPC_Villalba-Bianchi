@@ -1,4 +1,4 @@
-
+use DB_VILLALBA_BIANCHI
 
 ----PROCEDIMIENTOS ALMACENADOS----
 
@@ -73,7 +73,7 @@ end catch
 
 ---------------------------------------------------------------------------------------------------------------
 
-CREATE PROCEDURE SP_GuardarDatosPersonales(
+CREATE PROCEDURE SP_GuardarMisDatos(
 @id int,
 @nombreUsuario varchar(200),
 @nombre varchar(200),
@@ -93,7 +93,7 @@ BEGIN TRY
 	where IDUsuario = @id
 END TRY
 begin catch
-	 raiserror('Error al registrar el usuario en la DB',18,1);
+	 raiserror('Error al guardar los datos del usuario en la DB',18,1);
 end catch
 
 exec SP_GuardarDatosPersonales 4, 'hernanvi_', 'herni', 'Hernan', 'Villalba', 'hernan@gmail.com', 99999, 99999
@@ -103,7 +103,8 @@ drop procedure SP_GuardarDatosPersonales
 -------------------------------------------------------------------------------------------------------------------
 
 create procedure SP_ListarDirecciones(
-@idUsuario int)
+@idUsuario int
+)
 as
 begin try
 	select IDEnvio,Direccion, Altura, CP from Direcciones
@@ -111,9 +112,12 @@ begin try
 end try
 begin catch
 	raiserror('No se pudo listar las Direcciones',18,1);
-
 end catch
 
+drop procedure SP_ListarDirecciones
+
+-------------------------------------------------------------------------------------------------------------------
+	
 create procedure SP_ListarTarjetas(
 @idUsuario int)
 as
@@ -161,4 +165,32 @@ end try
 begin catch
 	raiserror('No se pudo guardar las Tarjetas',18,1);
 
+end catch
+
+
+------------------------------------------------------------------------------
+
+create procedure SP_ChequearPass(
+@idUsuario int,
+@contraseña varchar(200)
+)
+as
+begin
+	select U.ID from Usuarios as U
+	where U.ID=@idUsuario and U.Contraseña=@contraseña
+end
+
+------------------------------------------------------------------------------
+
+create procedure SP_EliminarDireccion(
+@idDireccion int,
+@idUsuario int
+)
+as
+begin try
+	delete from Direcciones
+	where IDEnvio=@idDireccion and IDUsuario=@idUsuario
+end try
+begin catch
+	raiserror('No se pudo eliminar la direccion',18,1);
 end catch

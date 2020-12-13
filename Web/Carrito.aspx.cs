@@ -51,9 +51,10 @@ namespace Web
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "alertIns", "alert('No hay stock para agregar el juego!');", true);
                         Response.Redirect("Carrito.aspx");
                     }
-                  
+
 
                 }
+
                 if (IDAux != 0 && eliminar == 1)
                 {
                     EliminarItemLista();
@@ -77,7 +78,10 @@ namespace Web
                 throw;
             }
 
-            CargarLblTotal();
+            if (listaCarrito != null)
+            {
+                CargarLblTotal();
+            }
 
         }
 
@@ -107,17 +111,22 @@ namespace Web
 
         private void AgregarItemLista()
         {
-            //Buscamos si existe el item en la lista
-            foreach (var item in listaCarrito)
+            
+            if (listaCarrito != null) // que pregunte si es null, para no buscar con el foreach en una lista null ya que sino, tira error
             {
-                if (item.ID == articuloSeleccionado.ID && item.PlataformaJuego.ID == articuloSeleccionado.PlataformaJuego.ID)
 
+                //Buscamos si existe el item en la lista
+                foreach (var item in listaCarrito)
                 {
-                    // si existe le acumulamos cantidad al objeto que 
-                    //alguna vez ya haya sido agregado
-                    listaCarrito.Add(item);
-                    negocio.SumarCantidadItemCarrito(IDU, IDAux, IDPlat);
-                    return;
+                    if (item.ID == articuloSeleccionado.ID && item.PlataformaJuego.ID == articuloSeleccionado.PlataformaJuego.ID)
+
+                    {
+                        // si existe le acumulamos cantidad al objeto que 
+                        //alguna vez ya haya sido agregado
+                        listaCarrito.Add(item);
+                        negocio.SumarCantidadItemCarrito(IDU, IDAux, IDPlat);
+                        return;
+                    }
                 }
             }
             //si no existe agrega

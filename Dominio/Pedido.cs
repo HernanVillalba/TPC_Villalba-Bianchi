@@ -22,7 +22,7 @@ namespace Dominio
 
         public bool TipoEnvio { get; set; } // define si se envia o se retira
 
-        public DatosEnvio Destino { get; set; } //se va  a seleccionar de una list datos de envio proveniente del usuario
+        public Direccion Destino { get; set; } //se va  a seleccionar de una list datos de envio proveniente del usuario
 
         public bool Pagado { get; set; }
 
