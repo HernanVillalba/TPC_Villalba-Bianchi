@@ -25,11 +25,9 @@ namespace Web
         void CargarJuego()
         {
             lblNombre.Text = "Nombre: " + juego.Nombre.ToString();
-            lblDesarrolladora.Text = "Desarrolladora: " + juego.DesarrolladorJuego.Nombre.ToString();
             lblDescripcion.Text = "Descripcion: " + juego.Descripcion.ToString();
             lblImagen.Text = "URL Imagen: " + juego.ImagenURL.ToString();
             urlImage.ImageUrl = juego.ImagenURL.ToString();
-            lblPlataforma.Text = "Plataforma: " + juego.PlataformaJuego.Nombre.ToString();
             lblPrecio.Text = "Precio: " + juego.PlataformaJuego.Precio.ToString();
             lblStock.Text = "Stock: " + juego.PlataformaJuego.Stock.ToString();
         }
@@ -56,6 +54,11 @@ namespace Web
             ActualizarJuego();
             GuardarCambios();
             Response.Redirect("Juego_Editar-Eliminar.aspx");
+        }
+
+        protected void Click_Cancelar(object sender, EventArgs e)
+        {
+
         }
 
         private void GuardarCambios()

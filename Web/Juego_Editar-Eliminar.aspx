@@ -8,20 +8,20 @@
         <asp:Button ID="Button2" runat="server" CssClass="badge" Height="24px" Text="Buscar" Width="112px" />
     </div>
 
-    <asp:GridView ID="dgvJuegos" runat="server" AutoGenerateColumns="false" BackColor="White" OnRowCommand="gvJuegos_RowCommand">
+    <asp:GridView ID="dgvJuegos" runat="server" AutoGenerateColumns="false" BackColor="White" OnRowCommand="gvJuegos_RowCommand" RowStyle-HorizontalAlign="Center">
         <Columns>
             <asp:BoundField HeaderText="ID" DataField="ID" />
             <asp:ImageField HeaderText="Imagen" DataImageUrlField="ImagenURL" ControlStyle-Height="100" ControlStyle-Width="100" AlternateText="Imagen" />
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
             <asp:BoundField HeaderText="Descripcion" DataField="Descripcion" />
             <asp:BoundField HeaderText="Plataforma" DataField="PlataformaJuego.Nombre" />
-            <asp:BoundField HeaderText="IDPlataforma" DataField="PlataformaJuego.ID" />
-            <asp:BoundField HeaderText="Stock" DataField="PlataformaJuego.Stock" />
+            <asp:BoundField HeaderText="IDPlataforma" DataField="PlataformaJuego.ID"    />
+            <asp:BoundField HeaderText="Stock" DataField="PlataformaJuego.Stock" ItemStyle-Width="50" />
             <asp:BoundField HeaderText="Valor" DataField="PlataformaJuego.Precio" />
             <asp:BoundField HeaderText="Desarrollador" DataField="DesarrolladorJuego.Nombre" />
             <asp:BoundField HeaderText="IDDesarrollador" DataField="DesarrolladorJuego.ID" />
-            <asp:ButtonField ButtonType="Button" Text="Modificar" commandName="Modify"/>
-            <asp:ButtonField ButtonType="Button" Text="Eliminar" CommandName="Delete" />
+            <asp:ButtonField ButtonType="Button" Text="Modificar" commandName="Modify" ControlStyle-BackColor="Yellow" ControlStyle-Font-Bold="true" ControlStyle-ForeColor="black" ItemStyle-CssClass="btn-outline-warning"/>
+            <asp:ButtonField ButtonType="Button" Text="Eliminar" CommandName="Delete" ControlStyle-BackColor="red"  ControlStyle-Font-Bold="true" ControlStyle-ForeColor="black" ItemStyle-CssClass="btn-outline-danger"/>
         </Columns>
 
 

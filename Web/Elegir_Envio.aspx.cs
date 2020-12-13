@@ -24,10 +24,10 @@ namespace Web
         private void cargarDGV()
         {
             listaDirecciones = negocio.ListarDirecciones(Convert.ToInt32(Session["IDUsuario"]));
-            gvDirecciones.DataSource = negocio.ListarDirecciones(Convert.ToInt32(Session["IDUsuario"]));
+            gvDirecciones.DataSource = negocio.ListarDirecciones((int)(Session["IDUsuario"]));
             gvDirecciones.DataBind();
         }
-
+            
         private void cargarVariable()
         {
 

@@ -33,80 +33,89 @@
     </script>
 
 
-    <table style="font-size: 25px">
-        <tr>
-            <td>
-                <div class="card" style="background-color: yellow;">
-                    <h3>Datos Actuales</h3>
-                    <div>
-                        <asp:Label runat="server" ID="lblNombre" />
-                    </div>
-                    <div>
-                        <asp:Label runat="server" ID="lblDescripcion" />
-                    </div>
-                    <div>
-                        <asp:Label runat="server" ID="lblImagen" />
-                    </div>
-                    <div>
-                        <asp:Image runat="server" ID="urlImage" Height="200px" />
-                    </div>
-                    <div>
-                        <asp:Label runat="server" ID="lblDesarrolladora" />
-                    </div>
-                    <div>
-                        <asp:Label runat="server" ID="lblPlataforma" />
-                    </div>
-                    <div>
-                        <asp:Label runat="server" ID="lblStock" />
-                    </div>
-                    <div>
-                        <asp:Label runat="server" ID="lblPrecio" />
-                    </div>
+    <div class="row" style="font-size: 25px">
+
+        <div class="col">
+
+            <div class="form" style="background-color: yellow;">
+                <h3>Datos Actuales</h3>
+                <div class="form-control">
+                    <asp:Label runat="server" ID="lblNombre" />
                 </div>
-            </td>
-            <td style="width: 531px">
-                <div class="card" style="background-color: red;">
-                    <h3>Nuevos Datos</h3>
-                    <div>
-                        <asp:Label Text="Nombre: " runat="server" />
-                        <asp:TextBox runat="server" ID="tbxNombre" Height="25px" Width="211px" />
-                        <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkNombre" Font-Overline="True" Font-Size="12pt" />
+                <div class="form-control" style="height: 50px">
+                    <asp:Label runat="server" ID="lblDescripcion" />
+                </div>
+                <div class="form-control">
+                    <asp:Label runat="server" ID="lblImagen" />
+                </div>
+                <div class="form-control" style="height: 250px">
+                    <asp:Image runat="server" ID="urlImage" Height="200px" />
+                </div>
+                <div class="form-control">
+                    <asp:Label runat="server" ID="lblStock" />
+                </div>
+                <div class="form-control">
 
-                    </div>
+                    <asp:Label runat="server" ID="lblPrecio" />
+                </div>
+            </div>
+        </div>
 
-                    <div>
-                        <asp:Label Text="Descripcion: " runat="server" />
-                        <asp:TextBox runat="server" ID="tbxDescripcion" Height="25px" Width="174px" />
-                        <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkDesc" Font-Overline="True" Font-Size="12pt" />
-
-                    </div>
-                    <div>
-                        <asp:Label Text="URL Imagen: " runat="server" />
-                        <asp:TextBox runat="server" ID="tbxImagen" Height="25px" OnTextChanged="TbxImagen_TextChanged" Width="164px" />
-                        <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkImagen" Font-Italic="True" Font-Size="12pt" />
-
-                    </div>
-                    <div>
-                        <asp:Image runat="server" ID="newImagen" Height="200px" OnDataBinding="TbxImagen_TextChanged" />
-                    </div>
-                    <div>
-                        <asp:Label Text="Stock: " runat="server" />
-                        <asp:TextBox runat="server" ID="tbxStock" Height="25px" />
-                        <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkStock" Font-Italic="True" Font-Size="12pt" />
-
-                    </div>
-                    <div>
-                        <asp:Label Text="Precio: " runat="server" />
-                        <asp:TextBox runat="server" ID="tbxPrecio" Height="25px" />
-                        <asp:CheckBox Text="Conservar Actual" runat="server" Font-Bold="False" Font-Italic="True" Font-Size="12pt" ID="chkPrecio" />
-
-                    </div>
+        <div class="col" style="width: 531px">
+            <div class="card" style="background-color: red;">
+                <h3>Nuevos Datos</h3>
+                <div class="form-control">
+                    <asp:Label Text="Nombre: " runat="server" />
+                    <asp:TextBox runat="server" ID="tbxNombre" Height="25px" Width="211px" />
+                    <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkNombre" Font-Overline="True" Font-Size="12pt" />
 
                 </div>
-            </td>
-        </tr>
-    </table>
 
-    <asp:Button Text="Modificar" runat="server" OnClientClick="return validar()" OnClick="Click_Modificar" />
+                <div class="form-control" style="height: 50px">
+                    <asp:Label Text="Descripcion: " runat="server" />
+                    <asp:TextBox runat="server" ID="tbxDescripcion" Height="25px" Width="174px" />
+                    <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkDesc" Font-Overline="True" Font-Size="12pt" />
+
+                </div>
+                <div class="form-control">
+                    <asp:Label Text="URL Imagen: " runat="server" />
+                    <asp:TextBox runat="server" ID="tbxImagen" Height="25px" OnTextChanged="TbxImagen_TextChanged" Width="164px" />
+                    <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkImagen" Font-Italic="True" Font-Size="12pt" />
+                </div>
+                <div class="form-control" style="height: 250px">
+                    <asp:Image runat="server" ID="newImagen" Height="200px" OnDataBinding="TbxImagen_TextChanged" />
+                </div>
+
+                <div class="form-control">
+                    <asp:Label Text="Stock: " runat="server" />
+                    <asp:TextBox runat="server" ID="tbxStock" Height="25px" />
+                    <asp:CheckBox Text="Conservar Actual" runat="server" ID="chkStock" Font-Italic="True" Font-Size="12pt" />
+
+                </div>
+                <div class="form-control">
+                    <asp:Label Text="Precio: " runat="server" />
+                    <asp:TextBox runat="server" ID="tbxPrecio" Height="25px" />
+                    <asp:CheckBox Text="Conservar Actual" runat="server" Font-Bold="False" Font-Italic="True" Font-Size="12pt" ID="chkPrecio" />
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="centrado">
+        <div class="row" style="column-gap:100px">
+            <div class="col">
+
+                <asp:Button Text="Cancelar" runat="server" CssClass="btn btn-danger" OnClick="Click_Cancelar" ID="cancelar" Width="200px" Height="30px" />
+            </div>
+
+            <div class="col">
+                <asp:Button Text="Modificar" runat="server" OnClientClick="return validar()" CssClass="btn btn-success" OnClick="Click_Modificar" Width="200px" Height="30px" />
+            </div>
+        </div>
+    </div>
 </asp:Content>
 

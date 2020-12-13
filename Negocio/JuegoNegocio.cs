@@ -270,7 +270,7 @@ namespace Negocio
             comando = new SqlCommand(query, conexion);
             List<Plataforma> lista = new List<Plataforma>();
             try
-            { 
+            {
                 conexion.Open();
                 lector = comando.ExecuteReader();
 
@@ -296,7 +296,7 @@ namespace Negocio
         public List<Plataforma> GetDesarrolladres()
         {
             string query = "select * from Desarrolladores";
-            
+
 
             conexion = new SqlConnection(UsuarioDS);
             comando = new SqlCommand(query, conexion);
@@ -325,7 +325,7 @@ namespace Negocio
 
         }
 
-        public Juego GuardarJuego( Juego aux)
+        public Juego GuardarJuego(Juego aux)
         {
             SqlConnection conexion = new SqlConnection(UsuarioDS);
             SqlCommand comando = new SqlCommand("SP_NuevoJuego", conexion);
@@ -380,6 +380,26 @@ namespace Negocio
             return true;
         }
 
+        public void BorrarJuego(int IDJ, int IDP)
+        {
+            string query = "delete Plataforma_x_Juego where IDPlataforma=@IDP and IDJuego=@IDJ";
+            conexion = new SqlConnection(UsuarioDS);
+            comando = new SqlCommand(query, conexion);
+            comando.Parameters.AddWithValue("@IDJ", IDJ);
+            comando.Parameters.AddWithValue("IDP", IDP);
+            try
+            {
+                conexion.Open();
+                comando.ExecuteReader();
+            }
+            catch (Exception)
+            {
+
+                
+            }
+            conexion.Close();
+
+        }
 
     }
 }

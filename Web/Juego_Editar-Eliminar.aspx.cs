@@ -11,6 +11,7 @@ namespace Web
 {
     public partial class Administrador : System.Web.UI.Page
     {
+        private JuegoNegocio negocio = new JuegoNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["NombreUsuario"] == null || Session["NombreUsuario"].ToString() != "admin")
@@ -23,7 +24,6 @@ namespace Web
 
         protected void CargarGV()
         {
-            JuegoNegocio negocio = new JuegoNegocio();
             List<Juego> lista = new List<Juego>();
             lista = negocio.ListarTodosLosCampos();
 
@@ -49,7 +49,8 @@ namespace Web
                 Response.Redirect("Modificar.aspx?IDJ=" + idJuego + "&IDP=" + idPlat);
             } else if(e.CommandName=="Delete")
             {
-                Response.Redirect("Error.aspx");
+                negocio.BorrarJuego(Convert.ToInt32(idJuego), Convert.ToInt32(idPlat));
+                Response.Redirect("Juego_Editar-Eliminar.aspx");
 
             }
 

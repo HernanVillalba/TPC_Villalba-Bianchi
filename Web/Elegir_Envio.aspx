@@ -20,7 +20,7 @@
                     <ItemStyle HorizontalAlign="Center" ForeColor="White" Width="0px"></ItemStyle>
                 </asp:BoundField>
 
-                <asp:BoundField HeaderText="Direccion" DataField="Direccion" ItemStyle-Height="30px" HeaderStyle-HorizontalAlign="Center">
+                <asp:BoundField HeaderText="Direccion" DataField="NombreDireccion" ItemStyle-Height="30px" HeaderStyle-HorizontalAlign="Center">
                     <ItemStyle HorizontalAlign="Center" Height="30px"></ItemStyle>
                 </asp:BoundField>
 

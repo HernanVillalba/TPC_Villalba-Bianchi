@@ -32,11 +32,12 @@ BEGIN TRY
 		declare @idjuego int
 		set @idjuego = @@IDENTITY
 		--Creamos la nueva plataforma x juego para definir el stock e importe
-		INSERT INTO Plataforma_x_Juego(IDJuego,IDPlataforma,Importe,Stock)
-		VALUES(@idjuego,@idplataforma,@importe, @stock)
+		INSERT INTO Plataforma_x_Juego(IDJuego,IDPlataforma,Importe,Stock, Estado)
+		VALUES(@idjuego,@idplataforma,@importe, @stock, 1)
 		--Declaramos la desarrolladora del juego
 		INSERT INTO Desarrollador_x_Juego(IDJuego,IDDesarrollador)
 		VALUES (@idjuego,@iddesarrollador)
+		
 
 END TRY
 BEGIN CATCH
