@@ -35,10 +35,6 @@
         </div>
     </div>
 
-    <br />
-    <br />
-
-    
     <table class="table table-dark" border="1" style="border: thin outset #000000; margin: auto; background-color: #30475e; opacity: 0.9;">
         <tr style="border: 1px groove #000000; background-color: #222831;">
             <td>Imagen</td>

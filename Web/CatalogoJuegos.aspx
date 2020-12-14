@@ -23,9 +23,55 @@
         </div>
     </div>
 
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
+
+        <ol class="carousel-indicators">
+            <%for (int i = 0; i < ((List<Dominio.Juego>)Session["Productos"]).Count(); i++)
+                {
+                    if (i == 1)
+                    {%>
+            <li data-target="#carouselExampleIndicators" data-slide-to="<%= i%>" class="active"></li>
+            <%}
+                else
+                {%>
+            <li data-target="#carouselExampleIndicators" data-slide-to="<%= i %>"></li>
+            <%}
+                }%>
+        </ol>
+
+        <div class="carousel-inner">
+
+            <%foreach (Dominio.Juego item in (List<Dominio.Juego>)Session["Productos"])
+                {
+                    if (item.ID == 1)
+                    {%>
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="<%=item.ImagenURL %>" alt="First slide">
+                        </div>
+                  <%}
+                else
+                { %>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="<%=item.ImagenURL %>" alt="Second slide">
+                        </div>
+              <%}
+              
+              }%>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
     <div class="row">
-        <%
-            foreach (Dominio.Juego item in (List<Dominio.Juego>)Session["Productos"])
+        <%foreach (Dominio.Juego item in (List<Dominio.Juego>)Session["Productos"])
             {%>
         <div class="col-md-4">
             <div class="card" style="width: 18rem; background-color: transparent; border-color: transparent; border-radius: 10px;">
@@ -34,29 +80,31 @@
                     <%if (Session["listaFav"] == null || ((List<Dominio.Juego>)Session["listaFav"]).Find(i => i.ID == item.ID && i.PlataformaJuego.ID == item.PlataformaJuego.ID) == null)
                         { %>
                     <a href="Favoritos.aspx?IDJuego= <%=item.ID %>&IDPlataforma=<%=item.PlataformaJuego.ID %>&add=1" class="mx-auto btn btn-outline-info" style="float: right;">
-                        <img title="Agregar a favoritos" src="https://tinyurl.com/y5mnq3y8" alt="img-fav" style="height: 20px; width: 20px;" /></a>
+                        <img title="Agregar a favoritos" src="https://image.flaticon.com/icons/png/512/13/13587.png" alt="img-fav" style="height: 20px; width: 20px;" /></a>
 
                     <% }
                         else
                         {%>
                     <a href="Favoritos.aspx?IDJuego=<%= item.ID %>&IDPlataforma=<%=item.PlataformaJuego.ID %>&delete=1" class="mx-auto btn btn-outline-info" style="float: right;">
-                        <img title="Agregar a favoritos" src="https://tinyurl.com/y6oj2a6l" alt="img-fav" style="height: 20px; width: 20px;" /></a>
+                        <img title="Agregar a favoritos" src="https://tinyurl.com/y5mnq3y8" alt="img-fav" style="height: 20px; width: 20px;" /></a>
 
                     <% } %>
                 </div>
                 <img class="card-img-top" src="<%= item.ImagenURL %>" alt="imagen-juego" style="width: inherit;" height="120">
                 <div class="card-body">
                     <ul class="list-group">
-                        <li class="list-group-item list-group-item-white"><%= item.Nombre %></li>
-                        <li class="list-group-item list-group-item-white" style="color: cornflowerblue;"><%= item.PlataformaJuego.Nombre %></li>
-                        <li class="list-group-item list-group-item-white">
+
+                        <li class="list-group-item centrado">$<%=item.PlataformaJuego.Precio %></li>
+                        <li class="list-group-item centrado"><%= item.Nombre %></li>
+                        <li class="list-group-item centrado" style="color: cornflowerblue;"><%= item.PlataformaJuego.Nombre %></li>
+                        <li class="list-group-item ">
                             <%if (item.PlataformaJuego.Stock > 0)
                                 { %> <a href="Detalles.aspx?IDJ=<%=item.ID%>&IDP=<%=item.PlataformaJuego.ID%>" class="btn btn-primary btn-block" style="background-color: deepskyblue;" type="button">Detalles</a>
                             <a href="Carrito.aspx?ID=<%=item.ID.ToString()%>&add=1&IDP=<%=item.PlataformaJuego.ID %>" class="btn btn-primary btn-block" type="button">Agregar al Carrito</a>
                             <%}
-                            else
-                            { %>
-                            <asp:Label Text="Sin Stock" style="color:red; font-size:large; font-family:'Comic Sans MS';" runat="server" Font-Bold="True" />
+                                else
+                                { %>
+                            <asp:Label Text="Sin Stock" Style="color: red; font-size: large; font-family: 'Comic Sans MS';" runat="server" Font-Bold="True" />
                             <%} %>
                         </li>
                     </ul>

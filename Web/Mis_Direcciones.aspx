@@ -6,7 +6,7 @@
     <%if (listaDirecciones.Count == 0 || listaDirecciones == null)
         { %>
     <div class="centrado">
-        <div class="jumbotron" style="height:auto;">
+        <div class="jumbotron" style="height: auto;">
             <h1>No hay direcciones agregadas.</h1>
         </div>
     </div>
@@ -15,10 +15,10 @@
         else
         {%>
     <div class="table-responsive">
-        <table class="table table-dark" style="border-collapse:collapse;">
-            <tr style="background-color:#4e8d7c">
-                <td style="width:10px;"></td>
-                <td >Dirección</td>
+        <table class="table table-dark" style="border-collapse: collapse;">
+            <tr style="background-color: #4e8d7c">
+                <td style="width: 10px;"></td>
+                <td>Dirección</td>
                 <td>Altura</td>
                 <td>Código postal</td>
                 <td>Localidad</td>
@@ -27,7 +27,7 @@
                 foreach (var item in listaDirecciones)
                 {%>
             <tr>
-                <td class="centrado"><a href="Mis_Direcciones.aspx?IDDireccion=<%=item.ID %>&delete=1" style="color:red;">Eliminar</a></td>
+                <td class="centrado"><a href="Mis_Direcciones.aspx?IDDireccion=<%=item.ID %>&delete=1" style="color: red;">Eliminar</a></td>
                 <td><%=item.NombreDireccion %></td>
                 <td><%=item.Altura %></td>
                 <td><%=item.CP %></td>
@@ -38,6 +38,8 @@
 
                 } %>
         </table>
-        <a href="Agregar_Direccion.aspx" class="btn btn-primary">Agregar dirección</a>
+        <div class="centrado">
+            <a href="Agregar_Direccion.aspx" class="btn btn-primary">Agregar dirección</a>
+        </div>
     </div>
 </asp:Content>

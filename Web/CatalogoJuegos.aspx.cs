@@ -13,24 +13,17 @@ namespace Web
     {
         public List<Juego> busqueda;    
         public int fav;
+        public int cantidadJuegos;
+        List<Juego> lista = new List<Juego>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
             cargarDrop();
 
             }
             
-
-            /*
-            ---------------------FALTA QUE SOLO PUEDA VER LOS JUEGOS AL LOGEARSE EN LOGGIN CON SESSION--------------------
-            Usuario user = new Usuario();
-            user = (Usuario)Session["InicioSesion"];
-            if ( user.ID == 0)
-            {
-                Response.Redirect("Login.aspx");
-            }
-            */
         }
 
 
@@ -45,17 +38,17 @@ namespace Web
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
-        { List<Juego>  aux = new List<Juego>();
+        { 
 
             if (int.Parse(dropCat.SelectedValue) > 0)
             {
-                aux = ((List<Dominio.Juego>)Session["Productos"]).FindAll(i => i.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()) && i.PlataformaJuego.ID == int.Parse(dropCat.SelectedValue));
-                Session.Add("Productos", aux);
+                lista = ((List<Dominio.Juego>)Session["Productos"]).FindAll(i => i.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()) && i.PlataformaJuego.ID == int.Parse(dropCat.SelectedValue));
+                Session.Add("Productos", lista);
             }
             else 
             {
-                aux = ((List<Dominio.Juego>)Session["Productos"]).FindAll(i => i.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
-                Session.Add("Productos", aux);
+                lista = ((List<Dominio.Juego>)Session["Productos"]).FindAll(i => i.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+                Session.Add("Productos", lista);
 
             }
          

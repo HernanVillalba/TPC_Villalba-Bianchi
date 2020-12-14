@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Carrusel.cs" />
     <Compile Include="Chango.cs" />
     <Compile Include="Pedido.cs" />
     <Compile Include="Direccion.cs" />
