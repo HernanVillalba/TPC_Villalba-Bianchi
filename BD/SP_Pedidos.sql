@@ -47,7 +47,7 @@ begin catch
 end catch
 
 ----------------------------------------------------------------------------------
-create  procedure SP_ListarProductosxPedido(
+create procedure SP_ListarProductosxPedido(
 @IDP int
 )
 as
@@ -65,8 +65,7 @@ begin catch
 		raiserror('No se pudo obtener la lista de juegos,',18,1)
 end catch
 
-select * from Usuarios
-select * from Datos_Personales
+
+select * from Pedidos
 select * from Producto_x_pedido order by IDPedido
 
-exec SP_ListarProductosxPedido 13

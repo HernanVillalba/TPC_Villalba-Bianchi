@@ -148,7 +148,7 @@ namespace Negocio
 
                     aux.ID = reader.GetInt32(0);
                     aux.Nombre = reader.GetString(1);
-                    aux.Cantidad = reader.GetInt32(2);
+                    aux.Cantidad = reader.GetByte(2);
                     aux.Descripcion = reader.GetString(3);
                     aux.ImagenURL = reader.GetString(4);
                     aux.PlataformaJuego.Precio = reader.GetSqlMoney(5);
