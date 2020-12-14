@@ -11,7 +11,7 @@ namespace Web
 {
 
 
-    public partial class WebForm2
+    public partial class Mis_Compras
     {
     }
 }

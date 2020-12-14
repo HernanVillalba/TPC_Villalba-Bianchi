@@ -7,7 +7,7 @@ using System.Data.SqlTypes;
 
 namespace Dominio
 {
-    class Pedido
+    public class Pedido
 
     {
         public int ID { set; get; }
