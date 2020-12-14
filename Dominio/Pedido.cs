@@ -28,6 +28,13 @@ namespace Dominio
 
         public string Estado { get; set; } //Hacer Droplist
 
+        public Pedido()
+        {
+            Productos = new List<Juego>();
+            Fecha = new DateTime();
+            Carro = new Chango();
+            Destino = new Direccion();
+        }
 
     }
 }

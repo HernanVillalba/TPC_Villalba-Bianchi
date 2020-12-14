@@ -73,7 +73,7 @@
                 <a class="nav-link dropdown-toggle" style="color: cornflowerblue;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%=Session["NombreUsuario"] %></a>
                 <div class="dropdown-menu">
                     <a href="Perfil.aspx" class="dropdown-item">Mis datos</a>
-                    <a href="Pedidos.aspx" class="dropdown-item">Mis pedidos</a>
+                    <a href="Mis_Compras.aspx" class="dropdown-item">Mis pedidos</a>
                     <a href="Mis_Direcciones.aspx" class="dropdown-item">Mis direcciones</a>
                     <div class="dropdown-divider"></div>
                     <asp:Button ID="btnCerrarSesion" Text="Salir" runat="server" OnClick="btnCerrarSesion_Click" CssClass="dropdown-item" />

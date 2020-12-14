@@ -4,53 +4,71 @@
     <br />
     <br />
 
-    <h1><strong>Agregar juego</strong></h1>
+    <div class="centrado">
+        <div class="card" style="background-color: khaki; width: 500px; align-items:center;">
 
-    <div class="form" style="background-color: chocolate; display: flex; align-items: center; justify-content: center;">
-        <div class="form-group">
+            <div class="card-header" style="background-color:transparent">
+                <h1><strong>Agregar juego</strong></h1>
 
-            <label>Nombre: </label>
-            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-        </div>
-        <div class="form-group">
-            <label>Descripción: </label>
-            <asp:TextBox ID="txtDesc" runat="server" Height="98px" Width="272px" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="card-body">
 
-        </div>
-        <div class="form-group">
+                <div class="form">
+                    <div class="form-group">
 
-            <label>URL Imagen:</label>
-            <asp:TextBox ID="txtImagenUrl" runat="server" CssClass="form-control"></asp:TextBox>
+                        <label>Nombre: </label>
+                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción: </label>
+                        <asp:TextBox ID="txtDesc" runat="server" Height="98px" Width="272px" CssClass="form-control"></asp:TextBox>
 
-        </div>
-        <div class="form-group">
-            <label>Desarrollador: </label>
-            <asp:DropDownList ID="ddlDesarrollador" runat="server" AppendDataBoundItems="true">
-                <asp:ListItem Text="Seleccionar" Value="0" />
-            </asp:DropDownList>
+                    </div>
+                    <div class="form-group">
 
-        </div>
-        <div class="form-group">
-            <label>Plataforma: </label>
-            <asp:DropDownList ID="ddlPlataforma" runat="server" AppendDataBoundItems="true">
-                <asp:ListItem Text="Seleccionar" Value="0" />
-            </asp:DropDownList>
+                        <label>URL Imagen:</label>
+                        <asp:TextBox ID="txtImagenUrl" runat="server" CssClass="form-control"></asp:TextBox>
 
-        </div>
-        <div class="form-group">
-            <label>Precio: </label>
-            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control"></asp:TextBox>
-        </div>
-        <div class="form-group">
-            <label>Stock: </label>
-            <asp:TextBox ID="txtStock" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label>Desarrollador: </label>
+                        <asp:DropDownList ID="ddlDesarrollador" runat="server" AppendDataBoundItems="true">
+                            <asp:ListItem Text="Seleccionar" Value="0" />
+                        </asp:DropDownList>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Plataforma: </label>
+                        <asp:DropDownList ID="ddlPlataforma" runat="server" AppendDataBoundItems="true">
+                            <asp:ListItem Text="Seleccionar" Value="0" />
+                        </asp:DropDownList>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Precio: </label>
+                        <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label>Stock: </label>
+                        <asp:TextBox ID="txtStock" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer" style="background-color:transparent">
+                <div class="row">
+                    <div class="col">
+
+                <asp:Button Text="Agregar" CssClass="btn btn-primary btn-block" runat="server" ID="btnAgregar" OnClick="btnAgregar_Click" />
+                    </div>
+                    <div class="col">
+                <asp:Button Text="Cancelar" CssClass="btn btn-primary btn-block" ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" BackColor="Red" BorderColor="Red" />
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-
-    <div class="form-group" style="background-color: chocolate; display:flex; justify-content: center;">
-        <asp:Button Text="Cancelar" CssClass="btn btn-primary btn-block" ID="btnCancelar" runat="server" OnClick="btnCancelar_Click"  BackColor="Red" BorderColor="Red"/>
-        <asp:Button Text="Agregar" CssClass="btn btn-primary btn-block" runat="server" ID="btnAgregar" OnClick="btnAgregar_Click" />
-    </div>
-
 
 </asp:Content>

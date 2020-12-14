@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <label>Teléfono alternativo</label>
-                    <asp:TextBox runat="server" ID="tbTelAlter" CssClass="form-control" required="true" />
+                    <asp:TextBox runat="server" ID="tbTelAlter" CssClass="form-control" />
                 </div>
             </div>
         </div>

@@ -73,7 +73,7 @@ namespace Web
             compra.ID = Pnegocio.GetearIDPedido();
             foreach (var item in compra.Productos)
             {
-            Pnegocio.ProductosPedido(compra.ID,item);
+            Pnegocio.GuardarProductosPedido(compra.ID,item);
 
             }
             Response.Redirect("CatalogoJuegos.aspx");

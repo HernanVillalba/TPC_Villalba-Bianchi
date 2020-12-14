@@ -11,14 +11,24 @@ namespace Web
 {
     public partial class Mis_Compras : System.Web.UI.Page
     {
-        List<Pedido> listaPedido = new List<Dominio.Pedido>();
+        protected List<Pedido> listaPedido = new List<Pedido>();
+        PedidoNegocio negocio = new PedidoNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
             if(Session["NombreUsuario"] == null || Session["NombreUsuario"].ToString() == "admin")
             {
                 Response.Redirect("Login.aspx");
             }
+            CargarPedidos();
 
+
+        }
+
+
+        private void CargarPedidos()
+        {
+                listaPedido = negocio.ListarPedidos(Convert.ToInt32(Session["IDUsuario"]));
+                
         }
     }
 }

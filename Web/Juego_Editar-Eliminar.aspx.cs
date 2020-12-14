@@ -33,12 +33,6 @@ namespace Web
         }
 
 
-
-        protected void Agregar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Agregar.aspx");
-        }
-
         protected void gvJuegos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
@@ -47,7 +41,8 @@ namespace Web
             if (e.CommandName == "Modify")
             {
                 Response.Redirect("Modificar.aspx?IDJ=" + idJuego + "&IDP=" + idPlat);
-            } else if(e.CommandName=="Delete")
+            }
+            else if (e.CommandName == "Delete")
             {
                 negocio.BorrarJuego(Convert.ToInt32(idJuego), Convert.ToInt32(idPlat));
                 Response.Redirect("Juego_Editar-Eliminar.aspx");

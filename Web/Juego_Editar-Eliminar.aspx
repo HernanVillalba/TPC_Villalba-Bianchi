@@ -2,11 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="jumbotron">
-        <asp:DropDownList ID="dropCat" runat="server" Height="24px" Width="168px"></asp:DropDownList>
-        <asp:TextBox ID="txtBuscar" runat="server" Height="24px" Width="192px"></asp:TextBox>
-        <asp:Button ID="Button2" runat="server" CssClass="badge" Height="24px" Text="Buscar" Width="112px" />
-    </div>
+
 
     <asp:GridView ID="dgvJuegos" runat="server" AutoGenerateColumns="false" BackColor="White" OnRowCommand="gvJuegos_RowCommand" RowStyle-HorizontalAlign="Center">
         <Columns>
