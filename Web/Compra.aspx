@@ -63,7 +63,6 @@
 
                 <asp:Label id="lblProvincia" runat="server" />
 
-                <asp:Label id="algo" runat="server" />
 
                 </div>
 

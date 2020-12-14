@@ -73,7 +73,7 @@
     <hr />
 
     <div class="centrado">
-        <a href="CatalogoJuegos.aspx" class="btn btn-primary" style="border-color: red; background-color: red;">Descartar cambios</a>
+        <a href="CatalogoJuegos.aspx" class="btn btn-primary" style="border-color: red; background-color: red;">Volver</a>
         <a href="EditarPerfil.aspx" class="btn btn-primary">Editar perfil</a>
     </div>
 

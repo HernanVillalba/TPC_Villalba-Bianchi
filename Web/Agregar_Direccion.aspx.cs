@@ -30,6 +30,7 @@ namespace Web
             aux.NombreDireccion = txbCalle.Text;
             aux.Altura = Convert.ToInt32(txbAltura.Text);
             aux.CP = Convert.ToInt32(txbCP.Text);
+            aux.Localidad = txbLocalidad.Text;
             IDU = Convert.ToInt32(Session["IDUsuario"]);
 
             negocio.AgregarDireccion(aux, IDU);

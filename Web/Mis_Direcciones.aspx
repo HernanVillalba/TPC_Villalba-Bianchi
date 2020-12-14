@@ -21,6 +21,7 @@
                 <td >Dirección</td>
                 <td>Altura</td>
                 <td>Código postal</td>
+                <td>Localidad</td>
             </tr>
             <%
                 foreach (var item in listaDirecciones)
@@ -30,6 +31,7 @@
                 <td><%=item.NombreDireccion %></td>
                 <td><%=item.Altura %></td>
                 <td><%=item.CP %></td>
+                <td><%=item.Localidad %></td>
             </tr>
 
             <%}

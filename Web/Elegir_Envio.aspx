@@ -32,6 +32,10 @@
                     <ItemStyle HorizontalAlign="Center" Width="100px"></ItemStyle>
                 </asp:BoundField>
 
+                <asp:BoundField HeaderText="Localidad" DataField="Localidad" ItemStyle-Width="100">
+                    <ItemStyle HorizontalAlign="Center" Width="100px"></ItemStyle>
+                </asp:BoundField>
+
                 <asp:ButtonField HeaderText="Seleccione" ButtonType="Button" CommandName="Seleccion" Text="Aqui">
                     <ItemStyle HorizontalAlign="Center" Width="60px" CssClass="btn-outline-info" BorderColor="Black"></ItemStyle>
                 </asp:ButtonField>

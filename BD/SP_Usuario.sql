@@ -107,7 +107,7 @@ create procedure SP_ListarDirecciones(
 )
 as
 begin try
-	select IDEnvio,Direccion, Altura, CP from Direcciones
+	select IDEnvio,Direccion, Altura, CP, Localidad from Direcciones
 	where IDUsuario = @idUsuario
 end try
 begin catch
@@ -136,16 +136,19 @@ create procedure SP_AgregarDireccion(
 @idUsuario int,
 @Direccion varchar(200),
 @Altura int,
-@CP int
+@CP int,
+@Localidad varchar(200)
 )
 as
 begin try
-		insert into Direcciones(IDUsuario, Direccion, Altura, CP)
-		VALUES (@idUsuario, @Direccion, @Altura, @CP)
+		insert into Direcciones(IDUsuario, Direccion, Altura, CP, Localidad)
+		VALUES (@idUsuario, @Direccion, @Altura, @CP, @Localidad)
 end try
 begin catch
 		raiserror('No se pudo agregar la Direccion',18,1)
 end catch
+
+drop procedure SP_AgregarDireccion
 
 ------------------------------------------------------------------------------
 

@@ -221,6 +221,7 @@ namespace Negocio
                     aux.NombreDireccion = lector.GetString(1);
                     aux.Altura = lector.GetInt32(2);
                     aux.CP = lector.GetInt32(3);
+                    aux.Localidad = lector.GetString(4);
 
                     lista.Add(aux);
                 }
@@ -238,7 +239,7 @@ namespace Negocio
 
         public Direccion ListarDireccionXID(int IDenvio)
         {
-            string query = "select Direccion, Altura, CP from Direcciones where idEnvio = @idEnvio";
+            string query = "select Direccion, Altura, CP, Localidad from Direcciones where idEnvio = @idEnvio";
             SqlConnection conexion = new SqlConnection(UsuarioDS);
             SqlCommand comando = new SqlCommand(query, conexion);
             comando.Parameters.AddWithValue("@idEnvio", IDenvio);
@@ -254,6 +255,7 @@ namespace Negocio
                     aux.NombreDireccion = lector.GetString(0);
                     aux.Altura = lector.GetInt32(1);
                     aux.CP = lector.GetInt32(2);
+                    aux.Localidad = lector.GetString(3);
 
                 }
                 conexion.Close();
@@ -278,6 +280,7 @@ namespace Negocio
             comando.Parameters.AddWithValue("@Direccion", Direccion.NombreDireccion);
             comando.Parameters.AddWithValue("@Altura", Direccion.Altura);
             comando.Parameters.AddWithValue("@CP", Direccion.CP);
+            comando.Parameters.AddWithValue("@Localidad", Direccion.Localidad);
 
             try
             {

@@ -48,6 +48,7 @@ namespace Web
             aux.NombreDireccion = gvDirecciones.Rows[index].Cells[1].Text;
             aux.Altura = Convert.ToInt32(gvDirecciones.Rows[index].Cells[2].Text);
             aux.CP = Convert.ToInt32(gvDirecciones.Rows[index].Cells[3].Text);
+            aux.Localidad = gvDirecciones.Rows[index].Cells[4].Text;
             if(e.CommandName == "Seleccion")
             {
                 Session["DireccionUsuario"] = aux;

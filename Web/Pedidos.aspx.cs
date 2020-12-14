@@ -13,7 +13,7 @@ namespace Web
         {
             if (Session["NombreUsuario"] == null)
             {
-                Response.Redirect("CatalogoJuegos.aspx");
+                Response.Redirect("Login.aspx");
             }
         }
     }

@@ -123,19 +123,23 @@ IDUsuario int not null,
 Direccion varchar(200) null,
 Altura int null,
 CP int null
-primary key(IDEnvio,IDusuario)
+primary key(IDEnvio)
 )
 alter table Direcciones
 add constraint FK_DE_DP foreign key(IDUsuario) references Datos_Personales(IDUsuario)
+go
+alter table Direcciones
+add Localidad varchar(200) not null
+select* from Direcciones
 
 go 
 create table Pedidos(
 ID int identity(1,1) not null,
 IDUsuario int not null foreign key references Usuarios(ID),
-ImporteJuego money not null,
+ImporteTotal money not null,
 FechaCompra datetime not null,
 EnvioPorCorreo bit not null,
-DireccionEnvio varchar(200) not null,
+IDDireccion int null foreign key references Direcciones(IDEnvio),
 Pagado bit not null,
 Estado varchar(50) not null,
 primary key (ID)

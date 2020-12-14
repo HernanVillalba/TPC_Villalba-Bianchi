@@ -42,6 +42,15 @@ namespace Web
         protected global::System.Web.UI.WebControls.TextBox txbCP;
 
         /// <summary>
+        /// Control txbLocalidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbLocalidad;
+
+        /// <summary>
         /// Control btnCancelar.
         /// </summary>
         /// <remarks>

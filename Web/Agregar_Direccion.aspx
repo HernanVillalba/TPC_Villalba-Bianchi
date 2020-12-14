@@ -29,6 +29,14 @@
                         <td>
                             <asp:TextBox runat="server" ID="txbCP" Width="122px" CssClass="form-control" required="true" /></td>
                     </tr>
+                    <tr>
+                        <td>
+                            <strong>Localidad</strong>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="txbLocalidad" Width="122px" CssClass="form-control" required="true" />
+                        </td>
+                    </tr>
 
                 </table>
                 <br />

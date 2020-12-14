@@ -45,6 +45,7 @@ namespace Web
             string calle = aux.NombreDireccion, altura = aux.Altura.ToString();
             lblDireccion.Text = "Direccion: " + calle + " " + altura;
             lblCP.Text = "Codigo Postal: " + aux.CP;
+            lblLocalidad.Text = "Localidad: " + aux.Localidad;
         }
     }
 }

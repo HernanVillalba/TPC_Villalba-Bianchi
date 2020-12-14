@@ -64,11 +64,16 @@ VALUES (2, 'Link', 'Zelda', 'legendofzelda@link.com', 11, 21),
 	   (3, 'Oscar', 'Bianchi', 'oski@gmail.com', 312, 23),
 	   (4, 'Hernán', 'Villalaba', 'hernan@gmail.com', 6541, 032)
 
-/*
+
 GO
-insert into Pedidos(IDUsuario, ImporteJuego, FechaCompra, EnvioPorCorreo, DireccionEnvio, Pagado, Estado)
-values (3,2000,GETDATE(),1,'calle falsa 123',1,'Pedido aceptado'),
-	   (2,1500,GETDATE(),0,'calle 2020',1,'Enviado'),
-	   (4,150,GETDATE(),1,'la esquina del nene deah', 0,'No pagado'),
-	   (2,1200,GETDATE(),2,'chancho 20', 0, 'No pagado')
-*/
+
+create procedure SP_Compra(
+@direccion varchar(200)
+)
+as
+insert into Pedidos(IDUsuario, ImporteTotal, FechaCompra, EnvioPorCorreo, IDDireccion, Pagado, Estado)
+values (4,2000,GETDATE(),1,1,1,'Pedido aceptado'),
+	   (4,150,GETDATE(),1,2, 0,'No pagado'),
+	   (2,1200,GETDATE(),0,null, 0, 'No pagado')
+
+
