@@ -109,7 +109,7 @@
         <div class="row" style="column-gap:100px">
             <div class="col">
 
-                <asp:Button Text="Cancelar" runat="server" CssClass="btn btn-danger" OnClick="Click_Cancelar" ID="cancelar" Width="200px" Height="30px" />
+                <asp:Button Text="Cancelar" runat="server" CssClass="btn btn-danger" OnClick="Click_Cancelar" Width="200px" Height="30px"  />
             </div>
 
             <div class="col">

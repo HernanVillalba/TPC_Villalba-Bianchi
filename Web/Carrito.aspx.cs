@@ -104,7 +104,7 @@ namespace Web
                 carro.Cantidad += item.Cantidad;
                 carro.Total += item.PlataformaJuego.Precio * item.Cantidad;
             }
-
+            Session["Carro"] = carro;
             lblCantidad.Text = carro.Cantidad.ToString();
             lblTotal.Text = carro.Total.ToString();
         }

@@ -34,61 +34,79 @@
     <div class="centrado">
 
         <div class="card" style="background-color: khaki">
-            <div>
-
-                <div class="form-group" style="font-size:20px">
-                    <asp:Label Text ="Metodo de pago: " runat="server" />
-                    <asp:Label ID="lblPago" runat="server"  />
-                </div>
-
-                <% if (((Dominio.Tarjeta)Session["MetodoPago"]).IDTarjeta != -1)
-                    {%><div style="font-size:18px">
-                    <asp:Label Text="Cantidad de Cuotas: " runat="server" />
-                    <asp:Label ID="lblCant" runat="server" />
-                </div>
-                <%} %>
-            </div>
+            
             <br />
             <br />
             <div class="card-body">
-                <div class="form-group" style="font-size:18px">
+                <div class="form-group" style="font-size: 20px; border:double; border-color:black" >
+                    <h3>Metodo de Pago: </h3>
+                    <asp:Label ID="lblPago" runat="server" />
+                
 
-                <asp:Label ID="lblDireccion" runat="server" />
+                <% if (((Dominio.Tarjeta)Session["MetodoPago"]).IDTarjeta != -1)
+                    {%><div style="font-size: 18px">
+                        <asp:Label Text="Alias: " runat="server" />
+                        <asp:Label ID="lblTarjeta" runat="server" />
+                    </div>
+                <%} %>
+
+                </div>
+                <div class="form-group" style="font-size: 18px; border:double; border-color:black">
+                <h3>Destino:</h3>
+
+                    <asp:Label ID="lblDireccion" runat="server" />
                     <div>
 
-                <asp:Label ID="lblCP" runat="server" />
+                        <asp:Label ID="lblCP" runat="server" />
                     </div>
 
-                <asp:Label id="lblLocalidad" runat="server" />
+                    <asp:Label ID="lblLocalidad" runat="server" />
 
-                <asp:Label id="lblProvincia" runat="server" />
+                    <asp:Label ID="lblProvincia" runat="server" />
 
 
                 </div>
 
+
+                <div class="form-group" style="font-size: 18px; border:double; border-color:black">
+
+                    <h3>Productos: </h3>
+                    <%foreach (Dominio.Juego item in (List<Dominio.Juego>)Session["ListaCarrito"])
+
+                        {%>
+
+                    <table>
+                        <tr style="border: groove; text-align:center">
+
+                            <td>
+                                <img src="<%= item.ImagenURL %>" class="auto-style5" alt="Imagen del <%=item.Nombre %>"></td>
+                            <td class="auto-style4"><%= item.Nombre %></td>
+                            <td class="auto-style3"><%= item.PlataformaJuego.Nombre %></td>
+
+                            <td class="auto-style2"><%=item.PlataformaJuego.Precio %></td>
+                            <td class="auto-style1"><%=item.Cantidad %></td>
+                        </tr>
+
+                        <%     } %>
+                    </table>
+                </div>
+
+
+
             </div>
-            <div class="card-footer" style="left: auto">
-                <%foreach (Dominio.Juego item in (List<Dominio.Juego>)Session["ListaCarrito"])
 
-                    {%>
-                <table>
-                    <tr style="border: groove;">
+            <div class="centrado">
+                <div class="row" style="column-gap: 20px">
+                    <div class="col">
 
-                        <td>
-                            <img src="<%= item.ImagenURL %>" class="auto-style5" alt="Imagen del <%=item.Nombre %>"></td>
-                        <td class="auto-style4"><%= item.Nombre %></td>
-                        <td class="auto-style3"><%= item.PlataformaJuego.Nombre %></td>
+                        <asp:Button Text="Cancelar" runat="server" CssClass="btn btn-danger" OnClick="Cancelar_Click" Width="130px" Height="30px" />
+                    </div>
 
-                        <td class="auto-style2"><%=item.PlataformaJuego.Precio %></td>
-                        <td class="auto-style1"><%=item.Cantidad %></td>
-                    </tr>
-
-                    <%     } %>
-                </table>
+                    <div class="col">
+                        <asp:Button Text="Confirmar" runat="server" CssClass="btn btn-success" OnClick="Confirmar_Click" Width="130px" Height="30px" />
+                    </div>
+                </div>
             </div>
-
-
-
         </div>
     </div>
 </asp:Content>

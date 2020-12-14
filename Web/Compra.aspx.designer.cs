@@ -24,13 +24,13 @@ namespace Web
         protected global::System.Web.UI.WebControls.Label lblPago;
 
         /// <summary>
-        /// Control lblCant.
+        /// Control lblTarjeta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCant;
+        protected global::System.Web.UI.WebControls.Label lblTarjeta;
 
         /// <summary>
         /// Control lblDireccion.

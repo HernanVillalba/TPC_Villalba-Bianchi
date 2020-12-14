@@ -17,16 +17,16 @@
         {%>
     <div style="display: flex; align-items: center; justify-content: center;">
         <div class="jumbotron" style="background-color: #1c2b2d; height: 230px; opacity: 0.9;">
-            <h2 class="display-4" style="display: flex; align-items: center; justify-content: center;"><strong>Carrito</strong></h2>
+            <h2 class="display-4" style="display: flex; align-items: center; justify-content: center; color:white"><strong>Carrito</strong></h2>
             <hr />
 
             <div style="font-size: 15px;">
                 <span class="badge badge-primary">Cantidad de articulos:</span>
-                <asp:Label ID="lblCantidad" Text="0" runat="server" />
+                <asp:Label ID="lblCantidad" Text="0" runat="server" ForeColor="White" />
             </div>
             <div style="font-size: 15px;">
                 <span class="badge badge-primary">Precio total: $</span>
-                <asp:Label ID="lblTotal" Text="0" runat="server" />
+                <asp:Label ID="lblTotal" Text="0" runat="server" ForeColor="White" />
             </div>
             <div class="form-group" style="float: right;">
                 <a href="Carrito.aspx?empty=1" class="btn btn-primary" style="background-color: darkred; border-bottom-color: darkred;">Vaciar carrito</a>
@@ -41,7 +41,6 @@
     
     <table class="table table-dark" border="1" style="border: thin outset #000000; margin: auto; background-color: #30475e; opacity: 0.9;">
         <tr style="border: 1px groove #000000; background-color: #222831;">
-            <td></td>
             <td>Imagen</td>
             <td>Nombre</td>
             <td>Plataforma</td>
@@ -57,7 +56,6 @@
                 <img src="<%= item.ImagenURL %>" class="card-img-top" style="width: 120px; height: 60px;" alt="Imagen del <%=item.Nombre %>"></td>
             <td><%= item.Nombre %></td>
             <td><%= item.PlataformaJuego.Nombre %></td>
-
             <td><%=item.PlataformaJuego.Precio %></td>
             <td><%=item.Cantidad %></td>
         </tr>

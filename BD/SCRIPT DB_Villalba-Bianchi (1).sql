@@ -117,23 +117,21 @@ go
 alter table Datos_Personales add unique (IDUsuario, Mail)
 
 GO
-create table Direcciones(
+create  table Direcciones(
 IDEnvio int identity(1,1) not null,
 IDUsuario int not null,
 Direccion varchar(200) null,
 Altura int null,
-CP int null
+CP int null,
+Localidad varchar(200) not null
 primary key(IDEnvio)
 )
-alter table Direcciones
-add constraint FK_DE_DP foreign key(IDUsuario) references Datos_Personales(IDUsuario)
 go
 alter table Direcciones
-add Localidad varchar(200) not null
-select* from Direcciones
+add constraint FK_DE_DP foreign key(IDUsuario) references Datos_Personales(IDUsuario)
 
 go 
-create table Pedidos(
+create  table Pedidos(
 ID int identity(1,1) not null,
 IDUsuario int not null foreign key references Usuarios(ID),
 ImporteTotal money not null,
