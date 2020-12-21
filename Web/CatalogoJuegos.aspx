@@ -29,10 +29,10 @@
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="max-width: 200px; max-height: 200px;" data-interval="3000">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="https://tinyurl.com/y72zx3yp" alt="First slide">
+                        <a href="#"><img class="d-block w-100" src="https://tinyurl.com/y72zx3yp" alt="First slide"></a>
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="https://tinyurl.com/yboj4jay" alt="Second slide">
+                        <img class="d-block w-100" src="https://movilzona.xyz/img/xbox.png" alt="Second slide">
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100" src="https://tinyurl.com/yafmjsh9" alt="thirst slide">
