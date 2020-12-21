@@ -53,7 +53,7 @@ VALUES (1,1),
 	   
 GO
 INSERT INTO Usuarios(NombreUsuario,Contraseña)
-VALUES ('admin', ENCRYPTBYPASSPHRASE('password','admin',)),
+VALUES ('admin', ENCRYPTBYPASSPHRASE('password','admin')),
 	   ('link', ENCRYPTBYPASSPHRASE('password','zelda')),
 	   ('oscar20',ENCRYPTBYPASSPHRASE('password', 'oski')),
 	   ('hernanvi_', ENCRYPTBYPASSPHRASE('password','herni'))
@@ -64,17 +64,4 @@ VALUES (2, 'Link', 'Zelda', 'legendofzelda@link.com', 11, 21),
 	   (3, 'Oscar', 'Bianchi', 'oski@gmail.com', 312, 23),
 	   (4, 'Hernán', 'Villalaba', 'hernan@gmail.com', 6541, 032)
 
-
-GO
-
-insert into Pedidos(IDUsuario, ImporteTotal, FechaCompra, EnvioPorCorreo, IDDireccion, Pagado, Estado)
-values (3,2000,GETDATE(),1,1,1,'Pedido aceptado'),
-	   (3,150,GETDATE(),1,2, 0,'No pagado'),
-	   (2,1200,GETDATE(),0,null, 0, 'No pagado'),
-	   (3,1500,GETDATE(),1,null,0,'Pagado')
-
-go 
-insert into Producto_X_Pedido(IDPedido,IDJuego,Precio,Cantidad,IDPlataforma)
-values(3,2,1000,2,1),
-		(3,1,400,1,1)
 

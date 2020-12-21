@@ -1,5 +1,3 @@
-
-
 create DATABASE DB_VILLALBA_BIANCHI
 
 GO

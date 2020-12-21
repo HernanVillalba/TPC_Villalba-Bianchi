@@ -1,8 +1,6 @@
 -------- Procesos Carrito y Favoritos ---------------------------
-
-
-
-
+use DB_VILLALBA_BIANCHI
+go
 CREATE PROCEDURE SP_AgregarFavorito(
 @idUsuario int,
 @idJuego int,
@@ -19,7 +17,7 @@ begin catch
 end catch
 
 ---------------------------------------------------------------------------------------
-
+go
 create procedure SP_EliminarFavorito(
 @idUsuario int,
 @idJuego int,
@@ -36,6 +34,7 @@ begin catch
 end catch
 
 ---------------------------------------------------------------------------------------
+go
 Create procedure SP_ListarFavUsuario(
 @idUsuario int
 )
@@ -52,6 +51,7 @@ begin
 end
 
 -------------------------------------------------------------------------------
+go
 Create procedure SP_AgregarItemCarrito(
 @idUsuario int,
 @idJuego int,
@@ -68,6 +68,7 @@ end catch
 
 
 -------------------------------------------------------------------------------
+go
 create procedure SP_SumarCantidadItemCarrito(
 @idUsuario int,
 @idJuego int,
@@ -86,6 +87,7 @@ end catch
 
 
 -------------------------------------------------------------------------------
+go
 create procedure SP_EliminarItemCarrito(
 @idUsuario int,
 @idJuego int,
@@ -101,6 +103,7 @@ begin catch
 end catch
 
 -------------------------------------------------------------------------------
+go
 create procedure SP_ListarCarrito(
 @idUsuario int
 )
@@ -122,6 +125,7 @@ begin catch
 end catch
 
 -------------------------------------------------------------------------------
+go
 create procedure SP_VaciarCarrito(
 @idUsuario int
 )

@@ -5,7 +5,7 @@ use DB_VILLALBA_BIANCHI
 --procedimiento almacenado que primero inserta los datos de la tabla de usuario, toma ese ID (que es identity) y
 --lo guarda en una variable para luego insertarlo en la tabla de Datos_Personales junto a las demás columnas
 
-
+go
 create procedure SP_Registrarse(
 	@nombre	varchar(200),
 	@apellido varchar(200),
@@ -36,6 +36,7 @@ END CATCH
 go
 ------------------------------------------------------------------------------------------------
 --SP que busca todos los pedidos del usuario logeado
+
 create procedure SP_BuscarPedidoPorUsuario(
 	@IDUsuario int
 )
@@ -50,14 +51,13 @@ go
 --Procedimiento almacenado que trae todos los datos del usuario en Usuarios, DatosPersonales y DatosEnvio
 --por ahora lo uso solo para cargar el perfil del usuario
 
-create procedure SP_DatosUsuario(
+alter procedure SP_DatosUsuario(
 @idUsuario int
 )
 as
 begin try
 	select isnull(U.ID,0) as ID, 
-		   isnull(U.NombreUsuario,0) as NombreUsuario, 
-		   isnull(U.Contraseña,0) as Contraseña,
+		   isnull(U.NombreUsuario,0) as NombreUsuario,
 		   isnull(DP.Apellido,0) as Apellido, 
 		   isnull(DP.Nombre,0) as Nombre,
 	       isnull(DP.Mail,0) as Mail, 
@@ -198,7 +198,7 @@ begin catch
 	raiserror('No se pudo eliminar la direccion',18,1);
 end catch
 
-
+go
 create Procedure SP_Login(
 @user varchar(200),
 @pass varchar(200)

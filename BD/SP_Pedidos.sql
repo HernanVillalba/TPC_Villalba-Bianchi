@@ -1,5 +1,6 @@
 -----------------------Procesos Pedidos-------------------------------
-
+USE DB_VILLALBA_BIANCHI
+GO
 create procedure SP_CrearPedido(
 @IDU int,
 @IT money,
@@ -20,9 +21,8 @@ begin catch
 
 end catch
 
-----------------------------------------------------------------------------------------------------------
-select * from pedidos
-select *from Producto_x_pedido
+  ----------------------------------------------------------------------------------------------------------
+GO
 
 
 create procedure SP_GuardarProductos(
@@ -47,6 +47,7 @@ begin catch
 end catch
 
 ----------------------------------------------------------------------------------
+GO
 create procedure SP_ListarProductosxPedido(
 @IDP int
 )
@@ -65,7 +66,4 @@ begin catch
 		raiserror('No se pudo obtener la lista de juegos,',18,1)
 end catch
 
-
-select * from Pedidos
-select * from Producto_x_pedido order by IDPedido
 

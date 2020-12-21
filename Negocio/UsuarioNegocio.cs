@@ -106,12 +106,12 @@ namespace Negocio
                 {
                     aux.Usuario.ID = lector.GetInt32(0);
                     aux.Usuario.nombreUsuario = lector.GetString(1);
-                    aux.Usuario.pass = lector.GetString(2);
-                    aux.DPUsuario.Apellido = lector.GetString(3);
-                    aux.DPUsuario.Nombre = lector.GetString(4);
-                    aux.DPUsuario.Mail = lector.GetString(5);
-                    aux.DPUsuario.Telefono = lector.GetInt32(6);
-                    aux.DPUsuario.TelefonAlter = lector.GetInt32(7);
+                    aux.DPUsuario.Apellido = lector.GetString(2);
+                    aux.DPUsuario.Nombre = lector.GetString(3);
+                    aux.DPUsuario.Mail = lector.GetString(4);
+                    aux.DPUsuario.Telefono = lector.GetInt32(5);
+                    aux.DPUsuario.TelefonAlter = lector.GetInt32(6);
+                    aux.Usuario.pass = "";
                 }
                 else
                 {

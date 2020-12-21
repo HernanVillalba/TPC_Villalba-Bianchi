@@ -2,7 +2,7 @@
 use DB_VILLALBA_BIANCHI
 --vista que trae todos los campos asociados con la tabla de juegos para listarlos por la web.
 
-
+GO
 create view VW_ListarTodosLosCampos
 as
 select J.ID, J.Nombre as Juego, J.Descripcion , J.ImagenURL, PxJ.Importe, PxJ.Stock, P.ID as IDPlataforma, P.Nombre as Plataforma, D.ID as IDDesarrollador, D.Nombre as Desarrollador from Juegos as J
@@ -13,7 +13,7 @@ join Desarrolladores as D on D.ID=DxJ.IDDesarrollador
 
 
 -------------------------------------------------------------------------------------
-
+GO
 create procedure SP_NuevoJuego(
 @nombre varchar(200),
 @descripcion varchar(500),
@@ -45,7 +45,7 @@ BEGIN CATCH
 END CATCH
 
 -------------------------------------------------------------------------------------------------------------------
-
+GO
 create procedure SP_ActualizarJuego(
 @IDJuego int,
 @Nombre varchar(200),

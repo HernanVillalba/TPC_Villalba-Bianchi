@@ -4,7 +4,7 @@
 
 
 
-    <asp:GridView ID="dgvJuegos" runat="server" AutoGenerateColumns="false" BackColor="White" OnRowCommand="gvJuegos_RowCommand" RowStyle-HorizontalAlign="Center">
+    <asp:GridView ID="dgvJuegos" runat="server" AutoGenerateColumns="false" BackColor="White" OnRowCommand="gvJuegos_RowCommand" RowStyle-HorizontalAlign="Center" CssClass="table">
         <Columns>
             <asp:BoundField HeaderText="ID" DataField="ID" />
             <asp:ImageField HeaderText="Imagen" DataImageUrlField="ImagenURL" ControlStyle-Height="100" ControlStyle-Width="100" AlternateText="Imagen" />
@@ -16,8 +16,8 @@
             <asp:BoundField HeaderText="Valor" DataField="PlataformaJuego.Precio" />
             <asp:BoundField HeaderText="Desarrollador" DataField="DesarrolladorJuego.Nombre" />
             <asp:BoundField HeaderText="IDDesarrollador" DataField="DesarrolladorJuego.ID" />
-            <asp:ButtonField ButtonType="Button" Text="Modificar" commandName="Modify" ControlStyle-BackColor="Yellow" ControlStyle-Font-Bold="true" ControlStyle-ForeColor="black" ItemStyle-CssClass="btn-outline-warning"/>
-            <asp:ButtonField ButtonType="Button" Text="Eliminar" CommandName="Delete" ControlStyle-BackColor="red"  ControlStyle-Font-Bold="true" ControlStyle-ForeColor="black" ItemStyle-CssClass="btn-outline-danger"/>
+            <asp:ButtonField ButtonType="Button" Text="Modificar" commandName="Modify" ControlStyle-BackColor="Yellow" ControlStyle-Font-Bold="true" ControlStyle-ForeColor="black" ItemStyle-CssClass="btn-outline-warning" ControlStyle-CssClass="btn btn-primary" ControlStyle-BorderColor="Yellow"/>
+            <asp:ButtonField ButtonType="Button" Text="Eliminar" CommandName="Delete" ControlStyle-BackColor="red"  ControlStyle-Font-Bold="true" ControlStyle-ForeColor="black" ItemStyle-CssClass="btn-outline-danger" ControlStyle-CssClass="btn btn-primary" ControlStyle-BorderColor="red"/>
         </Columns>
 
 

@@ -2,72 +2,55 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="centrado">
-        <div class="jumbotron" style="height: 210px; background-position: 320px center; background-image: url(https://www.hd-tecnologia.com/imagenes/articulos/2019/04/Crossplay-Las-familias-quieren-jugar-juntas-y-nadie-tiene-4-PlayStations.jpg); background-attachment: inherit; background-size: 55%; background-repeat: no-repeat;">
-            <h2 class="display-5">Los juegos queres al Precio que podes!</h2>
-            <p class="lead">Buscas algo particular?</p>
-            <div class="lead">
-                <div class="dropdown" style="width: 230px; opacity: 0.9;">
-                    <asp:DropDownList ID="dropCat" runat="server" CssClass="dropdown-item" BackColor="#393e46" AppendDataBoundItems="true">
-                        <asp:ListItem Text="Todas las Plataformas" Value="0" />
+    <div class="row">
+        <div class="col">
+            <div class="centrado">
+                <div class="jumbotron" style="height: 210px; background-position: 320px center; background-image: url(https://www.hd-tecnologia.com/imagenes/articulos/2019/04/Crossplay-Las-familias-quieren-jugar-juntas-y-nadie-tiene-4-PlayStations.jpg); background-attachment: inherit; background-size: 55%; background-repeat: no-repeat;">
+                    <h2 class="display-5">Los juegos queres al Precio que podes!</h2>
+                    <p class="lead">Buscas algo particular?</p>
+                    <div class="lead">
+                        <div class="dropdown" style="width: 230px; opacity: 0.9;">
+                            <asp:DropDownList ID="dropCat" runat="server" CssClass="dropdown-item" BackColor="#393e46" AppendDataBoundItems="true">
+                                <asp:ListItem Text="Todas las Plataformas" Value="0" />
 
-                    </asp:DropDownList>
+                            </asp:DropDownList>
+                        </div>
+                        <br />
+                        <div class="input-group" style="width: 230px;">
+                            <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" CssClass="btn btn-primary" />
+                        </div>
+
+                    </div>
                 </div>
-                <br />
-                <div class="input-group" style="width: 230px;">
-                    <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control"></asp:TextBox>
-                    <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" CssClass="btn btn-secondary" />
+            </div>
+        </div>
+        <div class="col">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="max-width: 200px; max-height: 200px;" data-interval="3000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="https://tinyurl.com/y72zx3yp" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://tinyurl.com/yboj4jay" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://tinyurl.com/yafmjsh9" alt="thirst slide">
+                    </div>
                 </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
 
             </div>
         </div>
     </div>
 
-
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
-
-        <ol class="carousel-indicators">
-            <%for (int i = 0; i < ((List<Dominio.Juego>)Session["Productos"]).Count(); i++)
-                {
-                    if (i == 1)
-                    {%>
-            <li data-target="#carouselExampleIndicators" data-slide-to="<%= i%>" class="active"></li>
-            <%}
-                else
-                {%>
-            <li data-target="#carouselExampleIndicators" data-slide-to="<%= i %>"></li>
-            <%}
-                }%>
-        </ol>
-
-        <div class="carousel-inner">
-
-            <%foreach (Dominio.Juego item in (List<Dominio.Juego>)Session["Productos"])
-                {
-                    if (item.ID == 1)
-                    {%>
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="<%=item.ImagenURL %>" alt="First slide">
-                        </div>
-                  <%}
-                else
-                { %>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="<%=item.ImagenURL %>" alt="Second slide">
-                        </div>
-              <%}
-              
-              }%>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
 
 
     <div class="row">
