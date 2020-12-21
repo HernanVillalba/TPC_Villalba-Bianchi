@@ -12,7 +12,7 @@ create procedure SP_Registrarse(
 	@mail varchar(200),
 	@telefono INT,
 	@nombreUsuario varchar(200),
-	@contraseña varbinary(200)
+	@contraseña varchar(200)
 ) WITH ENCRYPTION
 AS
 BEGIN TRY
@@ -30,8 +30,9 @@ END TRY
 BEGIN CATCH
 		 raiserror('Error al registrar el usuario en la DB',
 		 18,
-		 1);
+		 1)
 END CATCH
+
 go
 ------------------------------------------------------------------------------------------------
 --SP que busca todos los pedidos del usuario logeado
@@ -175,10 +176,14 @@ create procedure SP_ChequearPass(
 as
 begin
 	select U.ID from Usuarios as U
-	where U.ID=@idUsuario and DECRYPTBYPASSPHRASE('password',U.Contraseña)=@contraseña
+	where U.ID=@idUsuario and CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('password',Contraseña))=@contraseña
 end
 go
 ------------------------------------------------------------------------------
+
+
+
+
 
 create procedure SP_EliminarDireccion(
 @idDireccion int,
@@ -194,3 +199,22 @@ begin catch
 end catch
 
 
+create Procedure SP_Login(
+@user varchar(200),
+@pass varchar(200)
+)
+as
+begin 
+
+	begin try
+
+	select * from Usuarios
+	where NombreUsuario=@user and CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('password',Contraseña))=@pass
+
+	end try
+
+	begin catch
+		raiserror('No se pudo Loguear',18,1);
+
+	end catch
+end

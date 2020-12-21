@@ -133,7 +133,8 @@ namespace Negocio
         {
             //necesito una conexion, un comando y un lector.
             SqlConnection conexion = new SqlConnection(UsuarioDS);
-            SqlCommand comando = new SqlCommand("select * from Usuarios where NombreUsuario = @user and Contraseña = @pass", conexion);
+            SqlCommand comando = new SqlCommand("SP_Login", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@user", user.nombreUsuario);
             comando.Parameters.AddWithValue("@pass", user.pass);
 
@@ -147,7 +148,6 @@ namespace Negocio
                     //asigno los valores de las columnas de la consulta
                     user.ID = lector.GetInt32(0);
                     user.nombreUsuario = lector.GetString(1);
-                    user.pass = lector.GetString(2);
                 }
                 else { user.ID = 0; }
 
