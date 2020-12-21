@@ -5,20 +5,21 @@ use DB_VILLALBA_BIANCHI
 --procedimiento almacenado que primero inserta los datos de la tabla de usuario, toma ese ID (que es identity) y
 --lo guarda en una variable para luego insertarlo en la tabla de Datos_Personales junto a las demás columnas
 
+
 create procedure SP_Registrarse(
 	@nombre	varchar(200),
 	@apellido varchar(200),
 	@mail varchar(200),
 	@telefono INT,
 	@nombreUsuario varchar(200),
-	@contraseña varchar(200)
+	@contraseña varbinary(200)
 ) WITH ENCRYPTION
 AS
 BEGIN TRY
 	--primero insertamos los datos de la tabla de usuario ya que en datos
 	--personales el IDUsuario hace referencia al ID de esta tabla
 	INSERT INTO Usuarios(NombreUsuario, Contraseña)
-	values (@nombreUsuario, @contraseña)
+	values (@nombreUsuario, ENCRYPTBYPASSPHRASE('password', @contraseña))
 	--ahora insert en Datos_Personales
 	declare @ultID int
 	set @ultID = @@IDENTITY
@@ -31,7 +32,7 @@ BEGIN CATCH
 		 18,
 		 1);
 END CATCH
-
+go
 ------------------------------------------------------------------------------------------------
 --SP que busca todos los pedidos del usuario logeado
 create procedure SP_BuscarPedidoPorUsuario(
@@ -42,9 +43,8 @@ BEGIN
 	   SELECT * FROM Pedidos where IDUsuario = @IDUsuario
 END
 
-------------------------------------------------------------------------------------------------
 
-
+go
 ------------------------------------------------------------------------------------------------------
 --Procedimiento almacenado que trae todos los datos del usuario en Usuarios, DatosPersonales y DatosEnvio
 --por ahora lo uso solo para cargar el perfil del usuario
@@ -69,10 +69,9 @@ end try
 begin catch
 	raiserror('Error al obtener el usuario',18,1);
 end catch
-
+go
 
 ---------------------------------------------------------------------------------------------------------------
-
 CREATE PROCEDURE SP_GuardarMisDatos(
 @id int,
 @nombreUsuario varchar(200),
@@ -96,10 +95,8 @@ begin catch
 	 raiserror('Error al guardar los datos del usuario en la DB',18,1);
 end catch
 
-exec SP_GuardarDatosPersonales 4, 'hernanvi_', 'herni', 'Hernan', 'Villalba', 'hernan@gmail.com', 99999, 99999
-drop procedure SP_GuardarDatosPersonales
 
-
+go
 -------------------------------------------------------------------------------------------------------------------
 
 create procedure SP_ListarDirecciones(
@@ -114,8 +111,7 @@ begin catch
 	raiserror('No se pudo listar las Direcciones',18,1);
 end catch
 
-drop procedure SP_ListarDirecciones
-
+go
 -------------------------------------------------------------------------------------------------------------------
 	
 create procedure SP_ListarTarjetas(
@@ -129,7 +125,7 @@ begin catch
 	raiserror('No se pudo obtener las Tarjetas',18,1);
 
 end catch
-
+go
 --------------------------------------------------------------------------------------------------------------------
 
 create procedure SP_AgregarDireccion(
@@ -148,8 +144,7 @@ begin catch
 		raiserror('No se pudo agregar la Direccion',18,1)
 end catch
 
-drop procedure SP_AgregarDireccion
-
+go
 ------------------------------------------------------------------------------
 
 create procedure SP_AgregarTarjeta(
@@ -170,7 +165,7 @@ begin catch
 
 end catch
 
-
+go
 ------------------------------------------------------------------------------
 
 create procedure SP_ChequearPass(
@@ -180,9 +175,9 @@ create procedure SP_ChequearPass(
 as
 begin
 	select U.ID from Usuarios as U
-	where U.ID=@idUsuario and U.Contraseña=@contraseña
+	where U.ID=@idUsuario and DECRYPTBYPASSPHRASE('password',U.Contraseña)=@contraseña
 end
-
+go
 ------------------------------------------------------------------------------
 
 create procedure SP_EliminarDireccion(
@@ -197,3 +192,5 @@ end try
 begin catch
 	raiserror('No se pudo eliminar la direccion',18,1);
 end catch
+
+

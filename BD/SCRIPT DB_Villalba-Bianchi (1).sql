@@ -1,6 +1,6 @@
 
 
-CREATE DATABASE DB_VILLALBA_BIANCHI
+create DATABASE DB_VILLALBA_BIANCHI
 
 GO
 USE DB_VILLALBA_BIANCHI
@@ -67,7 +67,7 @@ go
 create table Usuarios(
 ID int identity(1,1) not null,
 NombreUsuario varchar(200) not null,
-Contraseña varchar(200) not null,
+Contraseña varbinary(200) not null,
 primary key (ID)
 )
 go

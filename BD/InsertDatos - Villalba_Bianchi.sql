@@ -53,10 +53,10 @@ VALUES (1,1),
 	   
 GO
 INSERT INTO Usuarios(NombreUsuario,Contraseña)
-VALUES ('admin', 'admin'),
-	   ('link', 'zelda'),
-	   ('oscar20', 'oski'),
-	   ('hernanvi_', 'herni')
+VALUES ('admin', ENCRYPTBYPASSPHRASE('password','admin',)),
+	   ('link', ENCRYPTBYPASSPHRASE('password','zelda')),
+	   ('oscar20',ENCRYPTBYPASSPHRASE('password', 'oski')),
+	   ('hernanvi_', ENCRYPTBYPASSPHRASE('password','herni'))
 
 GO
 INSERT INTO Datos_Personales (IDUsuario, Nombre, Apellido, Mail, Telefono, TelefonoAlter)
@@ -77,3 +77,4 @@ go
 insert into Producto_X_Pedido(IDPedido,IDJuego,Precio,Cantidad,IDPlataforma)
 values(3,2,1000,2,1),
 		(3,1,400,1,1)
+
